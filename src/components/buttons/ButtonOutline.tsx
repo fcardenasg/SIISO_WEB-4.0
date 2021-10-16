@@ -11,7 +11,7 @@ export const ButtonOutline: React.FC<Props> = ({ text, onPress }) => {
       onClick={onPress}
       className="w-full rounded h-12 text-red-1 font-semibold font-montserrat"
     >
-      <span>{text}</span>
+      <span className="text-xs">{text}</span>
     </button>
   );
 };

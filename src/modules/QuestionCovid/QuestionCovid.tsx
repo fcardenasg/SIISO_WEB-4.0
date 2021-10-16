@@ -17,6 +17,7 @@ import {
   QuestionCovidForm,
   SiteForm,
 } from "../../types/QuestionCovidTypes";
+import { useHistory } from "react-router";
 
 const steppers: StepperOptions[] = [
   {
@@ -68,6 +69,7 @@ const QuestionCovid = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [questionCovidForm, setQuestionCovidForm] =
     React.useState<QuestionCovidForm>({} as QuestionCovidForm);
+  const history = useHistory();
 
   const ShowCompoent = () => {
     switch (activeStep) {
@@ -145,9 +147,11 @@ const QuestionCovid = () => {
               );
             })}
           </Stepper>
-          <Cancel
-            sx={{ color: colors.primary, fontWeight: "bold", fontSize: 40 }}
-          />
+          <button onClick={() => history.push('/login')}>
+            <Cancel
+              sx={{ color: colors.primary, fontWeight: "bold", fontSize: 40 }}
+            />
+          </button>
         </div>
 
         <div className="p-10 flex items-center w-full flex-col">
