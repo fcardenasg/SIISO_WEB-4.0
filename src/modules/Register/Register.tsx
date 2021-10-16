@@ -56,9 +56,6 @@ export const Register = () => {
     resolver: yupResolver(schemaValidation),
   });
 
-  const router = useHistory();
-  router.push('aaa');
-
   const handleClick = (data: RegisterForm) => {
     console.log(data);
   };
