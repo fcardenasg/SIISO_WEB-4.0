@@ -61,8 +61,8 @@ export const Register = () => {
   };
 
   return (
-    <div className="p-5 flex justify-center items-center">
-      <div className="md:w-1/2 bg-white rounded shadow p-10">
+    <div className="p-10 flex justify-center items-center">
+      <div className="md:w-1/2 bg-white rounded shadow py-5 px-10">
         <div className="w-full flex justify-center">
           <img src={logo} alt="" className="h-10 w-12 my-2 object-center" />
         </div>
