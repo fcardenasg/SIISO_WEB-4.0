@@ -7,7 +7,7 @@ import { ButtonPrimary } from "../../components/buttons/ButtonPrimary";
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import { ButtonOutline } from "../../components/buttons/ButtonOutline";
 import InputCheck from "../../components/input/InputCheck";
 
@@ -55,6 +55,9 @@ export const Register = () => {
   } = useForm<RegisterForm>({
     resolver: yupResolver(schemaValidation),
   });
+
+  const router = useHistory();
+  router.push('aaa');
 
   const handleClick = (data: RegisterForm) => {
     console.log(data);
