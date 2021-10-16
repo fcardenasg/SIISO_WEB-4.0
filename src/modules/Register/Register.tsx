@@ -24,7 +24,7 @@ type RegisterForm = {
 
 const schemaValidation: Yup.SchemaOf<RegisterForm> = Yup.object({
   Documento: Yup.string()
-    .required("Este campo es obligatorio XXX")
+    .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
   Nombres: Yup.string()
     .required("Este campo es obligatorio")
