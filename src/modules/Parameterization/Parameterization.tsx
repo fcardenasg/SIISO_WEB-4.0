@@ -4,8 +4,10 @@ import { ButtonLinkDashboard } from '../../components/buttons/ButtonLinkDashboar
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import { useHistory } from 'react-router';
 
 export const Parameterization = () => {
+  const history = useHistory();
   return (
 
     /* Botones  */
@@ -21,16 +23,19 @@ export const Parameterization = () => {
         title="Tipo de Catálogos"
         subtitle="Registro de tipos de catálogos"
         icon={<AssignmentIcon sx={{ fontSize: 40 }} />}
+        onPress={()=> history.push('Catalog')}
       />
       <ButtonLinkDashboard
         title="Catálogos"
         subtitle="Registro de catálogos"
         icon={<AutoStoriesIcon sx={{ fontSize: 40 }} />}
+        onPress={()=> history.push('Ruta')}
       />
       <ButtonLinkDashboard
         title="Empresas"
         subtitle="Regitro de Empresas"
         icon={<CorporateFareIcon sx={{ fontSize: 40 }} />}
+        onPress={()=> history.push('Ruta')}
       />
     </div>
     
