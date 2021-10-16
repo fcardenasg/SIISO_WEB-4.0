@@ -45,7 +45,7 @@ const Catalog = () => {
       <div className="md:w-1/2 bg-white rounded shadow py-5 px-10">
         <div className="w-full flex justify-center">
           <span className="text-gray-700 font-montserrat font-semibold text-lg text-center">
-            Registro de Tipo de Catalogos
+            Registro de Tipo de Catálogos
           </span>
         </div>
       { /* Linea roja y texto */}
@@ -60,7 +60,7 @@ const Catalog = () => {
       
         <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         <div className="h-3"></div>
-        <Link to="/login">
+        <Link to="/Parameterization">
           <ButtonOutline onPress={() => {}} text="Cancelar" />
         </Link>
       </div>
