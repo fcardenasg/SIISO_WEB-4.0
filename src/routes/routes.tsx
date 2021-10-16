@@ -15,6 +15,7 @@ import { MainLayout } from "../layout/MainLayout";
 import { Parameterization } from "../modules/Parameterization/Parameterization";
 import { Register } from "../modules/Register/Register";
 import QuestionCovid from "../modules/QuestionCovid/QuestionCovid";
+import Catalog from "../modules/Catalog/Catalog";
 
 type Props = {
   children?: React.ReactNode;
@@ -71,6 +72,11 @@ export default function RoutesApp() {
           <PrivateRoute path="/parameterization">
             <MainLayout>
               <Parameterization />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/Catalog">
+            <MainLayout>
+              <Catalog />
             </MainLayout>
           </PrivateRoute>
           <Redirect path="/" to="/home" />
