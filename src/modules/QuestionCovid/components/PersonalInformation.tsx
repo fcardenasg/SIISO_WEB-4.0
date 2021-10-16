@@ -75,7 +75,7 @@ const PersonalInformation = () => {
   };
 
   return (
-    <div className="flex flex-col bg-white shadow px-10 py-5 w-full xl:w-1/3 rounded">
+    <div className="flex flex-col bg-white shadow px-10 py-5 w-full xl:w-1/2 rounded">
       <span className="text-gray-700 font-semibold font-montserrat text-xl text-center">
         Mis datos personales
       </span>

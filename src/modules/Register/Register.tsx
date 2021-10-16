@@ -61,13 +61,13 @@ export const Register = () => {
   };
 
   return (
-    <div className="p-5 sm:h-screen flex justify-center items-center">
+    <div className="p-5 flex justify-center items-center">
       <div className="md:w-1/2 bg-white rounded shadow p-10">
         <div className="w-full flex justify-center">
-          <img src={logo} alt="" className="h-16 w-20 my-6 object-center" />
+          <img src={logo} alt="" className="h-10 w-12 my-2 object-center" />
         </div>
         <div className="w-full flex justify-center">
-          <span className="text-gray-700 font-montserrat font-semibold text-2xl text-center">
+          <span className="text-gray-700 font-montserrat font-semibold text-lg text-center">
             Registro de Visitante
           </span>
         </div>
