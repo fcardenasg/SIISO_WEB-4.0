@@ -5,13 +5,56 @@ import { ButtonPrimary } from "../../components/buttons/ButtonPrimary";
 import { Link } from "react-router-dom";
 import { ButtonOutline } from "../../components/buttons/ButtonOutline";
 import InputCheck from "../../components/input/InputCheck";
+import InputSelect, {
+  SelectOptions,
+} from "../../components/input/InputSelect";
+
 
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+//Cargar combos
+const Objects: SelectOptions[] = [
+  {
+    value: "Catalogo",
+    label: "Catalogo",
+  },
+  {
+    value: "Encriptación",
+    label: "Encriptación",
+  },
+  {
+    value: "Tipo de Menu",
+    label: "Tipo de Menu",
+  },
+
+];
+
+const typeofcatalog: SelectOptions[] = [
+  {
+    value: "Genero",
+    label: "Genero",
+  },
+  {
+    value: "EPS",
+    label: "EPS",
+  },
+  {
+    value: "ARL",
+    label: "ARL",
+  },
+
+];
+
+
+
 type CatalogForm = {
     Nombre: string;
+    Codigo: string;
+    IdTipoCatalogo: string;
+    IdObjeto: string;
+    Estado : boolean;
 };
 
 
@@ -21,6 +64,16 @@ const schemaValidation: Yup.SchemaOf<CatalogForm> = Yup.object({
     Nombre: Yup.string()
         .required("Este campo es obligatorio")
         .min(3, "Este campo debe tener minimo 3 caracteres"),
+        Codigo: Yup.string()
+        .required("Este campo es obligatorio")
+        .min(3, "Este campo debe tener minimo 3 caracteres"),
+        IdTipoCatalogo: Yup.string()
+        .required("Este campo es obligatorio")
+        .min(3, "Este campo debe tener minimo 3 caracteres"),
+        IdObjeto: Yup.string()
+        .required("Este campo es obligatorio")
+        .min(3, "Este campo debe tener minimo 3 caracteres"),
+        Estado: Yup.boolean().required(),
 });
 
 
@@ -45,11 +98,28 @@ const Catalog = () => {
       <div className="md:w-1/2 bg-white rounded shadow py-5 px-10">
         <div className="w-full flex justify-center">
           <span className="text-gray-700 font-montserrat font-semibold text-lg text-center">
-            Registro de Tipo de Catálogos
+            Registro de Catálogos
           </span>
         </div>
       { /* Linea roja y texto */}
         <div className="w-full border-b-2 border-red-1 my-4"></div>
+        <InputSelect
+        control={control}
+        name="IdObjeto"
+        label="Objeto"
+        defaultValue=""
+        options={Objects}
+        errorMessage={errors.IdObjeto?.message}
+      />
+         <InputSelect
+        control={control}
+        name="IdTipoCatalogo"
+        label="Tipo Catálogo"
+        defaultValue=""
+        options={typeofcatalog}
+        errorMessage={errors.IdTipoCatalogo?.message}
+      />
+
         <InputText
           control={control}
           name="Nombre"
@@ -57,6 +127,22 @@ const Catalog = () => {
           label="Nombre"
           defaultValue=""
         />
+
+        <InputText
+          control={control}
+          name="Código"
+          errorMessage={errors?.Codigo?.message}
+          label="Código"
+          defaultValue=""
+        />
+        <InputCheck
+        control={control}
+        name="Estado"
+        label="Estado"
+        defaultValue={false}
+        errorMessage={errors.Estado?.message}
+        />
+
       
         <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         <div className="h-3"></div>

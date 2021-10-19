@@ -15,6 +15,7 @@ import { MainLayout } from "../layout/MainLayout";
 import { Parameterization } from "../modules/Parameterization/Parameterization";
 import { Register } from "../modules/Register/Register";
 import QuestionCovid from "../modules/QuestionCovid/QuestionCovid";
+import Typeofcatalogs from "../modules/Typeofcatalogs/Typeofcatalogs";
 import Catalog from "../modules/Catalog/Catalog";
 
 type Props = {
@@ -74,9 +75,14 @@ export default function RoutesApp() {
               <Parameterization />
             </MainLayout>
           </PrivateRoute>
+          <PrivateRoute path="/Typeofcatalogs">
+            <MainLayout>
+              <Typeofcatalogs/>
+            </MainLayout>
+          </PrivateRoute>
           <PrivateRoute path="/Catalog">
             <MainLayout>
-              <Catalog />
+              <Catalog/>
             </MainLayout>
           </PrivateRoute>
           <Redirect path="/" to="/home" />

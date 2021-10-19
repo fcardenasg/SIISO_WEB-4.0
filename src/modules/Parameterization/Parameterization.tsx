@@ -23,13 +23,13 @@ export const Parameterization = () => {
         title="Tipo de Catálogos"
         subtitle="Registro de tipos de catálogos"
         icon={<AssignmentIcon sx={{ fontSize: 40 }} />}
-        onPress={()=> history.push('Catalog')}
+        onPress={()=> history.push('Typeofcatalogs')}
       />
       <ButtonLinkDashboard
         title="Catálogos"
         subtitle="Registro de catálogos"
         icon={<AutoStoriesIcon sx={{ fontSize: 40 }} />}
-        onPress={()=> history.push('Ruta')}
+        onPress={()=> history.push('Catalog')}
       />
       <ButtonLinkDashboard
         title="Empresas"
