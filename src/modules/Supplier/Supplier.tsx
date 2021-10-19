@@ -117,11 +117,7 @@ const Supplier = () => {
     console.log(data);
   };
 
-  function getStyles(
-    name: string,
-    personName: readonly string[],
-    theme: Theme
-  ) {
+  function getStyles(name: string, personName: readonly string[], theme: Theme) {
     return {
       fontWeight:
         personName.indexOf(name) === -1
@@ -214,7 +210,6 @@ const Supplier = () => {
             />
             <FormControl sx={{ m: 1, width: 300 }}>
               <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
-
               <Select
                 labelId="demo-multiple-chip-label"
                 id="demo-multiple-chip"
@@ -243,7 +238,7 @@ const Supplier = () => {
               </Select>
             </FormControl>
           </div>
-
+      
           <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
             <InputCheck
               control={control}
