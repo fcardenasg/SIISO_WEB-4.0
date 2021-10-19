@@ -17,6 +17,9 @@ import { Register } from "../modules/Register/Register";
 import QuestionCovid from "../modules/QuestionCovid/QuestionCovid";
 import Typeofcatalogs from "../modules/Typeofcatalogs/Typeofcatalogs";
 import Catalog from "../modules/Catalog/Catalog";
+import Companies from "../modules/Companies/Companies";
+import Supplier from "../modules/Supplier/Supplier";
+
 
 type Props = {
   children?: React.ReactNode;
@@ -83,6 +86,11 @@ export default function RoutesApp() {
           <PrivateRoute path="/Catalog">
             <MainLayout>
               <Catalog/>
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/Companies">
+            <MainLayout>
+              <Companies/>
             </MainLayout>
           </PrivateRoute>
           <Redirect path="/" to="/home" />

@@ -4,6 +4,7 @@ import { ButtonLinkDashboard } from '../../components/buttons/ButtonLinkDashboar
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import { useHistory } from 'react-router';
 
 export const Parameterization = () => {
@@ -33,9 +34,15 @@ export const Parameterization = () => {
       />
       <ButtonLinkDashboard
         title="Empresas"
-        subtitle="Regitro de Empresas"
+        subtitle="Registro de Empresas"
         icon={<CorporateFareIcon sx={{ fontSize: 40 }} />}
-        onPress={()=> history.push('Ruta')}
+        onPress={()=> history.push('Companies')}
+      />
+      <ButtonLinkDashboard
+        title="Proveedores"
+        subtitle="Registro de Proveedores"
+        icon={<PermContactCalendarIcon sx={{ fontSize: 40 }} />}
+        onPress={()=> history.push('Supplier')}
       />
     </div>
     
