@@ -1,14 +1,6 @@
 import React from "react";
 import useProvideAuth from "../customHooks/useProviderAuth";
 import AuthContext from "../providers/authContext";
-import { Theme, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
 import {
   BrowserRouter as Router,
   Switch,
