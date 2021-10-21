@@ -55,6 +55,10 @@ const Typeofcatalogs = () => {
       />
 
       <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
+      <div className="h-3"></div>
+      <Link to="/Parameterization">
+        <ButtonOutline onPress={() => {}} text="Cancelar" />
+      </Link>
     </div>
   );
 };
