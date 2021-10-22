@@ -10,6 +10,10 @@ import InputCheck from "../../components/input/InputCheck";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+interface Props {
+  closeModal:  () => void;
+}
+
 type TypeofcatalogsForm = {
   Nombre: string;
 };
@@ -22,7 +26,9 @@ const schemaValidation: Yup.SchemaOf<TypeofcatalogsForm> = Yup.object({
     .min(3, "Este campo debe tener minimo 3 caracteres"),
 });
 
-const Typeofcatalogs = () => {
+const Typeofcatalogs: React.FC<Props> = ({
+  closeModal
+}) => {
   //Crear formulario para validar
   const {
     control,
@@ -56,9 +62,7 @@ const Typeofcatalogs = () => {
 
       <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
       <div className="h-3"></div>
-      <Link to="/Parameterization">
-        <ButtonOutline onPress={() => {}} text="Cancelar" />
-      </Link>
+      <ButtonOutline onPress={closeModal} text="Cancelar" />
     </div>
   );
 };

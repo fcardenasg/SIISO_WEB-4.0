@@ -78,11 +78,7 @@ export default function RoutesApp() {
               <Parameterization />
             </MainLayout>
           </PrivateRoute>
-          <PrivateRoute path="/Typeofcatalogs">
-            <MainLayout>
-              <Typeofcatalogs/>
-            </MainLayout>
-          </PrivateRoute>
+          
           <PrivateRoute path="/Catalog">
             <MainLayout>
               <Catalog/>

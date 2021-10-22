@@ -24,8 +24,11 @@ const style = {
 
 export const Parameterization = () => {
   const history = useHistory();
+  // variable para abrir modal
   const [openTypeOfCatalog, setOpenTypeOfCatalog] = React.useState(false);
+  // funcion para cerrar modal de tipo de catalogo
   const handleClose = () => setOpenTypeOfCatalog(false);
+  // funcion para abrir modal de tipo de catalogo
   const handleOpen = () => setOpenTypeOfCatalog(true);
 
   return (
@@ -73,7 +76,7 @@ export const Parameterization = () => {
                 <Cancel sx={{ color: colors.primary }} />
               </button>
             </div>
-            <Typeofcatalogs />
+            <Typeofcatalogs closeModal={handleClose} />
           </Box>
         </Modal>
       </div>
