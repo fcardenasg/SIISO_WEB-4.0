@@ -29,7 +29,7 @@ export const HomeScreen = () => {
         <ButtonLinkDashboard
           title="Atención"
           subtitle="TRIAGE, Enfermería, Asesorias, EMO y Paraclinicos"
-          icon={<LocalHospitalIcon sx={{ fontSize: 40 }} />}
+          icon={<LocalHospitalIcon sx={{ fontSize: 40}} />}
         />
         <ButtonLinkDashboard
           title="Programación"
