@@ -19,6 +19,7 @@ import Typeofcatalogs from "../modules/Typeofcatalogs/Typeofcatalogs";
 import Catalog from "../modules/Catalog/Catalog";
 import Companies from "../modules/Companies/Companies";
 import Supplier from "../modules/Supplier/Supplier";
+import Programming from "../modules/Dashboard/Programming/Programming";
 
 
 type Props = {
@@ -71,6 +72,11 @@ export default function RoutesApp() {
           <PrivateRoute path="/home">
             <MainLayout>
               <HomeScreen />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/programacion">
+            <MainLayout>
+              <Programming />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/parameterization">

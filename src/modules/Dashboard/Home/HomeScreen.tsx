@@ -1,11 +1,13 @@
 
 import React from "react";
+import { useHistory } from "react-router";
 import { ButtonLinkDashboard } from "../../../components/buttons/ButtonLinkDashboard";
 import { ButtonLinkLogin } from "../../../components/buttons/ButtonLinkLogin";
 import { itemsMenu, MenuItem } from "./items";
 import MenuItems from "./MenuItems";
 
 export const HomeScreen = () => {
+  const history = useHistory();
   const [itemsMenuButton, setItemsMenuButton] = React.useState<MenuItem[]>([
     ...itemsMenu,
   ]);
@@ -20,6 +22,10 @@ export const HomeScreen = () => {
     });
     setItemsMenuButton(aux);
   };
+
+  const navigateTo = (url: string) => {
+    history.push(url);
+  }
 
   return (
     <div className="flex flex-1 w-full flex-col gap-10">
@@ -39,6 +45,7 @@ export const HomeScreen = () => {
               title={item.title}
               subtitle={item.subtitle}
               icon={item.icon}
+              onPress={() => navigateTo(item.url)}
             />
           ))}
       </div>
