@@ -8,6 +8,45 @@ import InputCheckBox from "../../../components/input/InputCheckBox";
 import InputDate from "../../../components/input/InputDate";
 import { InputText } from "../../../components/input/InputText";
 import { QuestionCovidContext } from "../QuestionCovid";
+import InputSelect, {
+  SelectOptions,
+} from "../../../components/input/InputSelect";
+
+const Profesion: SelectOptions[] = [
+  {
+    value: "Administrativos",
+    label: "Administrativos",
+  },
+  {
+    value: "Aseo y servicios básicos",
+    label: "Aseo y servicios básicos",
+  },
+  {
+    value: "Bacteriología",
+    label: "Bacteriología",
+  },
+  {
+    value: "Camilleros",
+    label: "Camilleros",
+  },
+];
+
+const Contactocon: SelectOptions[] = [
+  {
+    value: "Ninguno",
+    label: "Ninguno",
+  },
+  {
+    value: "Contacto con positivo",
+    label: "Contacto con positivos",
+  },
+  {
+    value: "Sospechoso con positivo",
+    label: "Sospechoso con positivo",
+  },
+
+];
+
 
 const HealthDeclaration = () => {
   const questionCovidContext = useContext(QuestionCovidContext);
@@ -42,6 +81,25 @@ const HealthDeclaration = () => {
             errorMessage={errors?.Documento?.message}
           />
         </div>
+        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
+          <InputSelect
+            control={control}
+            name="ServicioSaludId"
+            label="Profesión"
+            defaultValue=""
+            options={Profesion}
+            errorMessage={errors?.ServicioSaludId?.message}
+          />
+          <InputSelect
+            control={control}
+            name="ContactoPersonaId"
+            label="Contacto Con"
+            defaultValue=""
+            options={Contactocon}
+            errorMessage={errors?.ContactoPersonaId?.message}
+          />
+        </div>
+
         <div className="border rounded border-red-200 flex flex-col px-4 pt-2">
           <InputCheckBox
             control={control}
