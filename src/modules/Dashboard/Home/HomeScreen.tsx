@@ -1,41 +1,46 @@
-import { AccessTimeFilled, AddBox, Person } from "@mui/icons-material";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+
 import React from "react";
 import { ButtonLinkDashboard } from "../../../components/buttons/ButtonLinkDashboard";
 import { ButtonLinkLogin } from "../../../components/buttons/ButtonLinkLogin";
-import colors from "../../../styles/colors";
+import { itemsMenu, MenuItem } from "./items";
+import MenuItems from "./MenuItems";
 
 export const HomeScreen = () => {
+  const [itemsMenuButton, setItemsMenuButton] = React.useState<MenuItem[]>([
+    ...itemsMenu,
+  ]);
+
+  const selectedItem = (itemSelected: MenuItem) => {
+    const aux = itemsMenuButton.map((item) => {
+      if (item.title === itemSelected.title) {
+        return { ...item, selected: !item.selected };
+      } else {
+        return item;
+      }
+    });
+    setItemsMenuButton(aux);
+  };
+
   return (
     <div className="flex flex-1 w-full flex-col gap-10">
-      
       <div className="w-full flex justify-between">
         <h1 className="text-md text-gray-700 font-montserrat font-semibold">
           Dimensiones
         </h1>
-        <button>
-          <div className="flex flex-row gap-1 items-center">
-            <AddBox sx={{ color: colors.blue }} />
-            <span className="font-montserrat text-xs text-gray-700 mr-10">Agregar más opciones</span>
-          </div>
-        </button>
+        {/* menu */}
+        <MenuItems items={itemsMenuButton} selectedItem={selectedItem} />
+
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 w-full">
-        <ButtonLinkDashboard
-          title="Personal"
-          subtitle="Empleados y contratistas"
-          icon={<Person sx={{ fontSize: 40 }} />}
-        />
-        <ButtonLinkDashboard
-          title="Atención"
-          subtitle="TRIAGE, Enfermería, Asesorias, EMO y Paraclinicos"
-          icon={<LocalHospitalIcon sx={{ fontSize: 40}} />}
-        />
-        <ButtonLinkDashboard
-          title="Programación"
-          subtitle="TRIAGE, Enfermería, Asesorias, EMO y Paraclinicos"
-          icon={<AccessTimeFilled sx={{ fontSize: 40 }} />}
-        />
+        {itemsMenuButton
+          .filter((item) => item.selected)
+          .map((item) => (
+            <ButtonLinkDashboard
+              title={item.title}
+              subtitle={item.subtitle}
+              icon={item.icon}
+            />
+          ))}
       </div>
       <span className="text-gray-700 font-montserrat font-semibold text-md">
         ¿Qué deseas hacer?

@@ -18,7 +18,7 @@ export const ButtonLinkDashboard: React.FC<Props> = ({
   return (
     <Tooltip title={subtitle}>
       <button onClick={onPress}>
-        <div className="bg-gray-8 h-24 flex flex-row flex-1 rounded-xl shadow text-gray-10 font-montserrat  p-2 hover:bg-red-1 hover:text-white hover:shadow-lg cursor-pointer">
+        <div className="bg-gray-8 h-24 flex flex-row flex-1 rounded-xl shadow-lg text-gray-10 font-montserrat  p-2 hover:bg-red-1 hover:text-white hover:shadow-lg cursor-pointer">
           <div className="flex flex-col justify-end flex-1 flex-wrap">
             <span className="text-xs font-montserrat text-left">{title}</span>
           </div>
