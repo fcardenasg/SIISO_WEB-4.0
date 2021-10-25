@@ -74,7 +74,7 @@ const QuestionCovid = () => {
   const ShowCompoent = () => {
     switch (activeStep) {
       case 0:
-        return steppers[0].component;
+        return steppers[3].component;
       case 1:
         return steppers[1].component;
       case 2:
@@ -96,6 +96,11 @@ const QuestionCovid = () => {
     onNext();
   };
 
+   const updateHealthDeclarationForm = (data: HealthDeclarationForm) => {
+    setQuestionCovidForm((prevState) => ({ ...prevState, ...data }));
+    onNext();
+  };
+
   const updateCloseContactForm = (data: CloseContactForm) => {
     setQuestionCovidForm((prevState) => ({ ...prevState, ...data }));
     onNext();
@@ -106,10 +111,7 @@ const QuestionCovid = () => {
     onNext();
   };
 
-  const updateHealthDeclarationForm = (data: HealthDeclarationForm) => {
-    setQuestionCovidForm((prevState) => ({ ...prevState, ...data }));
-    onNext();
-  };
+ 
 
   const updateSiteForm = (data: SiteForm) => {
     setQuestionCovidForm((prevState) => ({ ...prevState, ...data }));

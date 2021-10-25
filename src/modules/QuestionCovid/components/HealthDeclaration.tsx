@@ -7,10 +7,15 @@ import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
 import InputCheckBox from "../../../components/input/InputCheckBox";
 import InputDate from "../../../components/input/InputDate";
 import { InputText } from "../../../components/input/InputText";
+import { HealthDeclarationForm } from "../../../types/QuestionCovidTypes";
 import { QuestionCovidContext } from "../QuestionCovid";
 import InputSelect, {
   SelectOptions,
 } from "../../../components/input/InputSelect";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+
 
 const Profesion: SelectOptions[] = [
   {
@@ -47,15 +52,50 @@ const Contactocon: SelectOptions[] = [
 
 ];
 
+const schemaValidation: Yup.SchemaOf<HealthDeclarationForm> = Yup.object({
+  PersonalMedico: Yup.string()
+    .min(3, "Minimo 3 caracteres")
+    .required("Este campo es requerido"),
+    ObsPersonalMedico: Yup.string()
+    .min(3, "Minimo 3 caracteres")
+    .required("Este campo es requerido"),
+    AdultosMayores: Yup.string()
+    .min(3, "Minimo 3 caracteres")
+    .required("Este campo es requerido"),
+    ObsAdultosMayores: Yup.string()
+    .min(3, "Minimo 3 caracteres")
+    .required("Este campo es requerido"),
+    Observacioncenso: Yup.string()
+    .min(3, "Minimo 3 caracteres")
+    .required("Este campo es requerido"),
+    ContactoPersonaId: Yup.string()
+    .min(3, "Minimo 3 caracteres")
+    .required("Este campo es requerido"),
+    ServicioSaludId: Yup.string()
+    .min(3, "Minimo 3 caracteres")
+    .required("Este campo es requerido"),
+
+
+});
+
 
 const HealthDeclaration = () => {
   const questionCovidContext = useContext(QuestionCovidContext);
   const { onBack } = questionCovidContext;
+  const { updateHealthDeclarationForm } = questionCovidContext;
+
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm<HealthDeclarationForm>({
+    resolver: yupResolver(schemaValidation),
+  });
+
+  const handleData = (data: HealthDeclarationForm) => {
+    console.log(data);
+    updateHealthDeclarationForm(data);
+  };
 
   return (
     <div className="flex flex-col bg-white shadow px-10 py-5 rounded">
@@ -71,14 +111,14 @@ const HealthDeclaration = () => {
             label="¿Vive con personas que presten servicios de salud?"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
           <InputText
             control={control}
             name="ObsPersonalMedico"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsPersonalMedico?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -107,14 +147,14 @@ const HealthDeclaration = () => {
             label="¿Vive con adultos mayores de 65 años, o personas con enfermedades preexistentes?"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.AdultosMayores?.message}
           />
           <InputText
             control={control}
             name="ObsAdultosMayores"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -124,14 +164,14 @@ const HealthDeclaration = () => {
             label="Fiebre"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
           <InputText
             control={control}
             name="ObsFiebre"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -141,14 +181,14 @@ const HealthDeclaration = () => {
             label="Tos"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
           <InputText
             control={control}
             name="ObsTos"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -158,14 +198,14 @@ const HealthDeclaration = () => {
             label="Dificultad Respiratoria"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
           <InputText
             control={control}
             name="ObsDificultadRespiratoria"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -175,16 +215,17 @@ const HealthDeclaration = () => {
             label="Dolor Garganta"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
           <InputText
             control={control}
             name="ObsDolorGarganta"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
         </div>
+        
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
           <InputCheckBox
             control={control}
@@ -192,65 +233,14 @@ const HealthDeclaration = () => {
             label="Vomito"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
           <InputText
             control={control}
             name="ObsVomito"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.Documento?.message}
-          />
-        </div>
-        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
-          <InputCheckBox
-            control={control}
-            name="Fatiga"
-            label="Fatiga"
-            defaultValue={false}
-            sizeCheck={30}
-            errorMessage={errors?.Documento?.message}
-          />
-          <InputText
-            control={control}
-            name="ObsFatiga"
-            label="Observaciones"
-            defaultValue=""
-            errorMessage={errors?.Documento?.message}
-          />
-        </div>
-        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
-          <InputCheckBox
-            control={control}
-            name="Escalofrio"
-            label="Escalofrio"
-            defaultValue={false}
-            sizeCheck={30}
-            errorMessage={errors?.Documento?.message}
-          />
-          <InputText
-            control={control}
-            name="ObsEscalofrio"
-            label="Observaciones"
-            defaultValue=""
-            errorMessage={errors?.Documento?.message}
-          />
-        </div>
-        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
-          <InputCheckBox
-            control={control}
-            name="MalestarGeneral"
-            label="Malestar General"
-            defaultValue={false}
-            sizeCheck={30}
-            errorMessage={errors?.Documento?.message}
-          />
-          <InputText
-            control={control}
-            name="ObsMalestarGeneral"
-            label="Observaciones"
-            defaultValue=""
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -260,37 +250,72 @@ const HealthDeclaration = () => {
             label="Congestion Nasal"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
           <InputText
             control={control}
             name="ObsCongestionNasal"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
         </div>
+        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
+          <InputCheckBox
+            control={control}
+            name="Escalofrio"
+            label="Escalofrio"
+            defaultValue={false}
+            sizeCheck={30}
+            errorMessage={errors?.ObsAdultosMayores?.message}
+          />
+          <InputText
+            control={control}
+            name="ObsEscalofrio"
+            label="Observaciones"
+            defaultValue=""
+            errorMessage={errors?.ObsAdultosMayores?.message}
+          />
+        </div>
+        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
+          <InputCheckBox
+            control={control}
+            name="MalestarGeneral"
+            label="Malestar General"
+            defaultValue={false}
+            sizeCheck={30}
+            errorMessage={errors?.ObsAdultosMayores?.message}
+          />
+          <InputText
+            control={control}
+            name="ObsMalestarGeneral"
+            label="Observaciones"
+            defaultValue=""
+            errorMessage={errors?.ObsAdultosMayores?.message}
+          />
+        </div>
+   
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
           <InputText
             control={control}
             name="OtrosSintomas"
             label="Otros Sintomas"
             defaultValue=""
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
           <InputDate
             control={control}
             name="FechaInicioSintomas"
             label="Fecha Inicio Sintomas"
             defaultValue={null}
-            errorMessage={errors?.Documento?.message}
+            errorMessage={errors?.ObsAdultosMayores?.message}
           />
         </div>
       </div>
-      <div className="flex flex-1 flex-row justify-around mt-5 gap-2">
+      <div className="h-5"></div>
         <ButtonOutline onPress={onBack} text="Atrás" />
-        <ButtonPrimary onPress={() => {}} text="Siguiente" />
-      </div>
+        <ButtonPrimary onPress={handleSubmit(handleData)} text="Siguiente" />
+  
     </div>
   );
 };
