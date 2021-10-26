@@ -21,14 +21,14 @@ export const itemsMenu: MenuItem[] = [
     subtitle: "Empleados y contratistas",
     icon: <Person sx={{ fontSize }} />,
     selected: true,
-    url: '/personal'
+    url: '/programacion'
   },
   {
     title: "Atención",
     subtitle: "TRIAGE, Enfermería, Asesorias, EMO y Paraclinicos",
     icon: <LocalHospital sx={{ fontSize }} />,
     selected: true,
-    url: '/atencion'
+    url: '/programacion'
   },
   {
     title: "Programación",
@@ -42,27 +42,27 @@ export const itemsMenu: MenuItem[] = [
     subtitle: "TRIAGE, Enfermería, Asesorias, EMO y Paraclinicos",
     icon: <AccessTimeFilled sx={{ fontSize }} />,
     selected: false,
-    url: '/reimpresion'
+    url: '/programacion'
   },
   {
     title: "Indicadores",
     subtitle: "TRIAGE, Enfermería, Asesorias, EMO y Paraclinicos",
     icon: <AccessTimeFilled sx={{ fontSize }} />,
     selected: false,
-    url: '/indicadores'
+    url: '/programacion'
   },
   {
     title: "Exportar",
     subtitle: "TRIAGE, Enfermería, Asesorias, EMO y Paraclinicos",
     icon: <AccessTimeFilled sx={{ fontSize }} />,
     selected: false,
-    url: '/exportar'
+    url: '/programacion'
   },
   {
     title: "Historial",
     subtitle: "TRIAGE, Enfermería, Asesorias, EMO y Paraclinicos",
     icon: <AccessTimeFilled sx={{ fontSize }} />,
     selected: false,
-    url: '/historial'
+    url: '/programacion'
   },
 ];

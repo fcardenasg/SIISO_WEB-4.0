@@ -77,7 +77,7 @@ const Programming = () => {
                 <strong>{patient.EstadoPac}</strong>
               </div>
             </div>
-            <div className="flex flex-1 flex-col">
+            <div className="flex flex-col">
               {patient.Atencion.map((atention) => (
                 <div
                   className={`
@@ -87,7 +87,7 @@ const Programming = () => {
                     text-xs
                     my-1
                     rounded-lg 
-                    text-center
+                    text-center w-40
                     ${atention === "Triage I" ? "bg-yellow-500" : ""}
                     ${atention === "Psicología" ? "bg-red-400" : ""}
                     ${atention === "Ergonomia" ? "bg-blue-400" : ""}
