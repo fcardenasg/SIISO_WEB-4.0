@@ -1,5 +1,3 @@
-import { Checkbox } from "@mui/material";
-import { pink } from "@mui/material/colors";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { ButtonOutline } from "../../../components/buttons/ButtonOutline";
@@ -12,10 +10,6 @@ import { QuestionCovidContext } from "../QuestionCovid";
 import InputSelect, {
   SelectOptions,
 } from "../../../components/input/InputSelect";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-
 
 const Profesion: SelectOptions[] = [
   {
@@ -49,48 +43,17 @@ const Contactocon: SelectOptions[] = [
     value: "Sospechoso con positivo",
     label: "Sospechoso con positivo",
   },
-
 ];
-
-const schemaValidation: Yup.SchemaOf<HealthDeclarationForm> = Yup.object({
-  PersonalMedico: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    ObsPersonalMedico: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    AdultosMayores: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    ObsAdultosMayores: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    Observacioncenso: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    ContactoPersonaId: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    ServicioSaludId: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-
-
-});
-
 
 const HealthDeclaration = () => {
   const questionCovidContext = useContext(QuestionCovidContext);
-  const { onBack } = questionCovidContext;
-  const { updateHealthDeclarationForm } = questionCovidContext;
+  const { onBack, updateHealthDeclarationForm } = questionCovidContext;
 
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<HealthDeclarationForm>({
-    resolver: yupResolver(schemaValidation),
-  });
+  } = useForm<HealthDeclarationForm>();
 
   const handleData = (data: HealthDeclarationForm) => {
     console.log(data);
@@ -103,7 +66,7 @@ const HealthDeclaration = () => {
         Declaración de salud
       </span>
       <div className="h-5"></div>
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
           <InputCheckBox
             control={control}
@@ -225,7 +188,7 @@ const HealthDeclaration = () => {
             errorMessage={errors?.ObsAdultosMayores?.message}
           />
         </div>
-        
+
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
           <InputCheckBox
             control={control}
@@ -294,7 +257,7 @@ const HealthDeclaration = () => {
             errorMessage={errors?.ObsAdultosMayores?.message}
           />
         </div>
-   
+
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
           <InputText
             control={control}
@@ -313,9 +276,10 @@ const HealthDeclaration = () => {
         </div>
       </div>
       <div className="h-5"></div>
+      <div className="grid grid-cols-2">
         <ButtonOutline onPress={onBack} text="Atrás" />
         <ButtonPrimary onPress={handleSubmit(handleData)} text="Siguiente" />
-  
+      </div>
     </div>
   );
 };

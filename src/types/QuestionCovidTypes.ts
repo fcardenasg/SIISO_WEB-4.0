@@ -12,35 +12,35 @@ export type PersonalInformationForm = {
 
 export type HealthDeclarationForm = {
   PersonalMedico: string;
-  ObsPersonalMedico: string;
-  AdultosMayores: string;
-  ObsAdultosMayores: string;
-  Observacioncenso: string;
-  ContactoPersonaId: string;
-  ServicioSaludId: string;
+  ObsPersonalMedico?: string;
+  AdultosMayores?: string;
+  ObsAdultosMayores?: string;
+  Observacioncenso?: string;
+  ContactoPersonaId?: string;
+  ServicioSaludId?: string;
 };
 
 export type CurrentSymptomsForm = {
-  Fiebre: string;
-  ObsFiebre: string;
-  Tos: string;
-  ObsTos: string;
-  DificultadRespiratoria: string;
-  ObsDificultadRespiratoria: string;
-  DolorGarganta: string;
-  ObsDolorGarganta: string;
-  Vomito: string;
-  ObsVomito: string;
-  Fatiga: string;
-  ObsFatiga: string;
-  Escalofrio: string;
-  ObsEscalofrio: string;
-  MalestarGeneral: string;
-  ObsMalestarGeneral: string;
-  CongestionNasal: string;
-  ObsCongestionNasal: string;
-  OtrosSintomas: string;
-  FechaInicioSintomas: string;
+  Fiebre?: string;
+  ObsFiebre?: string;
+  Tos?: string;
+  ObsTos?: string;
+  DificultadRespiratoria?: string;
+  ObsDificultadRespiratoria?: string;
+  DolorGarganta?: string;
+  ObsDolorGarganta?: string;
+  Vomito?: string;
+  ObsVomito?: string;
+  Fatiga?: string;
+  ObsFatiga?: string;
+  Escalofrio?: string;
+  ObsEscalofrio?: string;
+  MalestarGeneral?: string;
+  ObsMalestarGeneral?: string;
+  CongestionNasal?: string;
+  ObsCongestionNasal?: string;
+  OtrosSintomas?: string;
+  FechaInicioSintomas?: string;
 };
 
 export type CloseContactForm = {
