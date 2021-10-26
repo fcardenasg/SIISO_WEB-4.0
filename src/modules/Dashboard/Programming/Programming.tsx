@@ -45,7 +45,7 @@ const Programming = () => {
                 alt=""
               />
             </div>
-            <div className="flex-1 grid grid-cols-3 gap-2 text-gray-700 text-sm font-montserrat">
+            <div className="flex-1 grid grid-cols-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
               <div className="flex flex-col">
                 <span className="text-xs text-gray-400">Fecha: </span>
                 <strong>{patient.Fecha}</strong>
