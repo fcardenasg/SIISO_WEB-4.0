@@ -67,12 +67,12 @@ const Programming = () => {
                 <strong>{patient.usuario}</strong>
               </div>
             </div>
-            <div className=" flex flex-1 flex-col gap-3">
-              <div className="flex flex-col font-montserrat">
+            <div className=" flex flex-col gap-3">
+              <div className="flex flex-col font-montserrat text-sm">
                 <span className="text-xs text-gray-400">Contingencia: </span>
                 <strong>{patient.Contingencia}</strong>
               </div>
-              <div className="flex flex-col font-montserrat">
+              <div className="flex flex-col font-montserrat text-sm">
                 <span className="text-xs text-gray-400">Estado Paciente: </span>
                 <strong>{patient.EstadoPac}</strong>
               </div>
