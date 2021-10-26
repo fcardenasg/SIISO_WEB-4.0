@@ -74,7 +74,7 @@ const QuestionCovid = () => {
   const ShowCompoent = () => {
     switch (activeStep) {
       case 0:
-        return steppers[3].component;
+        return steppers[0].component;
       case 1:
         return steppers[1].component;
       case 2:

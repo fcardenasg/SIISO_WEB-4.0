@@ -164,14 +164,14 @@ const HealthDeclaration = () => {
             label="Fiebre"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
           <InputText
             control={control}
             name="ObsFiebre"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -181,14 +181,14 @@ const HealthDeclaration = () => {
             label="Tos"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
           <InputText
             control={control}
             name="ObsTos"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -198,14 +198,14 @@ const HealthDeclaration = () => {
             label="Dificultad Respiratoria"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
           <InputText
             control={control}
             name="ObsDificultadRespiratoria"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -215,7 +215,7 @@ const HealthDeclaration = () => {
             label="Dolor Garganta"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
           <InputText
             control={control}
@@ -233,14 +233,14 @@ const HealthDeclaration = () => {
             label="Vomito"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
           <InputText
             control={control}
             name="ObsVomito"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -250,14 +250,14 @@ const HealthDeclaration = () => {
             label="Congestion Nasal"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
           <InputText
             control={control}
             name="ObsCongestionNasal"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -267,14 +267,14 @@ const HealthDeclaration = () => {
             label="Escalofrio"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
           <InputText
             control={control}
             name="ObsEscalofrio"
             label="Observaciones"
             defaultValue=""
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
         </div>
         <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
@@ -284,7 +284,7 @@ const HealthDeclaration = () => {
             label="Malestar General"
             defaultValue={false}
             sizeCheck={30}
-            errorMessage={errors?.ObsAdultosMayores?.message}
+            errorMessage={errors?.PersonalMedico?.message}
           />
           <InputText
             control={control}

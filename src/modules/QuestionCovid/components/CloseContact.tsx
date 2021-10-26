@@ -28,11 +28,11 @@ const CloseContact = () => {
       <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
         <InputCheckBox
           control={control}
-          name="PersonalMedico"
+          name="ContactoConE"
           label="¿En los últimos 14 días ha tenido contacto con alguna persona con síntomas o que haya sido declarada enferma o sospechosa para COVID-19, en las siguientes condiciones:?"
           defaultValue={false}
           sizeCheck={30}
-          errorMessage={errors?.Documento?.message}
+          errorMessage={errors?.ContactoConE?.message}
         />        
       </div>
       <span className="text-gray-700 font-semibold font-montserrat text-xs text-center">
@@ -42,42 +42,42 @@ const CloseContact = () => {
    
         <InputCheckBox
           control={control}
-          name="AdultosMayores"
+          name="ContactoSinTapabocas"
           label="¿Alguno de los dos estaba sin protección respiratoria (tapabocas)?"
           defaultValue={false}
           sizeCheck={30}
-          errorMessage={errors?.Documento?.message}
+          errorMessage={errors?.ContactoSinTapabocas?.message}
         />
       </div>
       <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
         <InputCheckBox
           control={control}
-          name="Fiebre"
+          name="Distancia2Metros"
           label="¿Estaban a una distancia menor de 2 metros?"
           defaultValue={false}
           sizeCheck={30}
-          errorMessage={errors?.Documento?.message}
+          errorMessage={errors?.Distancia2Metros?.message}
         />
     
       </div>
       <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
         <InputCheckBox
           control={control}
-          name="Tos"
+          name="MasDe15Min"
           label="¿Por más de 15 minutos?"
           defaultValue={false}
           sizeCheck={30}
-          errorMessage={errors?.Documento?.message}
+          errorMessage={errors?.MasDe15Min?.message}
         />
       </div>
       <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
         <InputCheckBox
           control={control}
-          name="DificultadRespiratoria"
+          name="SinLavadodeManos"
           label="¿Sin haberse lavado las manos minuciosamente después?"
           defaultValue={false}
           sizeCheck={30}
-          errorMessage={errors?.Documento?.message}
+          errorMessage={errors?.SinLavadodeManos?.message}
         />
       </div>
       <span className="text-gray-700 font-semibold font-montserrat text-xs text-center">
@@ -89,21 +89,21 @@ const CloseContact = () => {
       <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
         <InputCheckBox
           control={control}
-          name="DolorGarganta"
+          name="CosultadoEps"
           label="¿Ha consultado a su EPS por los síntomas o por los contactos positivos?"
           defaultValue={false}
           sizeCheck={30}
-          errorMessage={errors?.Documento?.message}
+          errorMessage={errors?.CosultadoEps?.message}
         />
       </div>
       <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
           <InputCheckBox
           control={control}
-          name="Vomito"
+          name="CumplioTiempoAislamiento"
           label="¿Ha cumplido el tiempo de aislamiento requerido para contactos o síntomas?"
           defaultValue={false}
           sizeCheck={30}
-          errorMessage={errors?.Documento?.message}
+          errorMessage={errors?.CumplioTiempoAislamiento?.message}
         />
       </div>
     </div>

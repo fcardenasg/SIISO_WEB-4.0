@@ -29,11 +29,11 @@ const CloseContact = () => {
       <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
         <InputCheckBox
           control={control}
-          name="PersonalMedico"
+          name="AutorizaIngesoTurno"
           label="Se autoriza el ingreso al turno"
           defaultValue={false}
           sizeCheck={30}
-          errorMessage={errors?.Documento?.message}
+          errorMessage={errors?.AutorizaIngesoTurno?.message}
         />        
       </div>
  
@@ -41,11 +41,11 @@ const CloseContact = () => {
    
         <InputCheckBox
           control={control}
-          name="AdultosMayores"
+          name="OrdenAislamiento"
           label="Se ordena iniciar aislamiento y consultar a la EPS"
           defaultValue={false}
           sizeCheck={30}
-          errorMessage={errors?.Documento?.message}
+          errorMessage={errors?.OrdenAislamiento?.message}
         />
       </div>
    
