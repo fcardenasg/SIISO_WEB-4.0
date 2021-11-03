@@ -11,7 +11,7 @@ import { employeeForm } from "../../../types/employeeTypes";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputCheck from "../../../components/input/InputCheck";
-import { employeeContext } from "../employee";
+import { employeeContext } from "../Employee";
 
 const Gender: SelectOptions[] = [
   {

@@ -9,7 +9,7 @@ import InputDate from "../../../components/input/InputDate";
 import { InputText } from "../../../components/input/InputText";
 import { ContractualInformationForm } from "../../../types/employeeTypes";
 import { employeeForm } from "../../../types/employeeTypes";
-import { employeeContext } from "../employee";
+import { employeeContext } from "../Employee";
 import InputSelect, {
   SelectOptions,
 } from "../../../components/input/InputSelect";

@@ -66,7 +66,7 @@ export const employeeContext =
     onBack: () => {},
   });
 
-const employee = () => {
+const Employee = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [employeeForm, setemployeeForm] =
     React.useState<employeeForm>({} as employeeForm);
@@ -165,4 +165,4 @@ const employee = () => {
   );
 };
 
-export default employee;
+export default Employee;

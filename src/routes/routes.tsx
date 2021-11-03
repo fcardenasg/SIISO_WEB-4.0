@@ -82,7 +82,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/Empleados">
             <MainLayout>
-              <employee/>
+              <Employee/>
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/parameterization">
