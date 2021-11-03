@@ -20,6 +20,7 @@ import Catalog from "../modules/Catalog/Catalog";
 import Companies from "../modules/Companies/Companies";
 import Supplier from "../modules/Supplier/Supplier";
 import Programming from "../modules/Dashboard/Programming/Programming";
+import Employee from "../modules/employee/employee";
 
 
 type Props = {
@@ -77,6 +78,11 @@ export default function RoutesApp() {
           <PrivateRoute path="/programacion">
             <MainLayout>
               <Programming />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/Empleados">
+            <MainLayout>
+              <employee/>
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/parameterization">

@@ -32,6 +32,25 @@ const laboratories: SelectOptions[] = [
   },
 ];
 
+const dosis: SelectOptions[] =[
+
+{
+  value: "1",
+  label: "Primera",
+},
+
+{
+  value: "2",
+  label: "Segunda",
+},
+
+{
+  value: "3",
+  label: "Unica",
+},
+
+];
+
 const schemaValidation: Yup.SchemaOf<PersonalInformationForm> = Yup.object({
   Documento: Yup.string()
     .min(3, "Minimo 3 caracteres")
@@ -123,11 +142,12 @@ const PersonalInformation = () => {
         options={laboratories}
         errorMessage={errors.Idlaboratorio?.message}
       />
-      <InputText
+      <InputSelect
         control={control}
         name="Dosis"
         label="Dosis"
         defaultValue=""
+        options={dosis}
         errorMessage={errors.Dosis?.message}
       />
       <InputDate

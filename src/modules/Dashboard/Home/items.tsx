@@ -21,7 +21,7 @@ export const itemsMenu: MenuItem[] = [
     subtitle: "Empleados y contratistas",
     icon: <Person sx={{ fontSize }} />,
     selected: true,
-    url: '/programacion'
+    url: '/Empleados'
   },
   {
     title: "Atención",
