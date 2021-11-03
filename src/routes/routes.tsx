@@ -20,7 +20,7 @@ import Catalog from "../modules/Catalog/Catalog";
 import Companies from "../modules/Companies/Companies";
 import Supplier from "../modules/Supplier/Supplier";
 import Programming from "../modules/Dashboard/Programming/Programming";
-import Employee from "../modules/employee/employee";
+import Employee from "../modules/Employee/Employee";
 
 
 type Props = {

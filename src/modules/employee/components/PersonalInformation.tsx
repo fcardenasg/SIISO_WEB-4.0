@@ -7,11 +7,11 @@ import InputSelect, {
 } from "../../../components/input/InputSelect";
 import { InputText } from "../../../components/input/InputText";
 import { PersonalInformationForm } from "../../../types/employeeTypes";
-import { employeeForm } from "../../../types/employeeTypes";
+
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputCheck from "../../../components/input/InputCheck";
-import { employeeContext } from "../Employee";
+import { EmployeeContext } from "../Employee";
 
 const Gender: SelectOptions[] = [
   {
@@ -212,8 +212,8 @@ const schemaValidation: Yup.SchemaOf<PersonalInformationForm> = Yup.object({
 });
 
 const PersonalInformation = () => {
-  const EmployeeContext = useContext(employeeContext);
-  const { updatePersonalInformationForm } = EmployeeContext;
+  const employeeContext = useContext(EmployeeContext);
+  const { updatePersonalInformationForm } = employeeContext;
 
   const {
     handleSubmit,

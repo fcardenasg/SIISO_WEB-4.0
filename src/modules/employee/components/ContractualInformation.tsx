@@ -2,17 +2,15 @@ import { Checkbox } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import InputSelect, {
+  SelectOptions,
+} from "../../../components/input/InputSelect";
+import { InputText } from "../../../components/input/InputText";
 import { ButtonOutline } from "../../../components/buttons/ButtonOutline";
 import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
 import InputCheckBox from "../../../components/input/InputCheckBox";
 import InputDate from "../../../components/input/InputDate";
-import { InputText } from "../../../components/input/InputText";
-import { ContractualInformationForm } from "../../../types/employeeTypes";
-import { employeeForm } from "../../../types/employeeTypes";
-import { employeeContext } from "../Employee";
-import InputSelect, {
-  SelectOptions,
-} from "../../../components/input/InputSelect";
+import { EmployeeContext } from "../Employee";
 
 const Types: SelectOptions[] = [
   {
@@ -192,8 +190,8 @@ const Rotation: SelectOptions[] = [
 
 
 const ContractualInformation = () => {
-  const EmployeeContext = useContext(employeeContext);
-  const { onBack } = EmployeeContext;
+  const employeeContext = useContext(EmployeeContext);
+  const { onBack } = employeeContext;
   const {
     handleSubmit,
     control,

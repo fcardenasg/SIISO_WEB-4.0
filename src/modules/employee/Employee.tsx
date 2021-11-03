@@ -1,21 +1,20 @@
 import { Step, StepLabel, Stepper } from "@material-ui/core";
 import React, { createContext } from "react";
 import StepperOptions from "../../types/StepperOptions";
-import AccessAuth from "./components/ContractualInformation";
 import ContractualInformation from "./components/ContractualInformation";
-import Socialsecurity from "./components/Socialsecurity";
 import Demographicinformation from "./components/Demographicinformation";
+import Socialsecurity from "./components/Socialsecurity";
 import PersonalInformation from "./components/PersonalInformation";
 import Success from "./components/Success";
 import icono from "../../assets/img/icono.png";
 import { Cancel } from "@mui/icons-material";
 import colors from "../../styles/colors";
 import {
-  SocialsecurityForm,
-  ContractualInformationForm,
   DemographicinformationForm,
+  SocialsecurityForm,
   PersonalInformationForm,
-  employeeForm,
+  ContractualInformationForm,
+  EmployeeForm,
   SiteForm,
 } from "../../types/employeeTypes";
 import { useHistory } from "react-router";
@@ -47,7 +46,7 @@ const steppers: StepperOptions[] = [
   },
 ];
 
-interface employeeContextInterface {
+interface EmployeeContextInterface {
   updatePersonalInformationForm: (data: PersonalInformationForm) => void;
   updateContractualInformationForm: (data: ContractualInformationForm) => void;
   updateSocialsecurityForm: (data: SocialsecurityForm) => void;
@@ -56,8 +55,8 @@ interface employeeContextInterface {
   onBack: () => void;
 }
 
-export const employeeContext =
-  createContext<employeeContextInterface>({
+export const EmployeeContext =
+  createContext<EmployeeContextInterface>({
     updatePersonalInformationForm: () => {},
     updateContractualInformationForm: () => {},
     updateSocialsecurityForm: () => {},
@@ -68,8 +67,8 @@ export const employeeContext =
 
 const Employee = () => {
   const [activeStep, setActiveStep] = React.useState(0);
-  const [employeeForm, setemployeeForm] =
-    React.useState<employeeForm>({} as employeeForm);
+  const [EmployeeForm, setemployeeForm] =
+    React.useState<EmployeeForm>({} as EmployeeForm);
   const history = useHistory();
 
   const ShowCompoent = () => {
@@ -120,7 +119,7 @@ const Employee = () => {
   };
 
   return (
-    <employeeContext.Provider
+    <EmployeeContext.Provider
       value={{
         updatePersonalInformationForm,
         updateContractualInformationForm,
@@ -161,7 +160,7 @@ const Employee = () => {
           {ShowCompoent()}
         </div>
       </div>
-    </employeeContext.Provider>
+    </EmployeeContext.Provider>
   );
 };
 

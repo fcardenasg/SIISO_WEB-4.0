@@ -1,18 +1,14 @@
-import { Checkbox } from "@mui/material";
-import { pink } from "@mui/material/colors";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { ButtonOutline } from "../../../components/buttons/ButtonOutline";
-import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
-import InputCheckBox from "../../../components/input/InputCheckBox";
-import InputDate from "../../../components/input/InputDate";
-import { InputText } from "../../../components/input/InputText";
-import { DemographicinformationForm } from "../../../types/employeeTypes";
-import { employeeForm } from "../../../types/employeeTypes";
-import { employeeContext } from "../Employee";
 import InputSelect, {
   SelectOptions,
 } from "../../../components/input/InputSelect";
+import { InputText } from "../../../components/input/InputText";
+import { DemographicinformationForm } from "../../../types/employeeTypes";
+import { ButtonOutline } from "../../../components/buttons/ButtonOutline";
+import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
+import InputCheckBox from "../../../components/input/InputCheckBox";
+import { EmployeeContext } from "../Employee";
 
 
 const departmentofbirth: SelectOptions[] = [
@@ -85,8 +81,8 @@ const residencemunicipality: SelectOptions[] = [
 ];
 
 const Demographicinformation = () => {
-  const EmployeeContext = useContext(employeeContext);
-  const { onBack, updateDemographicinformationForm } = EmployeeContext;
+  const employeeContext = useContext(EmployeeContext);
+  const { onBack, updateDemographicinformationForm } = employeeContext;
 
   const {
     handleSubmit,

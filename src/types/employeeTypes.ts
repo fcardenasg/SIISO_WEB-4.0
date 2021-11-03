@@ -80,7 +80,7 @@ export type SiteForm = {
   Sede: string;
 };
 
-export type employeeForm = Pick<
+export type EmployeeForm = Pick<
   PersonalInformationForm,
   | "FileType"
 	| "ID"

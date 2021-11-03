@@ -3,13 +3,10 @@ import { useForm } from "react-hook-form";
 import { ButtonOutline } from "../../../components/buttons/ButtonOutline";
 import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
 import InputCheckBox from "../../../components/input/InputCheckBox";
-import { SocialsecurityForm } from "../../../types/employeeTypes";
-import { employeeContext } from "../Employee";
+import InputDate from "../../../components/input/InputDate";
 import { InputText } from "../../../components/input/InputText";
-import { employeeForm } from "../../../types/employeeTypes";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import InputCheck from "../../../components/input/InputCheck";
+import { SocialsecurityForm } from "../../../types/employeeTypes";
+import { EmployeeContext } from "../Employee";
 import InputSelect, {
   SelectOptions,
 } from "../../../components/input/InputSelect";
@@ -60,8 +57,8 @@ const Cesantias: SelectOptions[] = [
 ];
 
 const Socialsecurity = () => {
-  const EmployeeContext = useContext(employeeContext);
-  const { onBack, updateSocialsecurityForm } = EmployeeContext;
+  const employeeContext = useContext(EmployeeContext);
+  const { onBack, updateSocialsecurityForm } = employeeContext;
   const {
     handleSubmit,
     control,
