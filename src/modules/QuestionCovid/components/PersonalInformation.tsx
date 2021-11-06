@@ -70,7 +70,7 @@ const schemaValidation: Yup.SchemaOf<PersonalInformationForm> = Yup.object({
     .min(3, "Minimo 3 caracteres")
     .required("Este campo es requerido"),
   Dosis: Yup.string()
-    .min(3, "Minimo 3 caracteres")
+    .min(1, "Minimo 1 caracteres")
     .required("Este campo es requerido"),
   Fecha1raDosis: Yup.string().required("Este campo es requerido").nullable(),
   Fecha2daDosis: Yup.string().required("Este campo es requerido").nullable(),

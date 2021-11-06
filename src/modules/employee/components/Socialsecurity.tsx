@@ -5,7 +5,7 @@ import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
 import InputCheckBox from "../../../components/input/InputCheckBox";
 import InputDate from "../../../components/input/InputDate";
 import { InputText } from "../../../components/input/InputText";
-import { SocialsecurityForm } from "../../../types/employeeTypes";
+import { SocialsecurityForm } from "../../../types/EmployeeTypes";
 import { EmployeeContext } from "../Employee";
 import InputSelect, {
   SelectOptions,
@@ -59,6 +59,7 @@ const Cesantias: SelectOptions[] = [
 const Socialsecurity = () => {
   const employeeContext = useContext(EmployeeContext);
   const { onBack, updateSocialsecurityForm } = employeeContext;
+ 
   const {
     handleSubmit,
     control,
@@ -70,12 +71,13 @@ const Socialsecurity = () => {
   }; 
 
   return (
-    <div className="flex flex-col bg-white shadow px-10 py-5 rounded">
-    <span className="text-gray-700 font-semibold font-montserrat text-xl text-center">
+    <div className="flex flex-col bg-white shadow px-60 py-1 rounded">  
+
+    <span className="text-gray-500 font-semibold px-40 py-2 font-montserrat text-xl text-center">
       Seguridad social
     </span>
     <div className="h-5"></div>
-    <div className="grid grid-cols-1 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
   
     <InputSelect
         control={control}
@@ -111,11 +113,10 @@ const Socialsecurity = () => {
       />
   
 
-
-
-
       </div>
-    <div className="flex flex-1 flex-row justify-around mt-5 gap-2">
+  
+      <div className="h-5"></div>
+      <div className="grid grid-cols-2">
       <ButtonOutline onPress={onBack} text="Atrás" />
       <ButtonPrimary onPress={handleSubmit(handleData)} text="Siguiente" />
     </div>

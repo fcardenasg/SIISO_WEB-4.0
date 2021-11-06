@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import InputSelect, {
-  SelectOptions,
-} from "../../../components/input/InputSelect";
-import { InputText } from "../../../components/input/InputText";
-import { DemographicinformationForm } from "../../../types/employeeTypes";
 import { ButtonOutline } from "../../../components/buttons/ButtonOutline";
 import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
 import InputCheckBox from "../../../components/input/InputCheckBox";
+import InputDate from "../../../components/input/InputDate";
+import { InputText } from "../../../components/input/InputText";
+import { DemographicinformationForm } from "../../../types/EmployeeTypes";
 import { EmployeeContext } from "../Employee";
+import InputSelect, {
+  SelectOptions,
+} from "../../../components/input/InputSelect";
 
 
 const departmentofbirth: SelectOptions[] = [
@@ -96,13 +97,12 @@ const Demographicinformation = () => {
   };
 
   return (
-    <div className="flex flex-col bg-white shadow px-10 py-5 rounded">
-      <span className="text-gray-700 font-semibold font-montserrat text-xl text-center">
+    <div className="flex flex-col bg-white shadow px-60 py-1 rounded">
+    <span className="text-gray-500 font-semibold px-3 py-2 font-montserrat text-xl text-center">
         Información Demografica
       </span>
       <div className="h-5"></div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 px 10 py-1 gap-2">
           <InputSelect
             control={control}
             name="DptoNacido"
@@ -119,9 +119,8 @@ const Demographicinformation = () => {
             options={municipalityofborn}
             errorMessage={errors?.MunicipioNacido?.message}
           />
-        </div>
+   
 
-        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
           <InputSelect
             control={control}
             name="DptoResidencia"
@@ -138,8 +137,7 @@ const Demographicinformation = () => {
             options={residencemunicipality}
             errorMessage={errors?.MunicipioResidencia?.message}
           />
-        </div>
-        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
+  
        
           <InputText
             control={control}
@@ -148,9 +146,7 @@ const Demographicinformation = () => {
             defaultValue=""
             errorMessage={errors?.DireccionResidencia?.message}
           />
-        </div>
- 
-   
+     
       </div>
       <div className="h-5"></div>
       <div className="grid grid-cols-2">

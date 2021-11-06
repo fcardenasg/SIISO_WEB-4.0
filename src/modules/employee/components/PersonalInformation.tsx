@@ -6,7 +6,7 @@ import InputSelect, {
   SelectOptions,
 } from "../../../components/input/InputSelect";
 import { InputText } from "../../../components/input/InputText";
-import { PersonalInformationForm } from "../../../types/employeeTypes";
+import { PersonalInformationForm } from "../../../types/EmployeeTypes";
 
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -105,11 +105,11 @@ const Headquarters: SelectOptions[] = [
   },
   {
     value: "ELCOR",
-    label: "El Descanso",
+    label: "El Corozo",
   },
   {
     value: "ELDES",
-    label: "Masculino",
+    label: "El descanso",
   },
   {
     value: "HSA",
@@ -176,7 +176,7 @@ const schemaValidation: Yup.SchemaOf<PersonalInformationForm> = Yup.object({
     .min(3, "Minimo 3 caracteres")
     .required("Este campo es requerido"),
     Escolarida: Yup.string()
-    .min(3, "Minimo 3 caracteres")
+    .min(1, "Minimo 1 caracteres")
     .required("Este campo es requerido"),
     Contacto: Yup.string()
     .min(3, "Minimo 3 caracteres")
@@ -185,10 +185,10 @@ const schemaValidation: Yup.SchemaOf<PersonalInformationForm> = Yup.object({
     .min(3, "Minimo 3 caracteres")
     .required("Este campo es requerido"),
     EstadoCivil: Yup.string()
-    .min(3, "Minimo 3 caracteres")
+    .min(1, "Minimo 1 caracteres")
     .required("Este campo es requerido"),
     PayStatus: Yup.string()
-    .min(3, "Minimo 3 caracteres")
+    .min(1, "Minimo 1 caracteres")
     .required("Este campo es requerido"),
     ImagenUr: Yup.string()
     .min(3, "Minimo 3 caracteres")
@@ -228,12 +228,15 @@ const PersonalInformation = () => {
     updatePersonalInformationForm(data);
   };
 
+  
   return (
-    <div className="flex flex-col bg-white shadow px-10 py-5 w-full xl:w-1/2 rounded">
-      <span className="text-gray-700 font-semibold font-montserrat text-xl text-center">
+    <div className="flex flex-col bg-white shadow px-60 py-1 rounded">
+     <span className="text-gray-500 font-semibold px-3 py-2 font-montserrat text-xl text-center">
         Mis datos personales
       </span>
       <div className="h-5"></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 px 10 py-1 gap-2">
+  
       <InputText
         control={control}
         name="Documento"
@@ -248,6 +251,7 @@ const PersonalInformation = () => {
         defaultValue=""
         errorMessage={errors.Nombres?.message}
       />
+     
       <InputText
         control={control}
         name="Email"
@@ -332,9 +336,12 @@ const PersonalInformation = () => {
         defaultValue=""
         errorMessage={errors.TelefonoContacto?.message}
       />
+       
+       </div>
       <div className="h-5"></div>
       <ButtonPrimary onPress={handleSubmit(handleData)} text="Siguiente" />
     </div>
+   
   );
 };
 

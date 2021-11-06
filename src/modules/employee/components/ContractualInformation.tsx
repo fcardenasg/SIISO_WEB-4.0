@@ -200,13 +200,13 @@ const ContractualInformation = () => {
 
   
   return (
-    <div className="flex flex-col bg-white shadow px-10 py-5 rounded w-full md:w-1/2">
-      <span className="text-gray-700 font-semibold font-montserrat text-xl text-center">
-        Autorización de Ingreso
+    <div className="flex flex-col bg-white shadow px-60 py-1 rounded">
+     <span className="text-gray-500 font-semibold px-3 py-2 font-montserrat text-xl text-center">
+        Información contractual
       </span>
       <div className="h-5"></div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 px 10 py-1 gap-2">
+        
           <InputSelect
             control={control}
             name="Type"
@@ -223,9 +223,7 @@ const ContractualInformation = () => {
             options={TypeContract}
             errorMessage={errors?.TipoContrato?.message}
           />
-        </div>
-
-        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
+      
           <InputDate
           control={control}
           name="FechaContrato"
@@ -241,8 +239,7 @@ const ContractualInformation = () => {
             options={RosterPosition}
             errorMessage={errors?.RosterPosition?.message}
           />
-        </div>
-        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
+ 
        
         <InputSelect
             control={control}
@@ -260,8 +257,7 @@ const ContractualInformation = () => {
             options={Department}
             errorMessage={errors?.Departamento?.message}
           />
-        </div>
-        <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
+ 
        
        <InputSelect
            control={control}
@@ -279,8 +275,7 @@ const ContractualInformation = () => {
            options={SubArea}
            errorMessage={errors?.SubArea?.message}
          />
-       </div>
-       <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
+
        
        <InputSelect
            control={control}
@@ -298,9 +293,7 @@ const ContractualInformation = () => {
            options={Turno}
            errorMessage={errors?.Turno?.message}
          />
-       </div>
-
-       <div className="border rounded border-red-200 flex flex-col flex-1 px-4 pt-2">
+  
        
        <InputSelect
            control={control}
@@ -310,9 +303,10 @@ const ContractualInformation = () => {
            options={Rotation}
            errorMessage={errors?.Rotation?.message}
          />
-       </div>
+  
  
       </div>
+
       <div className="flex flex-1 flex-row justify-around mt-5 gap-2">
         <ButtonOutline onPress={onBack} text="Atrás" />
         <ButtonPrimary onPress={() => {}} text="Guardar" />

@@ -10,13 +10,13 @@ import icono from "../../assets/img/icono.png";
 import { Cancel } from "@mui/icons-material";
 import colors from "../../styles/colors";
 import {
-  DemographicinformationForm,
-  SocialsecurityForm,
   PersonalInformationForm,
+  SocialsecurityForm,
+  DemographicinformationForm,
   ContractualInformationForm,
   EmployeeForm,
   SiteForm,
-} from "../../types/employeeTypes";
+} from "../../types/EmployeeTypes";
 import { useHistory } from "react-router";
 
 const steppers: StepperOptions[] = [
@@ -24,22 +24,22 @@ const steppers: StepperOptions[] = [
     item: 0,
     label: "Datos Personales",
     completed: false,
-    component: <PersonalInformation />,
+    component: <Demographicinformation/>,
   },
   {
-    item: 2,
-    label: "Información seguridad social",
+    item: 1,
+    label: "Seguridad social",
     completed: false,
     component: <Socialsecurity />,
   },
   {
-    item: 3,
+    item: 2,
     label: "Información demográfica",
     completed: false,
-    component: <Demographicinformation />,
+    component: <PersonalInformation  />,
   },
   {
-    item: 4,
+    item: 3,
     label: "Información contractual",
     completed: false,
     component: <ContractualInformation />,
@@ -48,9 +48,9 @@ const steppers: StepperOptions[] = [
 
 interface EmployeeContextInterface {
   updatePersonalInformationForm: (data: PersonalInformationForm) => void;
-  updateContractualInformationForm: (data: ContractualInformationForm) => void;
   updateSocialsecurityForm: (data: SocialsecurityForm) => void;
   updateDemographicinformationForm: (data: DemographicinformationForm) => void;
+  updateContractualInformationForm: (data: ContractualInformationForm) => void;
   updateSiteForm: (data: SiteForm) => void;
   onBack: () => void;
 }
@@ -58,16 +58,16 @@ interface EmployeeContextInterface {
 export const EmployeeContext =
   createContext<EmployeeContextInterface>({
     updatePersonalInformationForm: () => {},
-    updateContractualInformationForm: () => {},
     updateSocialsecurityForm: () => {},
     updateDemographicinformationForm: () => {},
+    updateContractualInformationForm: () => {},
     updateSiteForm: () => {},
     onBack: () => {},
   });
 
 const Employee = () => {
   const [activeStep, setActiveStep] = React.useState(0);
-  const [EmployeeForm, setemployeeForm] =
+  const [employeeForm, setemployeeForm] =
     React.useState<EmployeeForm>({} as EmployeeForm);
   const history = useHistory();
 
@@ -96,21 +96,21 @@ const Employee = () => {
     onNext();
   };
 
-   const updateContractualInformationForm = (data: ContractualInformationForm) => {
-    setemployeeForm((prevState) => ({ ...prevState, ...data }));
-    onNext();
-  };
-
   const updateSocialsecurityForm = (data: SocialsecurityForm) => {
     setemployeeForm((prevState) => ({ ...prevState, ...data }));
     onNext();
   };
 
+ 
   const updateDemographicinformationForm = (data: DemographicinformationForm) => {
     setemployeeForm((prevState) => ({ ...prevState, ...data }));
     onNext();
   };
 
+  const updateContractualInformationForm = (data: ContractualInformationForm) => {
+    setemployeeForm((prevState) => ({ ...prevState, ...data }));
+    onNext();
+  };
  
 
   const updateSiteForm = (data: SiteForm) => {
@@ -122,9 +122,9 @@ const Employee = () => {
     <EmployeeContext.Provider
       value={{
         updatePersonalInformationForm,
-        updateContractualInformationForm,
-        updateSocialsecurityForm,   
+        updateSocialsecurityForm, 
         updateDemographicinformationForm,
+        updateContractualInformationForm,
         updateSiteForm,
         onBack,
       }}
@@ -156,7 +156,7 @@ const Employee = () => {
           </button>
         </div>
 
-        <div className="p-10 flex items-center w-full flex-col">
+        <div className="p-1 flex items-center w-full flex-col">
           {ShowCompoent()}
         </div>
       </div>
