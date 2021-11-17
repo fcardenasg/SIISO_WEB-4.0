@@ -1,9 +1,8 @@
 import { Step, StepLabel, Stepper } from "@material-ui/core";
 import React, { createContext } from "react";
 import StepperOptions from "../../types/StepperOptions";
-import ContractualInformation from "./components/ContractualInformation";
-import Demographicinformation from "./components/Demographicinformation";
-import Socialsecurity from "./components/Socialsecurity";
+import Costs from "./components/Costs";
+import Bidding from "./components/Bidding";
 import PersonalInformation from "./components/PersonalInformation";
 import Success from "./components/Success";
 import icono from "../../assets/img/icono.png";
@@ -11,64 +10,56 @@ import { Cancel } from "@mui/icons-material";
 import colors from "../../styles/colors";
 import {
   PersonalInformationForm,
-  SocialsecurityForm,
-  DemographicinformationForm,
-  ContractualInformationForm,
-  EmployeeForm,
+  BiddingForm,
+  CostsForm,
+  ContractsForm,
   SiteForm,
-} from "../../types/EmployeeTypes";
+} from "../../types/ContractsTypes";
 import { useHistory } from "react-router";
 
 const steppers: StepperOptions[] = [
   {
     item: 0,
-    label: "Datos Personales",
+    label: "Contratos",
     completed: false,
     component: <PersonalInformation/>,
   },
   {
     item: 1,
-    label: "Seguridad social",
+    label: "Licitación",
     completed: false,
-    component: <Socialsecurity />,
+    component: <Bidding/>,
   },
   {
     item: 2,
-    label: "Información demográfica",
+    label: "Costos",
     completed: false,
-    component: <Demographicinformation/>,
+    component: <Costs/>,
   },
-  {
-    item: 3,
-    label: "Información contractual",
-    completed: false,
-    component: <ContractualInformation />,
-  },
+ 
 ];
 
-interface EmployeeContextInterface {
+interface ContractsContextInterface {
   updatePersonalInformationForm: (data: PersonalInformationForm) => void;
-  updateSocialsecurityForm: (data: SocialsecurityForm) => void;
-  updateDemographicinformationForm: (data: DemographicinformationForm) => void;
-  updateContractualInformationForm: (data: ContractualInformationForm) => void;
+  updateBiddingForm: (data: BiddingForm) => void;
+  updateCostsForm: (data: CostsForm) => void;
   updateSiteForm: (data: SiteForm) => void;
   onBack: () => void;
 }
 
-export const EmployeeContext =
-  createContext<EmployeeContextInterface>({
+export const ContractsContext =
+  createContext<ContractsContextInterface>({
     updatePersonalInformationForm: () => {},
-    updateSocialsecurityForm: () => {},
-    updateDemographicinformationForm: () => {},
-    updateContractualInformationForm: () => {},
+    updateBiddingForm: () => {},
+    updateCostsForm: () => {},
     updateSiteForm: () => {},
     onBack: () => {},
   });
 
-const Employee = () => {
+const Contracts = () => {
   const [activeStep, setActiveStep] = React.useState(0);
-  const [employeeForm, setemployeeForm] =
-    React.useState<EmployeeForm>({} as EmployeeForm);
+  const [ContractsForm, setContractsForm] =
+    React.useState<ContractsForm>({} as ContractsForm);
   const history = useHistory();
 
   const ShowCompoent = () => {
@@ -79,9 +70,6 @@ const Employee = () => {
         return steppers[1].component;
       case 2:
         return steppers[2].component;
-      case 3:
-        return steppers[3].component;
-
       default:
         return <Success />;
     }
@@ -92,39 +80,33 @@ const Employee = () => {
   const onBack = () => setActiveStep((prevState) => prevState - 1);
 
   const updatePersonalInformationForm = (data: PersonalInformationForm) => {
-    setemployeeForm((prevState) => ({ ...prevState, ...data }));
+    setContractsForm((prevState) => ({ ...prevState, ...data }));
     onNext();
   };
 
-  const updateSocialsecurityForm = (data: SocialsecurityForm) => {
-    setemployeeForm((prevState) => ({ ...prevState, ...data }));
+  const updateBiddingForm = (data: BiddingForm) => {
+    setContractsForm((prevState) => ({ ...prevState, ...data }));
     onNext();
   };
 
  
-  const updateDemographicinformationForm = (data: DemographicinformationForm) => {
-    setemployeeForm((prevState) => ({ ...prevState, ...data }));
+  const updateCostsForm = (data: CostsForm) => {
+    setContractsForm((prevState) => ({ ...prevState, ...data }));
     onNext();
   };
 
-  const updateContractualInformationForm = (data: ContractualInformationForm) => {
-    setemployeeForm((prevState) => ({ ...prevState, ...data }));
-    onNext();
-  };
  
-
   const updateSiteForm = (data: SiteForm) => {
-    setemployeeForm((prevState) => ({ ...prevState, ...data }));
+    setContractsForm((prevState) => ({ ...prevState, ...data }));
     onNext();
   };
 
   return (
-    <EmployeeContext.Provider
+    <ContractsContext.Provider
       value={{
         updatePersonalInformationForm,
-        updateSocialsecurityForm, 
-        updateDemographicinformationForm,
-        updateContractualInformationForm,
+        updateBiddingForm, 
+        updateCostsForm,
         updateSiteForm,
         onBack,
       }}
@@ -149,7 +131,7 @@ const Employee = () => {
               );
             })}
           </Stepper>
-          <button onClick={() => history.push('/home')}>
+          <button onClick={() => history.push('/purchases')}>
             <Cancel
               sx={{ color: colors.primary, fontWeight: "bold", fontSize: 40 }}
             />
@@ -160,8 +142,8 @@ const Employee = () => {
           {ShowCompoent()}
         </div>
       </div>
-    </EmployeeContext.Provider>
+    </ContractsContext.Provider>
   );
 };
 
-export default Employee;
+export default Contracts;

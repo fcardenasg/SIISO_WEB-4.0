@@ -145,71 +145,47 @@ const PayStatus: SelectOptions[] = [
 ];
 
 
-const schemaValidation: Yup.SchemaOf<PersonalInformationForm> = Yup.object({
-  Documento: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    Nombres: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    Email: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido")
-    .email("El correo electronico no es valido"),
-   Celular: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    Empresa: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    Sede: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    FechaNaci: Yup.string().required("Este campo es requerido").nullable(),
-    FileType: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    ID: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    Genero: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    Escolarida: Yup.string()
-    .min(1, "Minimo 1 caracteres")
-    .required("Este campo es requerido"),
-    Contacto: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    TelefonoContacto: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    EstadoCivil: Yup.string()
-    .min(1, "Minimo 1 caracteres")
-    .required("Este campo es requerido"),
-    PayStatus: Yup.string()
-    .min(1, "Minimo 1 caracteres")
-    .required("Este campo es requerido"),
-    ImagenUr: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    UsuarioCreacion: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    FechaCreacion: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    UsuarioModifica: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    FechaModificacion: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
-    Bandera: Yup.string()
-    .min(3, "Minimo 3 caracteres")
-    .required("Este campo es requerido"),
+// const schemaValidation: Yup.SchemaOf<PersonalInformationForm> = Yup.object({
+//   Documento: Yup.string()
+//     .min(3, "Minimo 3 caracteres")
+//     .required("Este campo es requerido"),
+//     Nombres: Yup.string()
+//     .min(3, "Minimo 3 caracteres")
+//     .required("Este campo es requerido"),
+//     Email: Yup.string()
+//     .min(3, "Minimo 3 caracteres")
+//     .required("Este campo es requerido")
+//     .email("El correo electronico no es valido"),
+//    Celular: Yup.string()
+//     .min(3, "Minimo 3 caracteres")
+//     .required("Este campo es requerido"),
+//     Empresa: Yup.string()
+//     .min(3, "Minimo 3 caracteres")
+//     .required("Este campo es requerido"),
+//     Sede: Yup.string()
+//     .min(3, "Minimo 3 caracteres")
+//     .required("Este campo es requerido"),
+//     FechaNaci: Yup.string().required("Este campo es requerido").nullable(),
+//     Genero: Yup.string()
+//     .min(3, "Minimo 3 caracteres")
+//     .required("Este campo es requerido"),
+//     Escolarida: Yup.string()
+//     .min(1, "Minimo 1 caracteres")
+//     .required("Este campo es requerido"),
+//     Contacto: Yup.string()
+//     .min(3, "Minimo 3 caracteres")
+//     .required("Este campo es requerido"),
+//     TelefonoContacto: Yup.string()
+//     .min(3, "Minimo 3 caracteres")
+//     .required("Este campo es requerido"),
+//     EstadoCivil: Yup.string()
+//     .min(1, "Minimo 1 caracteres")
+//     .required("Este campo es requerido"),
+//     PayStatus: Yup.string()
+//     .min(1, "Minimo 1 caracteres")
+//     .required("Este campo es requerido"),
+// });
 
-});
 
 const PersonalInformation = () => {
   const employeeContext = useContext(EmployeeContext);
@@ -219,14 +195,16 @@ const PersonalInformation = () => {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<PersonalInformationForm>({
-    resolver: yupResolver(schemaValidation),
-  });
+  } = useForm<PersonalInformationForm>();
+   
 
   const handleData = (data: PersonalInformationForm) => {
     console.log(data);
     updatePersonalInformationForm(data);
   };
+
+
+
 
   
   return (
@@ -266,6 +244,22 @@ const PersonalInformation = () => {
         defaultValue=""
         errorMessage={errors.Celular?.message}
       />
+           <InputSelect
+        control={control}
+        name="Empresa"
+        label="Empresa"
+        defaultValue=""
+        options={Company}
+        errorMessage={errors.Empresa?.message}
+      />
+        <InputSelect
+        control={control}
+        name="Sede"
+        label="Sede"
+        defaultValue=""
+        options={Headquarters}
+        errorMessage={errors.Sede?.message}
+      />
            <InputDate
         control={control}
         name="FechaNaci"
@@ -290,39 +284,7 @@ const PersonalInformation = () => {
         options={Schoolchild}
         errorMessage={errors.Escolarida?.message}
       />  
-  <InputSelect
-        control={control}
-        name="EstadoCivil"
-        label="Estado civil"
-        defaultValue=""
-        options={CivilStatus}
-        errorMessage={errors.EstadoCivil?.message}
-      />
-        <InputSelect
-        control={control}
-        name="Empresa"
-        label="Empresa"
-        defaultValue=""
-        options={Company}
-        errorMessage={errors.Empresa?.message}
-      />
-        <InputSelect
-        control={control}
-        name="Sede"
-        label="Sede"
-        defaultValue=""
-        options={Headquarters}
-        errorMessage={errors.Sede?.message}
-      />
-        <InputSelect
-        control={control}
-        name="PayStatus"
-        label="Estado"
-        defaultValue=""
-        options={PayStatus}
-        errorMessage={errors.PayStatus?.message}
-      />
-       <InputText
+         <InputText
         control={control}
         name="Contacto"
         label="Contacto"
@@ -336,6 +298,25 @@ const PersonalInformation = () => {
         defaultValue=""
         errorMessage={errors.TelefonoContacto?.message}
       />
+  <InputSelect
+        control={control}
+        name="EstadoCivil"
+        label="Estado civil"
+        defaultValue=""
+        options={CivilStatus}
+        errorMessage={errors.EstadoCivil?.message}
+      />
+   
+        <InputSelect
+        control={control}
+        name="PayStatus"
+        label="Estado"
+        defaultValue=""
+        options={PayStatus}
+        errorMessage={errors.PayStatus?.message}
+      />
+    
+      
        
        </div>
       <div className="h-5"></div>

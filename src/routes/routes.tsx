@@ -21,6 +21,9 @@ import Companies from "../modules/Companies/Companies";
 import Supplier from "../modules/Supplier/Supplier";
 import Programming from "../modules/Dashboard/Programming/Programming";
 import Employee from "../modules/Employee/Employee";
+import { HomeScreenpurchases } from "../modules/purchases/HomeScreenpurchases";
+import Contracts from "../modules/Contracts/Contracts";
+import Policy from "../modules/Policy/Policy";
 
 
 type Props = {
@@ -106,6 +109,22 @@ export default function RoutesApp() {
               <Supplier/>
             </MainLayout>
           </PrivateRoute>
+          <PrivateRoute path="/purchases">
+            <MainLayout>
+              <HomeScreenpurchases/>
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/Contracts">
+            <MainLayout>
+              <Contracts/>
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/Policy">
+            <MainLayout>
+              <Policy/>
+            </MainLayout>
+          </PrivateRoute>
+
           <Redirect path="/" to="/home" />
         </Switch>
       </Router>

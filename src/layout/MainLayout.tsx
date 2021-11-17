@@ -30,6 +30,16 @@ const itemsMenu: ItemSidebar[] = [
     icon: <Analytics sx={{ color: colors.primary }} />,
   },
   {
+    label: "Recursos humanos",
+    url: "/analytics",
+    icon: <Analytics sx={{ color: colors.primary }} />,
+  },
+  {
+    label: "Compras",
+    url: "/purchases",
+    icon: <Analytics sx={{ color: colors.primary }} />,
+  },
+  {
     label: "Administración",
     url: "/admin",
     icon: <AssignmentInd sx={{ color: colors.primary }} />,
