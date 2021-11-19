@@ -35,7 +35,7 @@ const itemsMenu: ItemSidebar[] = [
     icon: <Analytics sx={{ color: colors.primary }} />,
   },
   {
-    label: "Compras",
+    label: "Contratos",
     url: "/purchases",
     icon: <Analytics sx={{ color: colors.primary }} />,
   },

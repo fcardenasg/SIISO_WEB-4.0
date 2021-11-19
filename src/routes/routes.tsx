@@ -25,6 +25,9 @@ import { HomeScreenpurchases } from "../modules/purchases/HomeScreenpurchases";
 import Contracts from "../modules/Contracts/Contracts";
 import Policy from "../modules/Policy/Policy";
 import Attention from "../modules/Attention/Attention";
+import ComCatalog from "../modules/Contracts/Catalog/ComCatalog";
+import ComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ComTypeofcatalogs";
+import ComSupplier from "../modules/Contracts/Supplier/ComSupplier";
 
 type Props = {
   children?: React.ReactNode;
@@ -129,6 +132,22 @@ export default function RoutesApp() {
               <Attention/>
             </MainLayout>
           </PrivateRoute>
+          <PrivateRoute path="/ComCatalog">
+            <MainLayout>
+              <ComCatalog/>
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/ComTypeofcatalogs">
+            <MainLayout>
+              <ComTypeofcatalogs/>
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/ComSupplier">
+            <MainLayout>
+              <ComSupplier/>
+            </MainLayout>
+          </PrivateRoute>
+
           <Redirect path="/" to="/home" />
         </Switch>
       </Router>

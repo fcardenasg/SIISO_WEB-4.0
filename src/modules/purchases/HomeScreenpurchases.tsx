@@ -53,14 +53,14 @@ export const HomeScreenpurchases = () => {
         ¿Qué deseas hacer?
       </span>
       <div className="grid grid-cols-2 gap-2 pb-3 lg:grid-cols-4">
-        <ButtonLinkLogin url="">
+        <ButtonLinkLogin url="ComTypeofcatalogs">
           <span>Tipo de catalogo</span>
         </ButtonLinkLogin>
-        <ButtonLinkLogin url="">
-          <span>Catalogo.</span>
+        <ButtonLinkLogin url="ComCatalog">
+          <span>Catalogo</span>
         </ButtonLinkLogin>
-        <ButtonLinkLogin url="">
-          <span>Opción 3</span>
+        <ButtonLinkLogin url="ComSupplier">
+          <span>Proveedores</span>
         </ButtonLinkLogin>
         <ButtonLinkLogin url="">
           <span>Opción 3</span>
