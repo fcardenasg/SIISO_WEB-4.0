@@ -208,12 +208,14 @@ const PersonalInformation = () => {
 
   
   return (
-    <div className="flex flex-col bg-white shadow px-60 py-1 rounded">
-     <span className="text-gray-500 font-semibold px-3 py-2 font-montserrat text-xl text-center">
+    <div className="p-1 flex flex-col bg-white shadow px-10 py-5 rounded">
+        <div className="w-full flex justify-center mb-1">
+     <span className="text-gray-500 font-semibold px-3 py-2 font-montserrat text-lg text-center">
         Mis datos personales
       </span>
+      </div>
       <div className="h-5"></div>
-      <div className="grid grid-cols-1 md:grid-cols-2 px 10 py-1 gap-2">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
   
       <InputText
         control={control}
@@ -284,6 +286,23 @@ const PersonalInformation = () => {
         options={Schoolchild}
         errorMessage={errors.Escolarida?.message}
       />  
+       <InputSelect
+        control={control}
+        name="EstadoCivil"
+        label="Estado civil"
+        defaultValue=""
+        options={CivilStatus}
+        errorMessage={errors.EstadoCivil?.message}
+      />
+        <InputSelect
+        control={control}
+        name="PayStatus"
+        label="Estado"
+        defaultValue=""
+        options={PayStatus}
+        errorMessage={errors.PayStatus?.message}
+      />
+
          <InputText
         control={control}
         name="Contacto"
@@ -298,25 +317,7 @@ const PersonalInformation = () => {
         defaultValue=""
         errorMessage={errors.TelefonoContacto?.message}
       />
-  <InputSelect
-        control={control}
-        name="EstadoCivil"
-        label="Estado civil"
-        defaultValue=""
-        options={CivilStatus}
-        errorMessage={errors.EstadoCivil?.message}
-      />
-   
-        <InputSelect
-        control={control}
-        name="PayStatus"
-        label="Estado"
-        defaultValue=""
-        options={PayStatus}
-        errorMessage={errors.PayStatus?.message}
-      />
-    
-      
+ 
        
        </div>
       <div className="h-5"></div>

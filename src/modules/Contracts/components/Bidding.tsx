@@ -52,13 +52,13 @@ const Bidding = () => {
   }; 
 
   return (
-    <div className="flex flex-col bg-white shadow px-40 py-1 rounded">  
+    <div className="flex flex-col bg-white shadow px-5 py-1 rounded">  
 
     <span className="text-gray-500 font-semibold px-40 py-2 font-montserrat text-xl text-center">
     Licitación
     </span>
     <div className="h-5"></div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
   
     <InputSelect
         control={control}

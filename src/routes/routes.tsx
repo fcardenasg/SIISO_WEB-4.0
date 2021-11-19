@@ -24,7 +24,7 @@ import Employee from "../modules/Employee/Employee";
 import { HomeScreenpurchases } from "../modules/purchases/HomeScreenpurchases";
 import Contracts from "../modules/Contracts/Contracts";
 import Policy from "../modules/Policy/Policy";
-
+import Attention from "../modules/Attention/Attention";
 
 type Props = {
   children?: React.ReactNode;
@@ -124,7 +124,11 @@ export default function RoutesApp() {
               <Policy/>
             </MainLayout>
           </PrivateRoute>
-
+          <PrivateRoute path="/Attention">
+            <MainLayout>
+              <Attention/>
+            </MainLayout>
+          </PrivateRoute>
           <Redirect path="/" to="/home" />
         </Switch>
       </Router>

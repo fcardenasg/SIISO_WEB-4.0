@@ -200,13 +200,30 @@ const ContractualInformation = () => {
 
   
   return (
-    <div className="flex flex-col bg-white shadow px-60 py-1 rounded">
-     <span className="text-gray-500 font-semibold px-3 py-2 font-montserrat text-xl text-center">
+    <div className="flex flex-col bg-white shadow px-10 py-1 rounded">
+     <span className="text-gray-500 font-semibold px-3 py-2 font-montserrat text-lg text-center">
         Información contractual
       </span>
       <div className="h-5"></div>
-      <div className="grid grid-cols-1 md:grid-cols-2 px 10 py-1 gap-2">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
         
+      <InputDate
+          control={control}
+          name="FechaContrato"
+          label="Fecha de contrato"
+          defaultValue={null}
+          errorMessage={errors.FechaContrato?.message}
+        />
+ 
+       <InputSelect
+            control={control}
+            name="TipoContrato"
+            label="Tipo de contrato"
+            defaultValue=""
+            options={TypeContract}
+            errorMessage={errors?.TipoContrato?.message}
+          />
+
           <InputSelect
             control={control}
             name="Type"
@@ -215,22 +232,7 @@ const ContractualInformation = () => {
             options={Types}
             errorMessage={errors?.Type?.message}
           />
-          <InputSelect
-            control={control}
-            name="TipoContrato"
-            label="Tipo de contrato"
-            defaultValue=""
-            options={TypeContract}
-            errorMessage={errors?.TipoContrato?.message}
-          />
-      
-          <InputDate
-          control={control}
-          name="FechaContrato"
-          label="Fecha de contrato"
-          defaultValue={null}
-          errorMessage={errors.FechaContrato?.message}
-        />
+        
           <InputSelect
             control={control}
             name="RosterPosition"

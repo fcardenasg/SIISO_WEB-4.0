@@ -156,7 +156,7 @@ const Employee = () => {
           </button>
         </div>
 
-        <div className="p-1 flex items-center w-full flex-col">
+        <div className="p-1 flex xl:grid items-center w-full flex-col text-xs">
           {ShowCompoent()}
         </div>
       </div>

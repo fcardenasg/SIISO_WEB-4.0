@@ -223,7 +223,7 @@ const Policy = () => {
   return (
     <div className="p-1 flex justify-center items-center">
       <div className="md:w-full xl bg-white rounded shadow py-5 px-10">
-        <div className="w-full flex justify-center mb-5">
+        <div className="w-full flex justify-center mb-1">
           <span className="text-gray-600 font-montserrat font-semibold text-lg text-center">
             Registro de Pólizas
           </span>
@@ -264,13 +264,12 @@ const Policy = () => {
             errorMessage={errors.idcompaniaseguro?.message}
           />
 
-<InputSelect
+<InputText
             control={control}
             name="idintermediario"
-            label="Intermediario de seguros"
+            label="Intermediario de seguros"           
             defaultValue=""
-            options={intermediary}
-            errorMessage={errors.idintermediario?.message}
+            errorMessage={errors?.idintermediario?.message} 
           />
 
 <InputSelect
