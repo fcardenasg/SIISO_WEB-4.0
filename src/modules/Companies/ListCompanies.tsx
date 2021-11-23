@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { ButtonOutline } from "../../components/buttons/ButtonOutline";
 import { ButtonPrimary } from "../../components/buttons/ButtonPrimary";
 import { InputText } from "../../components/input/InputText";
-import { Catalog } from "../../types/CatalogTypes";
+import { Companies } from "../../types/CompaniesTypes";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
     IconButton,
@@ -17,38 +17,42 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 
-const listCatalog: Catalog[] = [
+const listCompanies: Companies[] = [
     {
-        Objeto: "Catalogo",
-        IdTipoCatalogo: 12,
-        Nombre: "ARL",
         Codigo: "1010",
+        Nombre: "Local",
+        Correo: "@gmail.com",
+        Celular: "3219289203",
+        Contacto: "5672345",
         Estado: true
     },
     {
-        Objeto: "Encriptación",
-        IdTipoCatalogo: 6,
-        Nombre: "EMO",
-        Codigo: "2020",
-        Estado: false
-    },
-    {
-        Objeto: "Tipo de Menu",
-        IdTipoCatalogo: 2,
-        Nombre: "Vacunas dosis",
-        Codigo: "3030",
+        Codigo: "1010",
+        Nombre: "Local",
+        Correo: "@gmail.com",
+        Celular: "3219289203",
+        Contacto: "5672345",
         Estado: true
     },
     {
-        Objeto: "Catalogo Compra",
-        IdTipoCatalogo: 4,
-        Nombre: "AFT",
-        Codigo: "4040",
-        Estado: false
+        Codigo: "1010",
+        Nombre: "Local",
+        Correo: "@gmail.com",
+        Celular: "3219289203",
+        Contacto: "5672345",
+        Estado: true
+    },
+    {
+        Codigo: "1010",
+        Nombre: "Local",
+        Correo: "@gmail.com",
+        Celular: "3219289203",
+        Contacto: "5672345",
+        Estado: true
     },
 ];
 
-const ListPolicy = () => {
+const ListCompanies = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -84,7 +88,7 @@ const ListPolicy = () => {
                     />
                     <div className="grid grid-cols-2 gap-2">
                         <ButtonPrimary
-                            onPress={() => history.push("/addCatalog")}
+                            onPress={() => history.push("/addCompanies")}
                             text="Nuevo"
                         />
                         <ButtonOutline
@@ -95,28 +99,33 @@ const ListPolicy = () => {
                 </div>
             </div>
 
-            {listCatalog.map((catalog) => (
-                <div className="items-center p-4 gap-4 flex-1 grid grid-cols-5 bg-white rounded shadow-md my-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
+            {listCompanies.map((companies) => (
+                <div className="items-center p-4 gap-4 flex-1 grid grid-cols-6 bg-white rounded shadow-md my-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
                     <div
                         className="bg-red-1 h-10 w-10 text-white text-center 
                         font-extrabold flex items-center justify-center rounded-full"
                     >
-                        {catalog.Nombre[0]}
-                    </div>
-
-                    <div className="flex flex-col">
-                        <span className="text-xs text-gray-400">Nombre: </span>
-                        <strong>{catalog.Nombre}</strong>
-                    </div>
-
-                    <div className="flex flex-col">
-                        <span className="text-xs text-gray-400">Tipo de Catálogo: </span>
-                        <strong>{catalog.IdTipoCatalogo}</strong>
+                        {companies.Nombre[0]}
                     </div>
 
                     <div className="flex flex-col">
                         <span className="text-xs text-gray-400">Código: </span>
-                        <strong>{catalog.Codigo}</strong>
+                        <strong>{companies.Codigo}</strong>
+                    </div>
+
+                    <div className="flex flex-col">
+                        <span className="text-xs text-gray-400">Nombre: </span>
+                        <strong>{companies.Nombre}</strong>
+                    </div>
+
+                    <div className="flex flex-col">
+                        <span className="text-xs text-gray-400">Correo: </span>
+                        <strong>{companies.Correo}</strong>
+                    </div>
+
+                    <div className="flex flex-col">
+                        <span className="text-xs text-gray-400">Celular: </span>
+                        <strong>{companies.Celular}</strong>
                     </div>
 
                     <div className="flex">
@@ -168,4 +177,4 @@ const ListPolicy = () => {
     );
 };
 
-export default ListPolicy;
+export default ListCompanies;

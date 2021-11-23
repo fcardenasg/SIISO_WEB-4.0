@@ -105,7 +105,7 @@ const Catalog = () => {
         </div>
         { /* Linea roja y texto */}
         <div className="w-full border-b-2 border-red-1 my-4"></div>
-        <div className="grid grid-cols-3 gap-10">
+        <div className="grid grid-cols-3 gap-4 my-6">
           <InputSelect
             control={control}
             name="IdObjeto"
@@ -147,12 +147,13 @@ const Catalog = () => {
           />
         </div>
 
-        <ButtonOutline
-          onPress={() => history.push("/Catalog")}
-          text="Cerrar" />
-        <div className="h-3"></div>
-        <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
-
+        <div className="flex flex-row items-center justify-center">
+          <ButtonOutline
+            onPress={() => history.push("/Catalog")}
+            text="Cerrar" />
+          <div className="h-3"></div>
+          <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
+        </div>
       </div>
     </div>
   );
