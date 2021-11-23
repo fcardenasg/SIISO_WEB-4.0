@@ -30,6 +30,7 @@ import ComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ComTypeofcata
 import ComSupplier from "../modules/Contracts/Supplier/ComSupplier";
 import buildPolicyClient from "../api/clients/policyClient";
 import ListSupplier from "../modules/Supplier/ListSupplier";
+import ListPolicy from "../modules/Policy/ListPolicy";
 
 type Props = {
   children?: React.ReactNode;
@@ -92,7 +93,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/Empleados">
             <MainLayout>
-              <Employee/>
+              <Employee />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/parameterization">
@@ -100,60 +101,65 @@ export default function RoutesApp() {
               <Parameterization />
             </MainLayout>
           </PrivateRoute>
-          
+
           <PrivateRoute path="/Catalog">
             <MainLayout>
-              <Catalog/>
+              <Catalog />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Companies">
             <MainLayout>
-              <Companies/>
+              <Companies />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Supplier">
             <MainLayout>
-              <ListSupplier/>
+              <ListSupplier />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/addSupplier">
             <MainLayout>
-              <Supplier/>
+              <Supplier />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/purchases">
             <MainLayout>
-              <HomeScreenpurchases/>
+              <HomeScreenpurchases />
             </MainLayout>
           </PrivateRoute>
-          <PrivateRoute path="/Contracts">
-            <MainLayout>
-              <Contracts/>
-            </MainLayout>
-          </PrivateRoute>
-          <PrivateRoute path="/Policy">
+          <PrivateRoute path="/addPolicy">
             <MainLayout>
               <Policy policyClient={policyClient} />
             </MainLayout>
           </PrivateRoute>
+          <PrivateRoute path="/Policy">
+            <MainLayout>
+              <ListPolicy/>
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/Contracts">
+            <MainLayout>
+              <Contracts />
+            </MainLayout>
+          </PrivateRoute>
           <PrivateRoute path="/Attention">
             <MainLayout>
-              <Attention/>
+              <Attention />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/ComCatalog">
             <MainLayout>
-              <ComCatalog/>
+              <ComCatalog />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/ComTypeofcatalogs">
             <MainLayout>
-              <ComTypeofcatalogs/>
+              <ComTypeofcatalogs />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/ComSupplier">
             <MainLayout>
-              <ComSupplier/>
+              <ComSupplier />
             </MainLayout>
           </PrivateRoute>
 

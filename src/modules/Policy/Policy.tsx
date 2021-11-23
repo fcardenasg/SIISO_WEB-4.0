@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from 'react-router';
 import { useForm } from "react-hook-form";
 import { InputText } from "../../components/input/InputText";
 import { ButtonPrimary } from "../../components/buttons/ButtonPrimary";
@@ -19,9 +20,6 @@ import InputDate from "../../components/input/InputDate";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PolicyClient } from "../../api/clients/policyClient";
-
-
-
 
 //Cargar combos
 const typepolicy: SelectOptions[] = [
@@ -49,10 +47,7 @@ const typepolicy: SelectOptions[] = [
     value: "6",
     label: "Póliza por la Calidad del Bien o Correcto Funcionamiento de los Equipos",
   },
-
-
 ];
-
 
 const Insurancecompany: SelectOptions[] = [
   {
@@ -97,7 +92,6 @@ const intermediary: SelectOptions[] = [
 
 const currency: SelectOptions[] = [
   {
-
     value: "1",
     label: "COP",
   },
@@ -105,7 +99,6 @@ const currency: SelectOptions[] = [
     value: "2",
     label: "USD",
   },
-
 ];
 
 const insured: SelectOptions[] = [
@@ -218,6 +211,7 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
     } */
   };
 
+  const history = useHistory();
   //mostrar en pantalla
   return (
     <div className="p-1 flex justify-center items-center">
@@ -356,7 +350,7 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
 
         </div>
         <div className="flex flex-row items-center justify-center">
-          <ButtonOutline onPress={() => { }} text="Cancelar" />
+        <ButtonOutline onPress={() => history.push('/Policy')} text="Cerrar" />
           <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         </div>
       </div>
