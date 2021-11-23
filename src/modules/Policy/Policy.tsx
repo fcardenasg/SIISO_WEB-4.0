@@ -223,7 +223,6 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
         </div>
         {/* Linea roja y texto */}
 
-
         <div className="grid grid-cols-3 gap-2">
           <InputText
             control={control}

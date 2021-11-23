@@ -31,6 +31,7 @@ import ComSupplier from "../modules/Contracts/Supplier/ComSupplier";
 import buildPolicyClient from "../api/clients/policyClient";
 import ListSupplier from "../modules/Supplier/ListSupplier";
 import ListPolicy from "../modules/Policy/ListPolicy";
+import ListCatalog from "../modules/Catalog/ListCatalog";
 
 type Props = {
   children?: React.ReactNode;
@@ -102,9 +103,14 @@ export default function RoutesApp() {
             </MainLayout>
           </PrivateRoute>
 
-          <PrivateRoute path="/Catalog">
+          <PrivateRoute path="/addCatalog">
             <MainLayout>
               <Catalog />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/Catalog">
+            <MainLayout>
+              <ListCatalog />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Companies">
@@ -134,7 +140,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/Policy">
             <MainLayout>
-              <ListPolicy/>
+              <ListPolicy />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Contracts">

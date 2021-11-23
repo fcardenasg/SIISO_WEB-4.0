@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router";
 import { InputText } from "../../components/input/InputText";
 import { ButtonPrimary } from "../../components/buttons/ButtonPrimary";
 import { Link } from "react-router-dom";
@@ -50,110 +51,111 @@ const typeofcatalog: SelectOptions[] = [
 
 
 type CatalogForm = {
-    Nombre: string;
-    Codigo: string;
-    IdTipoCatalogo: string;
-    IdObjeto: string;
-    Estado : boolean;
+  Nombre: string;
+  Codigo: string;
+  IdTipoCatalogo: string;
+  IdObjeto: string;
+  Estado: boolean;
 };
 
 
 //Validacion de los campos
 
 const schemaValidation: Yup.SchemaOf<CatalogForm> = Yup.object({
-    Nombre: Yup.string()
-        .required("Este campo es obligatorio")
-        .min(3, "Este campo debe tener minimo 3 caracteres"),
-        Codigo: Yup.string()
-        .required("Este campo es obligatorio")
-        .min(3, "Este campo debe tener minimo 3 caracteres"),
-        IdTipoCatalogo: Yup.string()
-        .required("Este campo es obligatorio")
-        .min(3, "Este campo debe tener minimo 3 caracteres"),
-        IdObjeto: Yup.string()
-        .required("Este campo es obligatorio")
-        .min(3, "Este campo debe tener minimo 3 caracteres"),
-        Estado: Yup.boolean().required(),
+  Nombre: Yup.string()
+    .required("Este campo es obligatorio")
+    .min(3, "Este campo debe tener minimo 3 caracteres"),
+  Codigo: Yup.string()
+    .required("Este campo es obligatorio")
+    .min(3, "Este campo debe tener minimo 3 caracteres"),
+  IdTipoCatalogo: Yup.string()
+    .required("Este campo es obligatorio")
+    .min(3, "Este campo debe tener minimo 3 caracteres"),
+  IdObjeto: Yup.string()
+    .required("Este campo es obligatorio")
+    .min(3, "Este campo debe tener minimo 3 caracteres"),
+  Estado: Yup.boolean().required(),
 });
 
 
 const Catalog = () => {
-    //Crear formulario para validar
-    const {
-        control,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<CatalogForm>({
-        resolver: yupResolver(schemaValidation),
-    });
+  //Crear formulario para validar
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CatalogForm>({
+    resolver: yupResolver(schemaValidation),
+  });
 
-    const handleClick = (data: CatalogForm) => {
-        console.log(data);
-    };
+  const handleClick = (data: CatalogForm) => {
+    console.log(data);
+  };
 
+  const history = useHistory();
 
-   //mostrar en pantalla
-   return (
+  //mostrar en pantalla
+  return (
     <div className="p-10 flex justify-center items-center">
-      <div className="md:w-1/2 bg-white rounded shadow py-5 px-10">
+      <div className="md:w-full xl bg-white rounded shadow py-5 px-10">
         <div className="w-full flex justify-center">
           <span className="text-gray-700 font-montserrat font-semibold text-lg text-center">
             Registro de Catálogos
           </span>
         </div>
-      { /* Linea roja y texto */}
+        { /* Linea roja y texto */}
         <div className="w-full border-b-2 border-red-1 my-4"></div>
-        <InputSelect
-        control={control}
-        name="IdObjeto"
-        label="Objeto"
-        defaultValue=""
-        options={Objects}
-        errorMessage={errors.IdObjeto?.message}
-      />
-         <InputSelect
-        control={control}
-        name="IdTipoCatalogo"
-        label="Tipo Catálogo"
-        defaultValue=""
-        options={typeofcatalog}
-        errorMessage={errors.IdTipoCatalogo?.message}
-      />
+        <div className="grid grid-cols-3 gap-10">
+          <InputSelect
+            control={control}
+            name="IdObjeto"
+            label="Objeto"
+            defaultValue=""
+            options={Objects}
+            errorMessage={errors.IdObjeto?.message}
+          />
+          <InputSelect
+            control={control}
+            name="IdTipoCatalogo"
+            label="Tipo Catálogo"
+            defaultValue=""
+            options={typeofcatalog}
+            errorMessage={errors.IdTipoCatalogo?.message}
+          />
 
-        <InputText
-          control={control}
-          name="Nombre"
-          errorMessage={errors?.Nombre?.message}
-          label="Nombre"
-          defaultValue=""
-        />
+          <InputText
+            control={control}
+            name="Nombre"
+            errorMessage={errors?.Nombre?.message}
+            label="Nombre"
+            defaultValue=""
+          />
 
-        <InputText
-          control={control}
-          name="Código"
-          errorMessage={errors?.Codigo?.message}
-          label="Código"
-          defaultValue=""
-        />
-        <InputCheck
-        control={control}
-        name="Estado"
-        label="Estado"
-        defaultValue={false}
-        errorMessage={errors.Estado?.message}
-        />
+          <InputText
+            control={control}
+            name="Código"
+            errorMessage={errors?.Codigo?.message}
+            label="Código"
+            defaultValue=""
+          />
+          <InputCheck
+            control={control}
+            name="Estado"
+            label="Estado"
+            defaultValue={false}
+            errorMessage={errors.Estado?.message}
+          />
+        </div>
 
-      
-        <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
+        <ButtonOutline
+          onPress={() => history.push("/Catalog")}
+          text="Cerrar" />
         <div className="h-3"></div>
-        <Link to="/Parameterization">
-          <ButtonOutline onPress={() => {}} text="Cancelar" />
-        </Link>
+        <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
+
       </div>
     </div>
   );
-
-
 }
 
-export default Catalog
+export default Catalog;

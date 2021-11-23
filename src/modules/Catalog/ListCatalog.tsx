@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { ButtonOutline } from "../../components/buttons/ButtonOutline";
 import { ButtonPrimary } from "../../components/buttons/ButtonPrimary";
 import { InputText } from "../../components/input/InputText";
-import { Policy } from "../../types/PolicyTypes";
+import { Catalog } from "../../types/CatalogTypes";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
     IconButton,
@@ -17,63 +17,34 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 
-const listPolicy: Policy[] = [
+const listCatalog: Catalog[] = [
     {
-        Idpoliza: "1",
-        Numerocontrato: "09012821",
-        Idtipopoliza: "Póliza de Cumplimiento del Contrato",
-        Numeropoliza: "200",
-        idcompaniaseguro: "Allianz seguros S.A.S",
-        idintermediario: "1",
-        Idcriterio: "2",
-        Fechaexpedicion: "2021-02-01",
-        Fechainiciopoliza: "2021-02-01",
-        Fechafinpoliza: "2021-02-01",
-        Valoraseguradp: "1111111",
-        Idmoneda: "1",
-        Valorprima: "11",
-        Idasegurado: "111",
-        Idbeneficiario: "11",
-        Fecharegistrl: "2021-02-01",
-        ImagenUrl: "1",
+        Objeto: "Catalogo",
+        IdTipoCatalogo: 12,
+        Nombre: "ARL",
+        Codigo: "1010",
+        Estado: true
     },
     {
-        Idpoliza: "2",
-        Numerocontrato: "062186218",
-        Idtipopoliza: "Garantía de Estabilidad de la Obra",
-        Numeropoliza: "230",
-        idcompaniaseguro: "Axa Colpatria S.A.S",
-        idintermediario: "asdsads",
-        Idcriterio: "asdsads",
-        Fechaexpedicion: "2021-04-05",
-        Fechainiciopoliza: "2021-03-13",
-        Fechafinpoliza: "2021-05-12",
-        Valoraseguradp: "asdsads",
-        Idmoneda: "asdsads",
-        Valorprima: "asdsads",
-        Idasegurado: "asdsads",
-        Idbeneficiario: "asdsads",
-        Fecharegistrl: "2021-07-13",
-        ImagenUrl: "asdsads",
+        Objeto: "Encriptación",
+        IdTipoCatalogo: 6,
+        Nombre: "EMO",
+        Codigo: "2020",
+        Estado: false
     },
     {
-        Idpoliza: "12",
-        Numerocontrato: "0822186218",
-        Idtipopoliza: "Póliza de Cumplimiento del Contrato",
-        Numeropoliza: "232",
-        idcompaniaseguro: "Axa Colpatria S.A.S",
-        idintermediario: "1",
-        Idcriterio: "2",
-        Fechaexpedicion: "2021-07-13",
-        Fechainiciopoliza: "2021-07-13",
-        Fechafinpoliza: "2021-07-13",
-        Valoraseguradp: "1111111",
-        Idmoneda: "1",
-        Valorprima: "11",
-        Idasegurado: "111",
-        Idbeneficiario: "11",
-        Fecharegistrl: "2021-07-13",
-        ImagenUrl: "1",
+        Objeto: "Tipo de Menu",
+        IdTipoCatalogo: 2,
+        Nombre: "Vacunas dosis",
+        Codigo: "3030",
+        Estado: true
+    },
+    {
+        Objeto: "Catalogo Compra",
+        IdTipoCatalogo: 4,
+        Nombre: "AFT",
+        Codigo: "4040",
+        Estado: false
     },
 ];
 
@@ -100,7 +71,7 @@ const ListPolicy = () => {
         <div>
             <div className="p-1">
                 <div className="w-full bg-blue-500 shadow rounded p-5 text-sm text-white font-montserrat font-semibold">
-                    Lista de Proveedores
+                    Lista de Catalogos
                 </div>
                 <div className="h-5"></div>
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-2">
@@ -113,48 +84,39 @@ const ListPolicy = () => {
                     />
                     <div className="grid grid-cols-2 gap-2">
                         <ButtonPrimary
-                            onPress={() => history.push("/addPolicy")}
+                            onPress={() => history.push("/addCatalog")}
                             text="Nuevo"
                         />
                         <ButtonOutline
-                            onPress={() => history.push("/purchases")}
+                            onPress={() => history.push("/parameterization")}
                             text="Cerrar"
                         />
                     </div>
                 </div>
             </div>
 
-            {listPolicy.map((policy) => (
+            {listCatalog.map((catalog) => (
                 <div className="items-center p-4 gap-4 flex-1 grid grid-cols-5 bg-white rounded shadow-md my-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
                     <div
                         className="bg-red-1 h-10 w-10 text-white text-center 
                         font-extrabold flex items-center justify-center rounded-full"
                     >
-                        {policy.idcompaniaseguro[0]}
+                        {catalog.Nombre[0]}
                     </div>
 
                     <div className="flex flex-col">
-                        <span className="text-xs text-gray-400">Número de Contrato: </span>
-                        <strong>{policy.Numerocontrato}</strong>
-
-                        <span className="text-xs text-gray-400">Compañia de Seguro: </span>
-                        <strong>{policy.idcompaniaseguro}</strong>
+                        <span className="text-xs text-gray-400">Nombre: </span>
+                        <strong>{catalog.Nombre}</strong>
                     </div>
 
                     <div className="flex flex-col">
-                        <span className="text-xs text-gray-400">Tipo de Póliza:</span>
-                        <strong>{policy.Idtipopoliza}</strong>
-
-                        <span className="text-xs text-gray-400">Número de Póliza: </span>
-                        <strong>{policy.Numeropoliza}</strong>
+                        <span className="text-xs text-gray-400">Tipo de Catálogo: </span>
+                        <strong>{catalog.IdTipoCatalogo}</strong>
                     </div>
 
                     <div className="flex flex-col">
-                        <span className="text-xs text-gray-400">Fecha Inicial: </span>
-                        <strong>{policy.Fechainiciopoliza}</strong>
-
-                        <span className="text-xs text-gray-400">Fecha Finalización: </span>
-                        <strong>{policy.Fechafinpoliza}</strong>
+                        <span className="text-xs text-gray-400">Código: </span>
+                        <strong>{catalog.Codigo}</strong>
                     </div>
 
                     <div className="flex">
