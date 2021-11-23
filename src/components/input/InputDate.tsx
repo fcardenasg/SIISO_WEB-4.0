@@ -31,6 +31,7 @@ const InputDate: React.FC<Props> = ({
           <DatePicker
             label={label}
             { ...field }
+            value={field.value}
             renderInput={(params) => (
               <TextField
                 {...params}

@@ -28,6 +28,8 @@ import Attention from "../modules/Attention/Attention";
 import ComCatalog from "../modules/Contracts/Catalog/ComCatalog";
 import ComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ComTypeofcatalogs";
 import ComSupplier from "../modules/Contracts/Supplier/ComSupplier";
+import buildPolicyClient from "../api/clients/policyClient";
+import ListSupplier from "../modules/Supplier/ListSupplier";
 
 type Props = {
   children?: React.ReactNode;
@@ -61,6 +63,8 @@ function PrivateRoute({ children, ...rest }: RouteProps) {
     />
   );
 }
+
+const policyClient = buildPolicyClient();
 
 export default function RoutesApp() {
   return (
@@ -109,6 +113,11 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/Supplier">
             <MainLayout>
+              <ListSupplier/>
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/addSupplier">
+            <MainLayout>
               <Supplier/>
             </MainLayout>
           </PrivateRoute>
@@ -124,7 +133,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/Policy">
             <MainLayout>
-              <Policy/>
+              <Policy policyClient={policyClient} />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Attention">

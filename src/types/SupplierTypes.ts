@@ -7,6 +7,7 @@ export type Supplier = {
   CiudProv: string;
   TipoProv: string;
   DireProv: string;
+  Imagen: string;
   }
 
 

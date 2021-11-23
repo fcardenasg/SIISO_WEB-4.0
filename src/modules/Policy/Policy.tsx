@@ -18,6 +18,7 @@ import InputDate from "../../components/input/InputDate";
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { PolicyClient } from "../../api/clients/policyClient";
 
 
 
@@ -96,7 +97,7 @@ const intermediary: SelectOptions[] = [
 
 const currency: SelectOptions[] = [
   {
-    
+
     value: "1",
     label: "COP",
   },
@@ -104,7 +105,7 @@ const currency: SelectOptions[] = [
     value: "2",
     label: "USD",
   },
- 
+
 ];
 
 const insured: SelectOptions[] = [
@@ -137,22 +138,22 @@ const beneficiary: SelectOptions[] = [
   },
 ];
 
-type PolicyForm = {
-	Numerocontrato: string;
-	Idtipopoliza: string;
-	Numeropoliza: string;
-	idcompaniaseguro: string;
-	idintermediario: string;
-	Idcriterio: string;
-	Fechaexpedicion: string;
-	Fechainiciopoliza: string;
-	Fechafinpoliza: string;
-	Valoraseguradp: string;
-	Idmoneda: string;
-	Valorprima: string;
-	Idasegurado: string;
-	Idbeneficiario: string;
-	ImagenUrl: string;
+export type PolicyForm = {
+  Numerocontrato: string;
+  Idtipopoliza: string;
+  Numeropoliza: string;
+  idcompaniaseguro: string;
+  idintermediario: string;
+  Idcriterio: string;
+  Fechaexpedicion: string;
+  Fechainiciopoliza: string;
+  Fechafinpoliza: string;
+  Valoraseguradp: string;
+  Idmoneda: string;
+  Valorprima: string;
+  Idasegurado: string;
+  Idbeneficiario: string;
+  ImagenUrl: string;
 };
 
 //Validacion de los campos
@@ -161,62 +162,60 @@ const schemaValidation: Yup.SchemaOf<PolicyForm> = Yup.object({
   Numerocontrato: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Idtipopoliza: Yup.string()
+  Idtipopoliza: Yup.string()
+    .required("Este campo es obligatorio"),
+  Numeropoliza: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Numeropoliza: Yup.string()
+  idcompaniaseguro: Yup.string()
+    .required("Este campo es obligatorio"),
+  idintermediario: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    idcompaniaseguro: Yup.string()
+  Idcriterio: Yup.string()
+    .required("Este campo es obligatorio"),
+  Valoraseguradp: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    idintermediario: Yup.string()
+  Fechaexpedicion: Yup.string().required("Este campo es requerido").nullable(),
+  Fechainiciopoliza: Yup.string().required("Este campo es requerido").nullable(),
+  Fechafinpoliza: Yup.string().required("Este campo es requerido").nullable(),
+  Idmoneda: Yup.string()
+    .required("Este campo es obligatorio"),
+  Valorprima: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Idcriterio: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Valoraseguradp: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Fechaexpedicion: Yup.string().required("Este campo es requerido").nullable(),
-    Fechainiciopoliza: Yup.string().required("Este campo es requerido").nullable(),
-    Fechafinpoliza: Yup.string().required("Este campo es requerido").nullable(),
-    Idmoneda: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Valorprima: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Idasegurado: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Idbeneficiario: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Fecharegistrl: Yup.string().required("Este campo es requerido").nullable(),
-    ImagenUrl: Yup.string()
+  Idasegurado: Yup.string()
+    .required("Este campo es obligatorio"),
+  Idbeneficiario: Yup.string()
+    .required("Este campo es obligatorio"),
+  Fecharegistrl: Yup.string().required("Este campo es requerido").nullable(),
+  ImagenUrl: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
 });
 
+interface Props {
+  policyClient: PolicyClient,
+}
 
-
-
-
-const Policy = () => {
+const Policy: React.FC<Props> = ({ policyClient }) => {
   //Crear formulario para validar
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<PolicyForm>({
-    resolver: yupResolver(schemaValidation),
-  });
+    getValues,
+  } = useForm<PolicyForm>();
 
-
-  const handleClick = (data: PolicyForm) => {
-    console.log(data);
+  const handleClick = async (form: PolicyForm) => {
+    console.log(form);
+    /* try {
+      const { data } = await policyClient.savePolicy(form);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    } */
   };
 
   //mostrar en pantalla
@@ -230,14 +229,14 @@ const Policy = () => {
         </div>
         {/* Linea roja y texto */}
 
-    
+
         <div className="grid grid-cols-3 gap-2">
           <InputText
             control={control}
             name="Numerocontrato"
-            label="# de Contrato"           
+            label="# de Contrato"
             defaultValue=""
-            errorMessage={errors?.Numerocontrato?.message}        
+            errorMessage={errors?.Numerocontrato?.message}
           />
           <InputSelect
             control={control}
@@ -250,12 +249,12 @@ const Policy = () => {
           <InputText
             control={control}
             name="Numeropoliza"
-            label="# de Póliza"           
+            label="# de Póliza"
             defaultValue=""
-            errorMessage={errors?.Numeropoliza?.message} 
+            errorMessage={errors?.Numeropoliza?.message}
           />
-         
-         <InputSelect
+
+          <InputSelect
             control={control}
             name="idcompaniaseguro"
             label="Compañía de seguros"
@@ -264,15 +263,15 @@ const Policy = () => {
             errorMessage={errors.idcompaniaseguro?.message}
           />
 
-<InputText
+          <InputText
             control={control}
             name="idintermediario"
-            label="Intermediario de seguros"           
+            label="Intermediario de seguros"
             defaultValue=""
-            errorMessage={errors?.idintermediario?.message} 
+            errorMessage={errors?.idintermediario?.message}
           />
 
-<InputSelect
+          <InputSelect
             control={control}
             name="Idcriterio"
             label="Criterio"
@@ -281,39 +280,39 @@ const Policy = () => {
             errorMessage={errors.Idcriterio?.message}
           />
 
-<InputDate
-        control={control}
-        name="Fechaexpedicion"
-        label="Fecha de expedición"
-        defaultValue={null}
-        errorMessage={errors.Fechaexpedicion?.message}
-      />
+          <InputDate
+            control={control}
+            name="Fechaexpedicion"
+            label="Fecha de expedición"
+            defaultValue={null}
+            errorMessage={errors.Fechaexpedicion?.message}
+          />
 
-<InputDate
-        control={control}
-        name="Fechainiciopoliza"
-        label="Fecha inicio"
-        defaultValue={null}
-        errorMessage={errors.Fechainiciopoliza?.message}
-      />
+          <InputDate
+            control={control}
+            name="Fechainiciopoliza"
+            label="Fecha inicio"
+            defaultValue={null}
+            errorMessage={errors.Fechainiciopoliza?.message}
+          />
 
-<InputDate
-        control={control}
-        name="Fechafinpoliza"
-        label="Fecha fin"
-        defaultValue={null}
-        errorMessage={errors.Fechafinpoliza?.message}
-      />
+          <InputDate
+            control={control}
+            name="Fechafinpoliza"
+            label="Fecha fin"
+            defaultValue={null}
+            errorMessage={errors.Fechafinpoliza?.message}
+          />
 
-<InputText
+          <InputText
             control={control}
             name="Valoraseguradp"
-            label="Valor asegurado"           
+            label="Valor asegurado"
             defaultValue=""
-            errorMessage={errors?.Valoraseguradp?.message} 
+            errorMessage={errors?.Valoraseguradp?.message}
           />
-         
-         <InputSelect
+
+          <InputSelect
             control={control}
             name="Idmoneda"
             label="Moneda"
@@ -322,15 +321,15 @@ const Policy = () => {
             errorMessage={errors.Idmoneda?.message}
           />
 
-<InputText
+          <InputText
             control={control}
             name="Valorprima"
-            label="Valor Prima cop $"           
+            label="Valor Prima cop $"
             defaultValue=""
-            errorMessage={errors?.Valorprima?.message} 
+            errorMessage={errors?.Valorprima?.message}
           />
 
-<InputSelect
+          <InputSelect
             control={control}
             name="Idasegurado"
             label="Asegurado"
@@ -338,7 +337,7 @@ const Policy = () => {
             options={insured}
             errorMessage={errors.Idasegurado?.message}
           />
-             <InputSelect
+          <InputSelect
             control={control}
             name="Idbeneficiario"
             label="Beneficiario"
@@ -347,17 +346,17 @@ const Policy = () => {
             errorMessage={errors.Idbeneficiario?.message}
           />
 
-<InputText
+          <InputText
             control={control}
             name="ImagenUrl"
-            label="Anexar documento"           
+            label="Anexar documento"
             defaultValue=""
-            errorMessage={errors?.ImagenUrl?.message} 
+            errorMessage={errors?.ImagenUrl?.message}
           />
 
         </div>
         <div className="flex flex-row items-center justify-center">
-          <ButtonOutline onPress={() => {}} text="Cancelar" />
+          <ButtonOutline onPress={() => { }} text="Cancelar" />
           <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         </div>
       </div>

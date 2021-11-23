@@ -40,7 +40,7 @@ const StateRequest: SelectOptions[] = [
 const Bidding = () => {
   const contractsContext = useContext(ContractsContext);
   const { onBack, updateBiddingForm } = contractsContext;
- 
+
   const {
     handleSubmit,
     control,
@@ -49,49 +49,49 @@ const Bidding = () => {
 
   const handleData = (data: BiddingForm) => {
     updateBiddingForm(data);
-  }; 
+  };
 
   return (
-    <div className="flex flex-col bg-white shadow px-5 py-1 rounded">  
+    <div className="flex flex-col bg-white shadow px-5 py-1 rounded">
 
-    <span className="text-gray-500 font-semibold px-40 py-2 font-montserrat text-xl text-center">
-    Licitación
-    </span>
-    <div className="h-5"></div>
+      <span className="text-gray-500 font-semibold px-40 py-2 font-montserrat text-xl text-center">
+        Licitación
+      </span>
+      <div className="h-5"></div>
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
-  
-    <InputSelect
-        control={control}
-        name="Idestadolicitacion"
-        label="Estado"
-        defaultValue=""
-        options={StateRequest}
-        errorMessage={errors.Idestadolicitacion?.message}
-      />
-       <InputDate
-        control={control}
-        name="Fechainiciolicitacion"
-        label="Fecha inicio proceso"
-        defaultValue={null}
-        errorMessage={errors.Fechainiciolicitacion?.message}
-      />
 
-       <InputDate
-        control={control}
-        name="Fechafinlicitacion"
-        label="Fecha fin proceso"
-        defaultValue={null}
-        errorMessage={errors.Fechafinlicitacion?.message}
-      />
+        <InputSelect
+          control={control}
+          name="Idestadolicitacion"
+          label="Estado"
+          defaultValue=""
+          options={StateRequest}
+          errorMessage={errors.Idestadolicitacion?.message}
+        />
+        <InputDate
+          control={control}
+          name="Fechainiciolicitacion"
+          label="Fecha inicio proceso"
+          defaultValue={null}
+          errorMessage={errors.Fechainiciolicitacion?.message}
+        />
+
+        <InputDate
+          control={control}
+          name="Fechafinlicitacion"
+          label="Fecha fin proceso"
+          defaultValue={null}
+          errorMessage={errors.Fechafinlicitacion?.message}
+        />
 
       </div>
-  
+
       <div className="h-5"></div>
       <div className="grid grid-cols-2">
-      <ButtonOutline onPress={onBack} text="Atrás" />
-      <ButtonPrimary onPress={handleSubmit(handleData)} text="Siguiente" />
+        <ButtonOutline onPress={onBack} text="Atrás" />
+        <ButtonPrimary onPress={handleSubmit(handleData)} text="Siguiente" />
+      </div>
     </div>
-  </div>
   )
 }
 

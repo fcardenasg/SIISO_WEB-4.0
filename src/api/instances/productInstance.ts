@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = '';
+const baseURL = 'https://localhost:44347/';
 
 const productIntance = axios.create({
   baseURL,
