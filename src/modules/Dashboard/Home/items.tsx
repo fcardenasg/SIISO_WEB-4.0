@@ -28,7 +28,7 @@ export const itemsMenu: MenuItem[] = [
     subtitle: "TRIAGE, Enfermería, Asesorias, EMO y Paraclinicos",
     icon: <LocalHospital sx={{ fontSize }} />,
     selected: true,
-    url: '/programacion'
+    url: '/Attention'
   },
   {
     title: "Programación",

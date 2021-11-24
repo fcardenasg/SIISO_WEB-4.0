@@ -1,5 +1,5 @@
-export type Policy = {
-	Codigo: number;
+export type Attention = {
+	Codigo: Number;
 	Tipo: string;
 	Documento: string;
 	Fecha: string;

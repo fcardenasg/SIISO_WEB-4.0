@@ -33,6 +33,7 @@ import ListSupplier from "../modules/Supplier/ListSupplier";
 import ListPolicy from "../modules/Policy/ListPolicy";
 import ListCatalog from "../modules/Catalog/ListCatalog";
 import ListCompanies from "../modules/Companies/ListCompanies";
+import ListAttention from "../modules/Attention/ListAttention";
 
 type Props = {
   children?: React.ReactNode;
@@ -155,6 +156,11 @@ export default function RoutesApp() {
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Attention">
+            <MainLayout>
+              <ListAttention />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/addAttention">
             <MainLayout>
               <Attention />
             </MainLayout>
