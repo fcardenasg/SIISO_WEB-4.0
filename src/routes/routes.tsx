@@ -27,8 +27,10 @@ import Contracts from "../modules/Contracts/Contracts";
 import Policy from "../modules/Policy/Policy";
 import Attention from "../modules/Attention/Attention";
 import ComCatalog from "../modules/Contracts/Catalog/ComCatalog";
+import ListComCatalog from "../modules/Contracts/Catalog/ListComCatalog";
 import ComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ComTypeofcatalogs";
 import ComSupplier from "../modules/Contracts/Supplier/ComSupplier";
+import ListComSupplier from "../modules/Contracts/Supplier/ListComSupplier";
 import buildPolicyClient from "../api/clients/policyClient";
 import ListSupplier from "../modules/Supplier/ListSupplier";
 import ListPolicy from "../modules/Policy/ListPolicy";
@@ -116,7 +118,6 @@ export default function RoutesApp() {
               <ListCatalog />
             </MainLayout>
           </PrivateRoute>
-
           <PrivateRoute path="/addTypeCatalog">
             <MainLayout>
               <Typeofcatalogs />
@@ -127,7 +128,6 @@ export default function RoutesApp() {
               <ListTypeofcatalogs />
             </MainLayout>
           </PrivateRoute>
-
           <PrivateRoute path="/Companies">
             <MainLayout>
               <ListCompanies />
@@ -180,6 +180,11 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/ComCatalog">
             <MainLayout>
+              <ListComCatalog />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/addComCatalog">
+            <MainLayout>
               <ComCatalog />
             </MainLayout>
           </PrivateRoute>
@@ -194,6 +199,11 @@ export default function RoutesApp() {
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/ComSupplier">
+            <MainLayout>
+              <ListComSupplier />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/addComSupplier">
             <MainLayout>
               <ComSupplier />
             </MainLayout>

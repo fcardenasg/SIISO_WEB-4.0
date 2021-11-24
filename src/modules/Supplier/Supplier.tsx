@@ -227,7 +227,7 @@ const Supplier = () => {
           </FormControl>
         </div>
         <div className="flex flex-row items-center justify-center">
-          <ButtonOutline onPress={() => history.push('/Policy')} text="Cerrar" />
+          <ButtonOutline onPress={() => history.push('/Supplier')} text="Cerrar" />
           <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         </div>
       </div>

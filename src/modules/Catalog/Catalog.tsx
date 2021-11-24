@@ -58,9 +58,7 @@ type CatalogForm = {
   Estado: boolean;
 };
 
-
 //Validacion de los campos
-
 const schemaValidation: Yup.SchemaOf<CatalogForm> = Yup.object({
   Nombre: Yup.string()
     .required("Este campo es obligatorio")

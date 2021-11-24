@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router"
 import { InputText } from "../../../components/input/InputText";
 import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
 import { Link } from "react-router-dom";
@@ -147,6 +148,8 @@ const ComSupplier = () => {
     console.log(data);
   };
 
+  const history = useHistory();
+
   //mostrar en pantalla
   return (
     <div className="p-1 flex justify-center items-center">
@@ -270,7 +273,7 @@ const ComSupplier = () => {
 
         </div>
         <div className="flex flex-row items-center justify-center">
-          <ButtonOutline onPress={() => {}} text="Cancelar" />
+          <ButtonOutline onPress={() => history.push('/ComCatalog')} text="Cerrar" />
           <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         </div>
       </div>
