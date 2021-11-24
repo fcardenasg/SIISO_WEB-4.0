@@ -9,7 +9,6 @@ import InputSelect, {
   SelectOptions,
 } from "../../../components/input/InputSelect";
 
-
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

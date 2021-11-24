@@ -16,6 +16,7 @@ import { Parameterization } from "../modules/Parameterization/Parameterization";
 import { Register } from "../modules/Register/Register";
 import QuestionCovid from "../modules/QuestionCovid/QuestionCovid";
 import Typeofcatalogs from "../modules/Typeofcatalogs/Typeofcatalogs";
+import ListTypeofcatalogs from "../modules/Typeofcatalogs/ListTypeofcatalogs";
 import Catalog from "../modules/Catalog/Catalog";
 import Companies from "../modules/Companies/Companies";
 import Supplier from "../modules/Supplier/Supplier";
@@ -34,6 +35,7 @@ import ListPolicy from "../modules/Policy/ListPolicy";
 import ListCatalog from "../modules/Catalog/ListCatalog";
 import ListCompanies from "../modules/Companies/ListCompanies";
 import ListAttention from "../modules/Attention/ListAttention";
+import ListComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ListComTypeofcatalogs";
 
 type Props = {
   children?: React.ReactNode;
@@ -104,7 +106,6 @@ export default function RoutesApp() {
               <Parameterization />
             </MainLayout>
           </PrivateRoute>
-
           <PrivateRoute path="/addCatalog">
             <MainLayout>
               <Catalog />
@@ -115,6 +116,18 @@ export default function RoutesApp() {
               <ListCatalog />
             </MainLayout>
           </PrivateRoute>
+
+          <PrivateRoute path="/addTypeCatalog">
+            <MainLayout>
+              <Typeofcatalogs />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/TypeCatalog">
+            <MainLayout>
+              <ListTypeofcatalogs />
+            </MainLayout>
+          </PrivateRoute>
+
           <PrivateRoute path="/Companies">
             <MainLayout>
               <ListCompanies />
@@ -171,6 +184,11 @@ export default function RoutesApp() {
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/ComTypeofcatalogs">
+            <MainLayout>
+              <ListComTypeofcatalogs />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/addComTypeofcatalogs">
             <MainLayout>
               <ComTypeofcatalogs />
             </MainLayout>

@@ -26,10 +26,10 @@ export const Parameterization = () => {
   const history = useHistory();
   // variable para abrir modal
   const [openTypeOfCatalog, setOpenTypeOfCatalog] = React.useState(false);
-  // funcion para cerrar modal de tipo de catalogo
+  /* // funcion para cerrar modal de tipo de catalogo
   const handleClose = () => setOpenTypeOfCatalog(false);
   // funcion para abrir modal de tipo de catalogo
-  const handleOpen = () => setOpenTypeOfCatalog(true);
+  const handleOpen = () => setOpenTypeOfCatalog(true); */
 
   return (
     /* Botones  */
@@ -44,7 +44,7 @@ export const Parameterization = () => {
           title="Tipo de Catálogos"
           subtitle="Registro de tipos de catálogos"
           icon={<AssignmentIcon sx={{ fontSize: 40 }} />}
-          onPress={handleOpen}
+          onPress={() => history.push("TypeCatalog")}
         />
         <ButtonLinkDashboard
           title="Catálogos"
@@ -64,7 +64,8 @@ export const Parameterization = () => {
           icon={<PermContactCalendarIcon sx={{ fontSize: 40 }} />}
           onPress={() => history.push("Supplier")}
         />
-        <Modal
+
+        {/* <Modal
           open={openTypeOfCatalog}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
@@ -78,7 +79,7 @@ export const Parameterization = () => {
             </div>
             <Typeofcatalogs closeModal={handleClose} />
           </Box>
-        </Modal>
+        </Modal> */}
       </div>
     </div>
   );

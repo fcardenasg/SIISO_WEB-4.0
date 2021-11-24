@@ -6,6 +6,16 @@ import { ButtonPrimary } from '../../components/buttons/ButtonPrimary';
 import { InputText } from '../../components/input/InputText';
 import { Supplier } from '../../types/SupplierTypes';
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import {
+    IconButton,
+    ListItemIcon,
+    ListItemText,
+    Menu,
+    MenuItem,
+} from "@material-ui/core";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 
 const listSupplier: Supplier[] = [
     {
@@ -39,6 +49,17 @@ const ListSupplier = () => {
     } = useForm();
 
     const history = useHistory();
+
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
     return (
         <div>
             <div className="p-1">
@@ -84,7 +105,47 @@ const ListSupplier = () => {
                         </div>
 
                         <div className="flex">
-                            <MoreVertIcon />
+                            <button onClick={handleClick}>
+                                <MoreVertSharpIcon sx={{ color: "#374151" }} />
+                            </button>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                MenuListProps={{
+                                    "aria-labelledby": "basic-button",
+                                }}
+                                anchorOrigin={{
+                                    vertical: "bottom",
+                                    horizontal: "center",
+                                }}
+                                transformOrigin={{
+                                    vertical: "top",
+                                    horizontal: "left",
+                                }}
+                            >
+                                <MenuItem onClick={handleClose}>
+                                    <ListItemIcon>
+                                        <EditIcon fontSize="small" />
+                                    </ListItemIcon>
+                                    <ListItemText>
+                                        <span className="text-gray-700 font-montserrat font-semibold text-xs">
+                                            Editar
+                                        </span>
+                                    </ListItemText>
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                    <ListItemIcon>
+                                        <DeleteIcon fontSize="small" />
+                                    </ListItemIcon>
+                                    <ListItemText>
+                                        <span className="text-gray-700 font-montserrat font-semibold text-xs">
+                                            Eliminar
+                                        </span>
+                                    </ListItemText>
+                                </MenuItem>
+                            </Menu>
                         </div>
                     </div>
                 ))
@@ -93,4 +154,4 @@ const ListSupplier = () => {
     )
 }
 
-export default ListSupplier
+export default ListSupplier;
