@@ -35,7 +35,6 @@ export type DemographicinformationForm = {
   DptoResidencia: string;
   MunicipioResidencia: string;
   DireccionResidencia: string;
-
 };
 
 export type ContractualInformationForm = {
@@ -50,7 +49,6 @@ export type ContractualInformationForm = {
 	Grupo: string;
   Turno: string;
   Rotation: string;
-
 };
 
 export type AccessAuthForm = {

@@ -11,4 +11,3 @@ export type Programming = {
 	Sede: string;
 	usuario: string;
 }
-

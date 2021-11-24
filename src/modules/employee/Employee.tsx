@@ -24,7 +24,7 @@ const steppers: StepperOptions[] = [
     item: 0,
     label: "Datos Personales",
     completed: false,
-    component: <PersonalInformation/>,
+    component: <PersonalInformation />,
   },
   {
     item: 1,
@@ -112,7 +112,6 @@ const Employee = () => {
     onNext();
   };
  
-
   const updateSiteForm = (data: SiteForm) => {
     setemployeeForm((prevState) => ({ ...prevState, ...data }));
     onNext();
@@ -149,7 +148,7 @@ const Employee = () => {
               );
             })}
           </Stepper>
-          <button onClick={() => history.push('/home')}>
+          <button onClick={() => history.push('/Employee')}>
             <Cancel
               sx={{ color: colors.primary, fontWeight: "bold", fontSize: 40 }}
             />

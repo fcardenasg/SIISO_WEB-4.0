@@ -22,6 +22,7 @@ import Companies from "../modules/Companies/Companies";
 import Supplier from "../modules/Supplier/Supplier";
 import Programming from "../modules/Dashboard/Programming/Programming";
 import Employee from "../modules/Employee/Employee";
+import ListEmployee from "../modules/Employee/ListEmployee";
 import { HomeScreenpurchases } from "../modules/purchases/HomeScreenpurchases";
 import Contracts from "../modules/Contracts/Contracts";
 import Policy from "../modules/Policy/Policy";
@@ -98,9 +99,14 @@ export default function RoutesApp() {
               <Programming />
             </MainLayout>
           </PrivateRoute>
-          <PrivateRoute path="/Empleados">
+          <PrivateRoute path="/addEmployee">
             <MainLayout>
               <Employee />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/Employee">
+            <MainLayout>
+              <ListEmployee />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/parameterization">
