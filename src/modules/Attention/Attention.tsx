@@ -212,14 +212,14 @@ const Attention = () => {
             <Disclosure>
               {({ open }) => (
                 <>
-                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
-                    <span>Información del empleado?</span>
+                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-gray-900 bg-gray-200 rounded-lg  hover:bg-gray-500 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                    <span>Ver mas?</span>
                     <ChevronUpIcon
                       className={`${open ? 'transform rotate-180' : ''
-                        } w-5 h-5 text-purple-500`}
+                        } w-5 h-5 text-red-500`}
                     />
                   </Disclosure.Button>
-                  <Disclosure.Panel className="grid grid-cols-4 gap-2 px-4 pt-4 pb-2 text-sm text-gray-500">
+                  <Disclosure.Panel className="grid grid-cols-4 gap-2 px-4 pt-4 pb-2 text-sm text-red-600">
 
                     <InputText
                       control={control}
@@ -227,18 +227,41 @@ const Attention = () => {
                       label="Edad"
                       defaultValue=""
                     />
-
-                    <InputText
+                     <InputText
                       control={control}
-                      name="Type"
-                      label="Type"
+                      name="Celular"
+                      label="Celular"
                       defaultValue=""
                     />
-
+                     <InputText
+                      control={control}
+                      name="Correo Electronico"
+                      label="Correo Electronico"
+                      defaultValue=""
+                    />
+              <InputText
+                      control={control}
+                      name="Estado Civil"
+                      label="Estado Civil"
+                      defaultValue=""
+                    />
+<InputText
+                      control={control}
+                      name="Sede"
+                      label="Sede"
+                      defaultValue=""
+                    />
+                  
                     <InputText
                       control={control}
                       name="Tipo Contrato"
                       label="Tipo Contrato"
+                      defaultValue=""
+                    />
+                  <InputText
+                      control={control}
+                      name="Fecha Contrato"
+                      label="Fecha Contrato"
                       defaultValue=""
                     />
 
@@ -249,12 +272,6 @@ const Attention = () => {
                       defaultValue=""
                     />
 
-                    <InputText
-                      control={control}
-                      name="Area"
-                      label="Area"
-                      defaultValue=""
-                    />
 
                     <InputText
                       control={control}
@@ -269,20 +286,22 @@ const Attention = () => {
                       label="Grupo"
                       defaultValue=""
                     />
-
-                    <InputText
+                     
+                     <InputText
                       control={control}
-                      name="Fecha Contrato"
-                      label="Fecha Contrato"
+                      name="Type"
+                      label="Type"
                       defaultValue=""
                     />
 
-                    <InputText
+  <InputText
                       control={control}
-                      name="Sede"
-                      label="Sede"
+                      name="Turno"
+                      label="Turno"
                       defaultValue=""
                     />
+
+                    
 
                     <InputText
                       control={control}
@@ -295,13 +314,6 @@ const Attention = () => {
                       control={control}
                       name="AFP"
                       label="AFP"
-                      defaultValue=""
-                    />
-
-                    <InputText
-                      control={control}
-                      name="Turno"
-                      label="Turno"
                       defaultValue=""
                     />
 
@@ -335,22 +347,11 @@ const Attention = () => {
 
                     <InputText
                       control={control}
-                      name="Direccion Residencia"
-                      label="Direccion Residencia"
+                      name="Dirección Residencia"
+                      label="Dirección Residencia"
                       defaultValue=""
                     />
-                    <InputText
-                      control={control}
-                      name="Estado Civil"
-                      label="Estado Civil"
-                      defaultValue=""
-                    />
-                    <InputText
-                      control={control}
-                      name="Celular"
-                      label="Celular"
-                      defaultValue=""
-                    />
+                 
                   </Disclosure.Panel>
                 </>
               )}
