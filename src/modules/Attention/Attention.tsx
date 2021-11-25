@@ -14,6 +14,9 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
+import InputDate from "../../components/input/InputDate";
+import { Disclosure } from "@headlessui/react";
+import { ChevronUpIcon } from "@heroicons/react/solid";
 
 // Validacion
 import * as Yup from "yup";
@@ -44,104 +47,83 @@ const Tipo: SelectOptions[] = [
 ];
 
 type AttentionForm = {
-	Codigo: string;
-	Tipo: string;
-	Documento: string;
-	// Fecha: string;
-	Atencion: string;
-/* 	EstadoCaso: string;
-	Observaciones: string;
-	Duracion: string;
-	FechaDigitacion: string;
-	NumeroHistoria: string;
-	EstadoPac: string;
-	Sede: string;
-	Contingencia: string;
-	Turno: string;
-	DiaTurno: string;
-	Motivo: string;
-	Medico: string;
-	DocSolicitante: string;
-	usuario: string;
-	UsuarioAtiende: string;
-	Talla: string;
-	Peso: string;
-	IMC: string;
-	FechaCierreAtencion: string;
-	UsuarioCierreAtencion: string; */
+  Codigo: string;
+  Tipo: string;
+  Documento: string;
+  Fecha: string;
+  Atencion: string;
+  EstadoCaso: string;
+  Observaciones: string;
+  Duracion: string;
+  FechaDigitacion: string;
+  Contingencia: string;
+  Turno: string;
+  DiaTurno: string;
+  Motivo: string;
+  Medico: string;
+  Talla: string;
+  Peso: string;
+  IMC: string;
+  /*   NumeroHistoria: string;
+    EstadoPac: string;
+    Sede: string;
+    DocSolicitante: string;
+    usuario: string;
+    UsuarioAtiende: string;
+    FechaCierreAtencion: string;
+    UsuarioCierreAtencion: string;  */
 };
 
 //Validacion de los campos
 
 const schemaValidation: Yup.SchemaOf<AttentionForm> = Yup.object({
   Codigo: Yup.string()
-  .required("Este campo es obligatorio")
-  .min(3, "Este campo debe tener minimo 3 caracteres"),
+    .required("Este campo es obligatorio")
+    .min(3, "Este campo debe tener minimo 3 caracteres"),
   Tipo: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Documento: Yup.string()
+  Fecha: Yup.string().required("Este campo es requerido").nullable(),
+  Documento: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Atencion: Yup.string()
+  Atencion: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-  /*   EstadoCaso: Yup.string()
+  EstadoCaso: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Observaciones: Yup.string()
+  Observaciones: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Duracion: Yup.string()
+  Duracion: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    FechaDigitacion: Yup.string().required("Este campo es requerido").nullable(),
-    NumeroHistoria: Yup.string()
+  FechaDigitacion: Yup.string().required("Este campo es requerido").nullable(),
+  Contingencia: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    EstadoPac: Yup.string()
+  Turno: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Sede: Yup.string()
+  DiaTurno: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Contingencia: Yup.string()
+  Motivo: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Turno: Yup.string()
+  Medico: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    DiaTurno: Yup.string()
+  Talla: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    FechaCierreAtencion: Yup.string().required("Este campo es requerido").nullable(),
-    Motivo: Yup.string()
+  Peso: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Medico: Yup.string()
+  IMC: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-    DocSolicitante: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    usuario: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    UsuarioAtiende: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    UsuarioCierreAtencion: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Talla: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    Peso: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    IMC: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"), */
 });
 
 const ITEM_HEIGHT = 48;
@@ -186,12 +168,11 @@ const Attention = () => {
 
   const [personName, setPersonName] = React.useState<string[]>([]);
 
- 
 
   //mostrar en pantalla
   return (
-    <div className="p-1 flex justify-center items-center">
-      <div className="md:w-full xl bg-white rounded shadow py-5 px-10">
+    <div className="py-1 flex justify-center">
+      <div className="md:w-full xl bg-white rounded shadow py-3 px-5">
         <div className="w-full flex justify-center mb-5">
           <span className="text-gray-600 font-montserrat font-semibold text-lg text-center">
             Registro de Atención
@@ -199,15 +180,7 @@ const Attention = () => {
         </div>
         {/* Linea roja y texto */}
 
-        <div className="grid grid-cols-2 gap-2">
-         
-             <InputText
-            control={control}
-            name="Tipo"
-            errorMessage={errors?.Tipo?.message}
-            label="Tipo"
-            defaultValue=""
-          />
+        <div className="grid grid-cols-4 gap-1">
           <InputText
             control={control}
             name="Documento"
@@ -217,16 +190,202 @@ const Attention = () => {
           />
           <InputText
             control={control}
+            name="Nombres"
+            label="Nombres"
+            defaultValue=""
+          />
+          <InputText
+            control={control}
+            name="Area"
+            label="Area"
+            defaultValue=""
+          />
+          <InputText
+            control={control}
+            name="Roster Position"
+            label="Roster Position"
+            defaultValue=""
+          />
+        </div>
+        <div className="py-1 flex justify-center">
+          <div className="md:w-full xl rounded py-3 px-5">
+            <Disclosure>
+              {({ open }) => (
+                <>
+                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                    <span>Información del empleado?</span>
+                    <ChevronUpIcon
+                      className={`${open ? 'transform rotate-180' : ''
+                        } w-5 h-5 text-purple-500`}
+                    />
+                  </Disclosure.Button>
+                  <Disclosure.Panel className="grid grid-cols-4 gap-2 px-4 pt-4 pb-2 text-sm text-gray-500">
+
+                    <InputText
+                      control={control}
+                      name="Edad"
+                      label="Edad"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Type"
+                      label="Type"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Tipo Contrato"
+                      label="Tipo Contrato"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Departamento"
+                      label="Departamento"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Area"
+                      label="Area"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="SubArea"
+                      label="SubArea"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Grupo"
+                      label="Grupo"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Fecha Contrato"
+                      label="Fecha Contrato"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Sede"
+                      label="Sede"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="EPS"
+                      label="EPS"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="AFP"
+                      label="AFP"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Turno"
+                      label="Turno"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Departamento Nacimiento"
+                      label="Departamento Nacimiento"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Ciudad Nacimiento"
+                      label="Ciudad Nacimiento"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Departamento Residencia"
+                      label="Departamento Residencia"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Ciudad Residencia"
+                      label="Ciudad Residencia"
+                      defaultValue=""
+                    />
+
+                    <InputText
+                      control={control}
+                      name="Direccion Residencia"
+                      label="Direccion Residencia"
+                      defaultValue=""
+                    />
+                    <InputText
+                      control={control}
+                      name="Estado Civil"
+                      label="Estado Civil"
+                      defaultValue=""
+                    />
+                    <InputText
+                      control={control}
+                      name="Celular"
+                      label="Celular"
+                      defaultValue=""
+                    />
+                  </Disclosure.Panel>
+                </>
+              )}
+            </Disclosure>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-4 gap-1">
+          <InputDate
+            control={control}
+            name="Fecha"
+            label="Fecha"
+            defaultValue={null}
+            errorMessage={errors.Fecha?.message}
+          />
+          <InputText
+            control={control}
+            name="Tipo"
+            errorMessage={errors?.Tipo?.message}
+            label="Tipo"
+            defaultValue=""
+          />
+
+          <InputText
+            control={control}
             name="Atención"
             errorMessage={errors?.Atencion?.message}
             label="Atención"
             defaultValue=""
           />
 
-      
+
         </div>
         <div className="flex flex-row items-center justify-center">
-        <ButtonOutline
+          <ButtonOutline
             onPress={() => history.push("/Attention")}
             text="Cerrar" />
           <div className="h-3"></div>
