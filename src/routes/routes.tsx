@@ -25,6 +25,7 @@ import Employee from "../modules/Employee/Employee";
 import ListEmployee from "../modules/Employee/ListEmployee";
 import { HomeScreenpurchases } from "../modules/purchases/HomeScreenpurchases";
 import Contracts from "../modules/Contracts/Contracts";
+import ListContracts from "../modules/Contracts/ListContracts";
 import Policy from "../modules/Policy/Policy";
 import Attention from "../modules/Attention/Attention";
 import ComCatalog from "../modules/Contracts/Catalog/ComCatalog";
@@ -170,6 +171,11 @@ export default function RoutesApp() {
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Contracts">
+            <MainLayout>
+              <ListContracts />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/addContracts">
             <MainLayout>
               <Contracts />
             </MainLayout>

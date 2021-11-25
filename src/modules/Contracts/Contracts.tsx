@@ -131,7 +131,7 @@ const Contracts = () => {
               );
             })}
           </Stepper>
-          <button onClick={() => history.push('/purchases')}>
+          <button onClick={() => history.push('/Contracts')}>
             <Cancel
               sx={{ color: colors.primary, fontWeight: "bold", fontSize: 40 }}
             />

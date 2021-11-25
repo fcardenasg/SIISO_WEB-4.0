@@ -16,15 +16,15 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
-import { employeeMock } from "../Employee/dataMockEmployee";
+import { contractsMock } from "../Contracts/dataMockContracts";
 
-const ListEmployee = () => {
+const ListContracts = () => {
     const {
         control,
         formState: { errors },
     } = useForm();
 
-    const [employees, setEmployee] = React.useState(employeeMock);
+    const [contracts, setContracts] = React.useState(contractsMock);
 
     const history = useHistory();
 
@@ -42,7 +42,7 @@ const ListEmployee = () => {
         <div>
             <div className="p-1">
                 <div className="w-full bg-blue-500 shadow rounded p-5 text-sm text-white font-montserrat font-semibold">
-                    Lista de Empleados
+                    Lista de Contratos
                 </div>
                 <div className="h-5"></div>
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-2">
@@ -54,46 +54,45 @@ const ListEmployee = () => {
                         defaultValue=""
                     />
                     <div className="grid grid-cols-2 gap-2">
-                        <ButtonPrimary onPress={() => history.push('/addEmployee')} text="Nuevo" />
-                        <ButtonOutline onPress={() => history.push('/parameterization')} text="Cerrar" />
+                        <ButtonPrimary onPress={() => history.push('/addContracts')} text="Nuevo" />
+                        <ButtonOutline onPress={() => history.push('/purchases')} text="Cerrar" />
                     </div>
                 </div>
             </div>
 
-            {employees.map((employee) => (
+            {contracts.map((contract) => (
                 <div className="flex flex-row bg-white rounded shadow-md my-3">
                     <div className="flex flex-1 flex-row w-full justify-between items-center p-4 gap-7">
-                        <div>
-                            <img
-                                src={employee.ImagenUr}
-                                className="w-24 h-24 rounded-full mx-auto"
-                                alt=""
-                            />
+                        <div
+                            className="bg-red-1 h-10 w-10 text-white text-center 
+                        font-extrabold flex items-center justify-center rounded-full"
+                        >
+                            {contract.Idsede[0]}
                         </div>
                         <div className="flex-1 grid grid-cols-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
                             <div className="flex flex-col">
-                                <span className="text-xs text-gray-400">Documento: </span>
-                                <strong>{employee.Documento}</strong>
+                                <span className="text-xs text-gray-400">Empresa: </span>
+                                <strong>{contract.Idempresa}</strong>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-xs text-gray-400">Empleado:</span>
-                                <strong>{employee.Nombres}</strong>
+                                <span className="text-xs text-gray-400">Número de Contrato:</span>
+                                <strong>{contract.Numerocontrato}</strong>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-xs text-gray-400">Celular: </span>
-                                <strong>{employee.Celular}</strong>
+                                <span className="text-xs text-gray-400">Servicio: </span>
+                                <strong>{contract.Servicio}</strong>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-xs text-gray-400">Correo: </span>
-                                <strong>{employee.Email}</strong>
+                                <span className="text-xs text-gray-400">Contratista: </span>
+                                <strong>{contract.Idcontratista}</strong>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-xs text-gray-400">Empresa :</span>
-                                <strong>{employee.Empresa}</strong>
+                                <span className="text-xs text-gray-400">Fecha Inicio del Contrato:</span>
+                                <strong>{contract.Fechainiciocontrato}</strong>
                             </div>
                             <div className="flex flex-col font-montserrat text-sm">
-                                <span className="text-xs text-gray-400">Sede: </span>
-                                <strong>{employee.Sede}</strong>
+                                <span className="text-xs text-gray-400">Fecha Final del Contrato: </span>
+                                <strong>{contract.Fechafincontrato}</strong>
                             </div>
                         </div>
                         <div className="flex">
@@ -146,4 +145,4 @@ const ListEmployee = () => {
     )
 }
 
-export default ListEmployee;
+export default ListContracts;
