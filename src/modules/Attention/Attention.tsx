@@ -25,10 +25,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 //Cargar combos
 const Tipo: SelectOptions[] = [
   {
-    value: "TRIAGE",
-    label: "TRIAGE",
-  },
-  {
     value: "Asesorias",
     label: "Asesorias",
   },
@@ -44,7 +40,177 @@ const Tipo: SelectOptions[] = [
     value: "Paraclinicos",
     label: "Paraclinicos",
   },
+  {
+    value: "TRIAGE",
+    label: "TRIAGE",
+  },
 ];
+
+//Cargar combos
+const Atencion: SelectOptions[] = [
+  {
+    value: "Asesoría medica",
+    label: "Asesoría medica",
+  },
+  {
+    value: "Asesoría Psicológica",
+    label: "Asesoría Psicológica",
+  },
+  {
+    value: "Enfermería ",
+    label: "Enfermería",
+  },
+  {
+    value: "Pruebas de alcohol y droga",
+    label: "Pruebas de alcohol y droga",
+  },
+  {
+    value: "Ingreso",
+    label: "Ingreso",
+  },
+  {
+    value: "Control periódico",
+    label: "Control periódico",
+  },
+  {
+    value: "Egreso",
+    label: "Egreso",
+  },
+  {
+    value: "TRIAGE I",
+    label: "TRIAGE III",
+  },
+  {
+    value: "TRIAGE III",
+    label: "TRIAGE III",
+  },
+  {
+    value: "TRIAGE III",
+    label: "TRIAGE III",
+  },
+  {
+    value: "TRIAGE IV",
+    label: "TRIAGE IV",
+  },
+];
+
+const Contingencia: SelectOptions[] = [
+  {
+    value: "Accidente de trabajo",
+    label: "Accidente de trabajo",
+  },
+  {
+    value: "Enfermedad general",
+    label: "Enfermedad general",
+  },
+  {
+    value: "Enfermedad laboral",
+    label: "Enfermedad laboral",
+  },
+  {
+    value: "Licencia de Maternidad / Paternidad",
+    label: "Licencia de Maternidad / Paternidad",
+  },
+  {
+    value: "NO AT",
+    label: "NO AT",
+  },
+];
+
+
+const EstadoCaso: SelectOptions[] = [
+  {
+    value: "Nuevo",
+    label: "Nuevo",
+  },
+  {
+    value: "Control",
+    label: "Control",
+  },
+  
+];
+
+const Turno: SelectOptions[] = [
+  {
+    value: "Día",
+    label: "Día",
+  },
+  {
+    value: "Noche",
+    label: "Noche",
+  },
+ 
+];
+
+const DiaTurno: SelectOptions[] = [
+  {
+    value: "1",
+    label: "1",
+  },
+  {
+    value: "2",
+    label: "2",
+  },
+  {
+    value: "3",
+    label: "3",
+  },
+  {
+    value: "4",
+    label: "4",
+  },
+  {
+    value: "5",
+    label: "5",
+  },
+];
+
+const Motivo: SelectOptions[] = [
+  {
+    value: "Administración por póliza ",
+    label: "Administración por póliza ",
+  },
+  {
+    value: "Administrativo por ARL",
+    label: "Administrativo por ARL",
+  },
+  {
+    value: "Asunto Medico",
+    label: "Asunto Medico",
+  },
+  {
+    value: "Conflicto de pareja",
+    label: "Conflicto de pareja",
+  },
+  {
+    value: "Conflictos laborales",
+    label: "Conflictos laborales",
+  },
+];
+
+const Medico: SelectOptions[] = [
+  {
+    value: "Jose guerra",
+    label: "Jose guerra",
+  },
+  {
+    value: "Jorge rivera",
+    label: "Jorge rivera",
+  },
+  {
+    value: "Osvaldo díaz",
+    label: "Osvaldo díaz",
+  },
+  {
+    value: "Guillermo yanes",
+    label: "Guillermo yanes",
+  },
+  {
+    value: "Alfonso campo",
+    label: "Alfonso campo",
+  },
+];
+
 
 type AttentionForm = {
   Codigo: string;
@@ -212,7 +378,7 @@ const Attention = () => {
             <Disclosure>
               {({ open }) => (
                 <>
-                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-gray-900 bg-gray-200 rounded-lg  hover:bg-gray-500 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-gray-600 bg-gray-200 rounded-lg  hover:bg-gray-400 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                     <span>Ver mas?</span>
                     <ChevronUpIcon
                       className={`${open ? 'transform rotate-180' : ''
@@ -367,22 +533,101 @@ const Attention = () => {
             defaultValue={null}
             errorMessage={errors.Fecha?.message}
           />
-          <InputText
+       <InputSelect
             control={control}
             name="Tipo"
-            errorMessage={errors?.Tipo?.message}
             label="Tipo"
             defaultValue=""
+            options={Tipo}
+            errorMessage={errors.Tipo?.message}
+          />
+
+      <InputSelect
+            control={control}
+            name="Atencion"
+            label="Atencion"
+            defaultValue=""
+            options={Atencion}
+            errorMessage={errors.Atencion?.message}
+          />
+
+        <InputSelect
+            control={control}
+            name="Contingencia"
+            label="Contingencia"
+            defaultValue=""
+            options={Contingencia}
+            errorMessage={errors.Contingencia?.message}
+          />
+           <InputSelect
+            control={control}
+            name="EstadoCaso"
+            label="EstadoCaso"
+            defaultValue=""
+            options={EstadoCaso}
+            errorMessage={errors.EstadoCaso?.message}
+          />
+           <InputSelect
+            control={control}
+            name="Turno"
+            label="Turno"
+            defaultValue=""
+            options={Turno}
+            errorMessage={errors.Turno?.message}
+          />
+           <InputSelect
+            control={control}
+            name="DiaTurno"
+            label="DiaTurno"
+            defaultValue=""
+            options={DiaTurno}
+            errorMessage={errors.DiaTurno?.message}
+          />
+
+         <InputSelect
+            control={control}
+            name="Motivo"
+            label="Motivo"
+            defaultValue=""
+            options={Motivo}
+            errorMessage={errors.Motivo?.message}
+          />
+           <InputSelect
+            control={control}
+            name="Medico"
+            label="Medico"
+            defaultValue=""
+            options={Medico}
+            errorMessage={errors.Medico?.message}
           />
 
           <InputText
             control={control}
-            name="Atención"
-            errorMessage={errors?.Atencion?.message}
-            label="Atención"
+            name="Talla"
+            errorMessage={errors?.Talla?.message}
+            label="Talla"
             defaultValue=""
           />
-
+   <InputText
+            control={control}
+            name="Peso"
+            errorMessage={errors?.Peso?.message}
+            label="Peso"
+            defaultValue=""
+          />
+             <InputText
+            control={control}
+            name="IMC"
+            errorMessage={errors?.IMC?.message}
+            label="IMC"
+            defaultValue=""
+          />
+             <InputText
+            control={control}
+            name="Clasificación"
+            label="Clasificación"
+            defaultValue=""
+          />
 
         </div>
         <div className="flex flex-row items-center justify-center">
