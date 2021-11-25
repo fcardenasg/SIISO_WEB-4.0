@@ -7,32 +7,32 @@ export type PersonalInformationForm = {
 	idcategoria: string;
 	idsubcategoria: string;
 	Servicio: string;
-  Idestadocontrato: string;
+	Idestadocontrato: string;
 	Idsede: string;
 	Numeroorden: string;
 	Idcontratista: string;
-  Fechainiciocontrato: string;
+	Fechainiciocontrato: string;
 	Fechafincontrato: string;
-  Idcomprador: string;
+	Idcomprador: string;
 	Idadministrador: string;
 };
 
 export type BiddingForm = {
-  Idestadolicitacion: string;
+	Idestadolicitacion: string;
 	Fechainiciolicitacion: string;
 	Fechafinlicitacion: string;
 };
 
 export type CostsForm = {
-  Costopresupuesto: string;
+	Costopresupuesto: string;
 	Costocontrato: string;
-	Idmoneda: string;	
+	Idmoneda: string;
 
 };
 
 export type AccessAuthForm = {
-  Id: string;
-  Fecharegistro: string;
+	Id: string;
+	Fecharegistro: string;
 	Idusuario: string;
 };
 
@@ -42,7 +42,7 @@ export type SiteForm = {
 };
 
 export type ContractsForm = Pick<
-  PersonalInformationForm,
+	PersonalInformationForm,
 	| "Idempresa"
 	| "Prefijo"
 	| "Consecutivo"
@@ -51,16 +51,16 @@ export type ContractsForm = Pick<
 	| "idcategoria"
 	| "idsubcategoria"
 	| "Servicio"
-  | "Idestadocontrato"
+	| "Idestadocontrato"
 	| "Idsede"
 	| "Numeroorden"
 	| "Idcontratista"
-  | "Fechainiciocontrato"
+	| "Fechainiciocontrato"
 	| "Fechafincontrato"
-  | "Idcomprador"
+	| "Idcomprador"
 	| "Idadministrador"
 > &
-BiddingForm &
-CostsForm &
-  AccessAuthForm &
-  SiteForm;
+	BiddingForm &
+	CostsForm &
+	AccessAuthForm &
+	SiteForm;

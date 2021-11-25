@@ -99,7 +99,7 @@ const ListPolicy = () => {
         <div>
             <div className="p-1">
                 <div className="w-full bg-blue-500 shadow rounded p-5 text-sm text-white font-montserrat font-semibold">
-                    Lista de Proveedores
+                    Lista de Polizas
                 </div>
                 <div className="h-5"></div>
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-2">
