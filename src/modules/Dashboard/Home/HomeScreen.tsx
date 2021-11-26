@@ -53,7 +53,7 @@ export const HomeScreen = () => {
         ¿Qué deseas hacer?
       </span>
       <div className="grid grid-cols-2 gap-2 pb-3 lg:grid-cols-4">
-        <ButtonLinkLogin url="">
+        <ButtonLinkLogin url="/LaborMedicine">
           <span>Medicina Laboral</span>
         </ButtonLinkLogin>
         <ButtonLinkLogin url="">

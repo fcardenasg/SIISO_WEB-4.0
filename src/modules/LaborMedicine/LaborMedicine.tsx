@@ -18,6 +18,9 @@ import InputDate from "../../components/input/InputDate";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 
+import { useState } from 'react'
+import { Tab } from '@headlessui/react'
+
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -127,7 +130,6 @@ const EstadoCaso: SelectOptions[] = [
     value: "Control",
     label: "Control",
   },
-
 ];
 
 const Turno: SelectOptions[] = [
@@ -139,7 +141,6 @@ const Turno: SelectOptions[] = [
     value: "Noche",
     label: "Noche",
   },
-
 ];
 
 const DiaTurno: SelectOptions[] = [
@@ -210,7 +211,6 @@ const Medico: SelectOptions[] = [
     label: "Alfonso campo",
   },
 ];
-
 
 type AttentionForm = {
   Codigo: string;
@@ -417,7 +417,6 @@ const Attention = () => {
                       label="Sede"
                       defaultValue=""
                     />
-
                     <InputText
                       control={control}
                       name="Tipo Contrato"
@@ -430,45 +429,36 @@ const Attention = () => {
                       label="Fecha Contrato"
                       defaultValue=""
                     />
-
                     <InputText
                       control={control}
                       name="Departamento"
                       label="Departamento"
                       defaultValue=""
                     />
-
-
                     <InputText
                       control={control}
                       name="SubArea"
                       label="SubArea"
                       defaultValue=""
                     />
-
                     <InputText
                       control={control}
                       name="Grupo"
                       label="Grupo"
                       defaultValue=""
                     />
-
                     <InputText
                       control={control}
                       name="Type"
                       label="Type"
                       defaultValue=""
                     />
-
                     <InputText
                       control={control}
                       name="Turno"
                       label="Turno"
                       defaultValue=""
                     />
-
-
-
                     <InputText
                       control={control}
                       name="EPS"
@@ -525,127 +515,9 @@ const Attention = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-1">
-          <InputDate
-            control={control}
-            name="Fecha"
-            label="Fecha"
-            defaultValue={null}
-            errorMessage={errors.Fecha?.message}
-          />
-          <InputSelect
-            control={control}
-            name="Tipo"
-            label="Tipo"
-            defaultValue=""
-            options={Tipo}
-            errorMessage={errors.Tipo?.message}
-          />
-
-          <InputSelect
-            control={control}
-            name="Atencion"
-            label="Atencion"
-            defaultValue=""
-            options={Atencion}
-            errorMessage={errors.Atencion?.message}
-          />
-
-          <InputSelect
-            control={control}
-            name="Contingencia"
-            label="Contingencia"
-            defaultValue=""
-            options={Contingencia}
-            errorMessage={errors.Contingencia?.message}
-          />
-          <InputSelect
-            control={control}
-            name="EstadoCaso"
-            label="EstadoCaso"
-            defaultValue=""
-            options={EstadoCaso}
-            errorMessage={errors.EstadoCaso?.message}
-          />
-          <InputSelect
-            control={control}
-            name="Turno"
-            label="Turno"
-            defaultValue=""
-            options={Turno}
-            errorMessage={errors.Turno?.message}
-          />
-          <InputSelect
-            control={control}
-            name="DiaTurno"
-            label="DiaTurno"
-            defaultValue=""
-            options={DiaTurno}
-            errorMessage={errors.DiaTurno?.message}
-          />
-
-          <InputSelect
-            control={control}
-            name="Motivo"
-            label="Motivo"
-            defaultValue=""
-            options={Motivo}
-            errorMessage={errors.Motivo?.message}
-          />
-          <InputSelect
-            control={control}
-            name="Medico"
-            label="Medico"
-            defaultValue=""
-            options={Medico}
-            errorMessage={errors.Medico?.message}
-          />
-
-          <InputText
-            control={control}
-            name="Talla"
-            errorMessage={errors?.Talla?.message}
-            label="Talla"
-            defaultValue=""
-          />
-          <InputText
-            control={control}
-            name="Peso"
-            errorMessage={errors?.Peso?.message}
-            label="Peso"
-            defaultValue=""
-          />
-          <InputText
-            control={control}
-            name="IMC"
-            errorMessage={errors?.IMC?.message}
-            label="IMC"
-            defaultValue=""
-          />
-          <InputText
-            control={control}
-            name="Clasificación"
-            label="Clasificación"
-            defaultValue=""
-
-
-          />
-        </div>
-        <div className="grid grid-cols-1 gap-1">
-      
-        <InputText
-            control={control}
-            name="Observaciones"
-            errorMessage={errors?.Observaciones?.message}
-            label="Observaciones"
-            defaultValue=""
-          />
-
-          </div>
-
         <div className="flex flex-row items-center justify-center">
           <ButtonOutline
-            onPress={() => history.push("/Attention")}
+            onPress={() => history.push("/LaborMedicine")}
             text="Cerrar" />
           <div className="h-3"></div>
           <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
