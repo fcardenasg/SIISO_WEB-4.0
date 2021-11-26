@@ -27,7 +27,6 @@ export type CostsForm = {
 	Costopresupuesto: string;
 	Costocontrato: string;
 	Idmoneda: string;
-
 };
 
 export type AccessAuthForm = {

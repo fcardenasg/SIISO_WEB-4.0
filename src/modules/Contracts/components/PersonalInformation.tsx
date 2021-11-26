@@ -232,10 +232,6 @@ const PersonalInformation = () => {
     console.log(data);
     updatePersonalInformationForm(data);
   };
-
-
-
-
   
   return (
     <div className="flex flex-col bg-white shadow px-10 py-5 rounded">

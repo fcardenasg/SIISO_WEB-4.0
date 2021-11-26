@@ -40,6 +40,10 @@ import ListCatalog from "../modules/Catalog/ListCatalog";
 import ListCompanies from "../modules/Companies/ListCompanies";
 import ListAttention from "../modules/Attention/ListAttention";
 import ListComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ListComTypeofcatalogs";
+import LaborMedicine from "../modules/LaborMedicine/LaborMedicine";
+import ListLaborMedicine from "../modules/LaborMedicine/ListLaborMedicine";
+
+import ExamControl from "../modules/LaborMedicine/TabsLaborMedicine";
 
 type Props = {
   children?: React.ReactNode;
@@ -218,6 +222,17 @@ export default function RoutesApp() {
           <PrivateRoute path="/addComSupplier">
             <MainLayout>
               <ComSupplier />
+            </MainLayout>
+          </PrivateRoute>
+
+          <PrivateRoute path="/LaborMedicine">
+            <MainLayout>
+              <ExamControl />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/addLaborMedicine">
+            <MainLayout>
+              <LaborMedicine />
             </MainLayout>
           </PrivateRoute>
 
