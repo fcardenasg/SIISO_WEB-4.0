@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import { useHistory } from "react-router";
 import { InputText } from "../../components/input/InputText";
 import { ButtonPrimary } from "../../components/buttons/ButtonPrimary";
@@ -13,34 +14,60 @@ import InputSelect, {
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { TypeofcatalogClient, SaveTypeCatalog } from "../../api/clients/TypeofcatalogsClient";
 
 // idTipoCatalogo: number;
 // nombre: string;
 
-type TypeofcatalogsForm = {
-  nombre: string;
+export type TypeofcatalogsForm = {
+  Nombre: string;
 };
 
 //Validacion de los campos
 const schemaValidation: Yup.SchemaOf<TypeofcatalogsForm> = Yup.object({
-  nombre: Yup.string()
+  Nombre: Yup.string()
     .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
+    .min(50, "Este campo debe tener minimo 3 caracteres"),
 });
 
-const Typeofcatalogs = () => {
-  //Crear formulario para validar
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<TypeofcatalogsForm>({
-    resolver: yupResolver(schemaValidation),
-  });
+interface Props {
+  TypeofcatalogsClient: TypeofcatalogClient;
+}
 
-  const handleClick = (data: TypeofcatalogsForm) => {
-    console.log(data);
+  const Typeofcatalogs: React.FC<Props> = ({ TypeofcatalogsClient }) => {
+    //Crear formulario para validar
+    const {
+      control,
+      handleSubmit,
+      formState: { errors },
+      getValues,
+    } = useForm<TypeofcatalogsForm>();
+
+
+  const handleClick = async (form: TypeofcatalogsForm) => {
+    console.log(form);
+    const ResponsePolicy = await SaveTypeCatalog(form);
+    // axios.post(`https://localhost:44347/api/TipoCatalogo`, {
+    //     Nombre: form.Nombre,
+    //   })
+    //   .then((res) => {
+    //     // store.addNotification({
+    //     //   title: "Wonderful!",
+    //     //   message: "teodosii@react-notifications-component",
+    //     //   type: "success",
+    //     //   insert: "top",
+    //     //   container: "top-right",
+    //     //   animationIn: ["animate__animated", "animate__fadeIn"],
+    //     //   animationOut: ["animate__animated", "animate__fadeOut"],
+    //     //   dismiss: {
+    //     //     duration: 5000,
+    //     //     onScreen: true
+    //     //   }
+    //     // });
+    //   });
   };
+
+
 
   const history = useHistory();
 
@@ -58,7 +85,7 @@ const Typeofcatalogs = () => {
         <InputText
           control={control}
           name="Nombre"
-          errorMessage={errors?.nombre?.message}
+          errorMessage={errors?.Nombre?.message}
           label="Nombre"
           defaultValue=""
         />

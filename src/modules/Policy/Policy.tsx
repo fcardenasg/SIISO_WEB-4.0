@@ -1,6 +1,9 @@
 import React from "react";
-import { useHistory } from 'react-router';
+import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+//import { store } from "react-notifications-component";
+
 import { InputText } from "../../components/input/InputText";
 import { ButtonPrimary } from "../../components/buttons/ButtonPrimary";
 import { Link } from "react-router-dom";
@@ -15,11 +18,13 @@ import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import InputDate from "../../components/input/InputDate";
+import { FormatDate } from "../../components/format/format";
 
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { PolicyClient } from "../../api/clients/policyClient";
+import { PolicyClient, SavePolicy } from "../../api/clients/policyClient";
+import { date } from "yup/lib/locale";
 
 //Cargar combos
 const typepolicy: SelectOptions[] = [
@@ -45,7 +50,8 @@ const typepolicy: SelectOptions[] = [
   },
   {
     value: "6",
-    label: "Póliza por la Calidad del Bien o Correcto Funcionamiento de los Equipos",
+    label:
+      "Póliza por la Calidad del Bien o Correcto Funcionamiento de los Equipos",
   },
 ];
 
@@ -136,7 +142,7 @@ export type PolicyForm = {
   Idtipopoliza: string;
   Numeropoliza: string;
   idcompaniaseguro: string;
-  idintermediario: string;
+  IdIntermediario: string;
   Idcriterio: string;
   Fechaexpedicion: string;
   Fechainiciopoliza: string;
@@ -155,33 +161,29 @@ const schemaValidation: Yup.SchemaOf<PolicyForm> = Yup.object({
   Numerocontrato: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-  Idtipopoliza: Yup.string()
-    .required("Este campo es obligatorio"),
+  Idtipopoliza: Yup.string().required("Este campo es obligatorio"),
   Numeropoliza: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-  idcompaniaseguro: Yup.string()
-    .required("Este campo es obligatorio"),
-  idintermediario: Yup.string()
+  idcompaniaseguro: Yup.string().required("Este campo es obligatorio"),
+  IdIntermediario: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-  Idcriterio: Yup.string()
-    .required("Este campo es obligatorio"),
+  Idcriterio: Yup.string().required("Este campo es obligatorio"),
   Valoraseguradp: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
   Fechaexpedicion: Yup.string().required("Este campo es requerido").nullable(),
-  Fechainiciopoliza: Yup.string().required("Este campo es requerido").nullable(),
+  Fechainiciopoliza: Yup.string()
+    .required("Este campo es requerido")
+    .nullable(),
   Fechafinpoliza: Yup.string().required("Este campo es requerido").nullable(),
-  Idmoneda: Yup.string()
-    .required("Este campo es obligatorio"),
+  Idmoneda: Yup.string().required("Este campo es obligatorio"),
   Valorprima: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-  Idasegurado: Yup.string()
-    .required("Este campo es obligatorio"),
-  Idbeneficiario: Yup.string()
-    .required("Este campo es obligatorio"),
+  Idasegurado: Yup.string().required("Este campo es obligatorio"),
+  Idbeneficiario: Yup.string().required("Este campo es obligatorio"),
   Fecharegistrl: Yup.string().required("Este campo es requerido").nullable(),
   ImagenUrl: Yup.string()
     .required("Este campo es obligatorio")
@@ -189,7 +191,7 @@ const schemaValidation: Yup.SchemaOf<PolicyForm> = Yup.object({
 });
 
 interface Props {
-  policyClient: PolicyClient,
+  policyClient: PolicyClient;
 }
 
 const Policy: React.FC<Props> = ({ policyClient }) => {
@@ -203,12 +205,60 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
 
   const handleClick = async (form: PolicyForm) => {
     console.log(form);
-    /* try {
-      const { data } = await policyClient.savePolicy(form);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    } */
+    const FechaExpedicion = FormatDate(form.Fechaexpedicion);
+    const FechaFinPoliza = FormatDate(form.Fechafinpoliza);
+    const FechaInicioPoliza = FormatDate(form.Fechainiciopoliza);
+    let Data: PolicyForm = {
+      Numerocontrato: form.Numerocontrato,
+      Idtipopoliza: form.Idtipopoliza,
+      Numeropoliza: form.Numeropoliza,
+      idcompaniaseguro: form.idcompaniaseguro,
+      IdIntermediario: form.IdIntermediario,
+      Idcriterio: form.Idcriterio,
+      Fechaexpedicion: FechaExpedicion,
+      Fechainiciopoliza: FechaInicioPoliza,
+      Fechafinpoliza: FechaFinPoliza,
+      Valoraseguradp: form.Valoraseguradp,
+      Idmoneda: form.Idmoneda,
+      Valorprima: form.Valorprima,
+      Idasegurado: form.Idasegurado,
+      Idbeneficiario: form.Idbeneficiario,
+      ImagenUrl: form.ImagenUrl,
+    };
+    const ResponsePolicy = SavePolicy(Data);
+    console.log(ResponsePolicy);
+    // axios.post(`https://localhost:44347/api/Poliza`, {
+    //     Numerocontrato: form.Numerocontrato,
+    //     Idtipopoliza: form.Idtipopoliza,
+    //     Numeropoliza: form.Numeropoliza,
+    //     idcompaniaseguro: form.idcompaniaseguro,
+    //     IdIntermediario: form.IdIntermediario,
+    //     Idcriterio: form.Idcriterio,
+    //     Fechaexpedicion: form.Fechaexpedicion,
+    //     Fechainiciopoliza: form.Fechainiciopoliza,
+    //     Fechafinpoliza: form.Fechafinpoliza,
+    //     Valoraseguradp: form.Valoraseguradp,
+    //     Idmoneda: form.Idmoneda,
+    //     Valorprima: form.Valorprima,
+    //     Idasegurado: form.Idasegurado,
+    //     Idbeneficiario: form.Idbeneficiario,
+    //     ImagenUrl: form.ImagenUrl,
+    //   })
+    //   .then((res) => {
+    //     // store.addNotification({
+    //     //   title: "Wonderful!",
+    //     //   message: "teodosii@react-notifications-component",
+    //     //   type: "success",
+    //     //   insert: "top",
+    //     //   container: "top-right",
+    //     //   animationIn: ["animate__animated", "animate__fadeIn"],
+    //     //   animationOut: ["animate__animated", "animate__fadeOut"],
+    //     //   dismiss: {
+    //     //     duration: 5000,
+    //     //     onScreen: true
+    //     //   }
+    //     // });
+    //   });
   };
 
   const history = useHistory();
@@ -258,10 +308,10 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
 
           <InputText
             control={control}
-            name="idintermediario"
+            name="IdIntermediario"
             label="Intermediario de seguros"
             defaultValue=""
-            errorMessage={errors?.idintermediario?.message}
+            errorMessage={errors?.IdIntermediario?.message}
           />
 
           <InputSelect
@@ -346,10 +396,12 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
             defaultValue=""
             errorMessage={errors?.ImagenUrl?.message}
           />
-
         </div>
         <div className="flex flex-row items-center justify-center">
-        <ButtonOutline onPress={() => history.push('/Policy')} text="Cerrar" />
+          <ButtonOutline
+            onPress={() => history.push("/Policy")}
+            text="Cerrar"
+          />
           <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         </div>
       </div>
