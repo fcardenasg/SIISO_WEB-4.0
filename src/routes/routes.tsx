@@ -37,6 +37,7 @@ import buildPolicyClient from "../api/clients/policyClient";
 import buildTypeofcatalogClient from "../api/clients/TypeofcatalogsClient";
 import buildComTypeofcatalogsClient from "../api/clients/ComTypeofcatalogsClient";
 import buildComCatalogClient from "../api/clients/ComCatalogClient";
+import buildCatalogClient from "../api/clients/CatalogClient";
 import ListSupplier from "../modules/Supplier/ListSupplier";
 import ListPolicy from "../modules/Policy/ListPolicy";
 import ListCatalog from "../modules/Catalog/ListCatalog";
@@ -81,10 +82,14 @@ function PrivateRoute({ children, ...rest }: RouteProps) {
 }
 
 const policyClient = buildPolicyClient();
-const TypeofcatalogsClient = buildTypeofcatalogClient();
+const typeofcatalogsClient = buildTypeofcatalogClient();
 const ComTypeofcatalogsClient = buildComTypeofcatalogsClient();
 const ComCatalogClient = buildComCatalogClient();
+<<<<<<< HEAD
 const CatalogClient = buildCatalogClient();
+=======
+const catalogClient = buildCatalogClient();
+>>>>>>> b29fb6995039909e5b0ca9474d85daba122625ae
 
 export default function RoutesApp() {
   return (
@@ -127,7 +132,11 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/addCatalog">
             <MainLayout>
+<<<<<<< HEAD
               <Catalog CatalogClient={CatalogClient} />
+=======
+            <Catalog CatalogClient={catalogClient} />
+>>>>>>> b29fb6995039909e5b0ca9474d85daba122625ae
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Catalog">
@@ -137,7 +146,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/addTypeCatalog">
             <MainLayout>
-              <Typeofcatalogs TypeofcatalogsClient={TypeofcatalogsClient} />
+              <Typeofcatalogs TypeofcatalogsClient={typeofcatalogsClient} />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/TypeCatalog">
