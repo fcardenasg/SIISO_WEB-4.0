@@ -140,7 +140,7 @@ interface Props {
 
           <InputText
             control={control}
-            name="Código"
+            name="Codigo"
             errorMessage={errors?.Codigo?.message}
             label="Código"
             defaultValue=""
