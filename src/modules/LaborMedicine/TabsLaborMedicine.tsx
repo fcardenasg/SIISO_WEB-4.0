@@ -15,13 +15,13 @@ function classNames(...classes: string[]) {
 export default function Example() {
 
     let [tabs] = useState({
-        "Información Laboral": [],
-        "Calificación EPS": [],
-        "Calificación ARL": [],
-        "JRC": [],
-        "JNC": [],
-        "Instancia Final": [],
-        "Estado ARL": [],
+        "Información Laboral": [{ control: <LaborInformation /> }],
+        "Calificación EPS": [{ control: <QualificationEPS /> }],
+        "Calificación ARL": [{ control: <QualificationARL /> }],
+        "JRC": [{ control: <JRC /> }],
+        "JNC": [{ control: <JNC /> }],
+        "Instancia Final": [{ control: <FinalInstance /> }],
+        "Estado ARL": [{ control: <StatusARL /> }],
     })
 
     return (

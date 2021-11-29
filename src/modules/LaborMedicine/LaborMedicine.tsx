@@ -17,6 +17,7 @@ import Checkbox from "@mui/material/Checkbox";
 import InputDate from "../../components/input/InputDate";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
+import TabsLaborMedicine from "./TabsLaborMedicine";
 
 import { useState } from 'react'
 import { Tab } from '@headlessui/react'
@@ -338,10 +339,10 @@ const Attention = () => {
   //mostrar en pantalla
   return (
     <div className="py-1 flex justify-center">
-      <div className="md:w-full xl bg-white rounded shadow py-3 px-5">
+      <div className="md:w-full xl bg-white rounded shadow py-7 px-5">
         <div className="w-full flex justify-center mb-5">
           <span className="text-gray-600 font-montserrat font-semibold text-lg text-center">
-            Registro de Atención
+            Registro de Medicina Laboral
           </span>
         </div>
         {/* Linea roja y texto */}
@@ -378,8 +379,8 @@ const Attention = () => {
             <Disclosure>
               {({ open }) => (
                 <>
-                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-gray-600 bg-gray-200 rounded-lg  hover:bg-gray-400 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
-                    <span>Ver mas?</span>
+                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-base font-medium text-left text-gray-600 bg-gray-200 rounded-lg  hover:bg-gray-400 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                    <span>Más info...</span>
                     <ChevronUpIcon
                       className={`${open ? 'transform rotate-180' : ''
                         } w-5 h-5 text-red-500`}
@@ -514,6 +515,7 @@ const Attention = () => {
             </Disclosure>
           </div>
         </div>
+        <TabsLaborMedicine />
 
         <div className="flex flex-row items-center justify-center">
           <ButtonOutline

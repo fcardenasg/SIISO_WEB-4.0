@@ -43,8 +43,6 @@ import ListComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ListComTy
 import LaborMedicine from "../modules/LaborMedicine/LaborMedicine";
 import ListLaborMedicine from "../modules/LaborMedicine/ListLaborMedicine";
 
-import ExamControl from "../modules/LaborMedicine/TabsLaborMedicine";
-
 type Props = {
   children?: React.ReactNode;
 };
@@ -227,7 +225,7 @@ export default function RoutesApp() {
 
           <PrivateRoute path="/LaborMedicine">
             <MainLayout>
-              <ExamControl />
+              <ListLaborMedicine />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/addLaborMedicine">
