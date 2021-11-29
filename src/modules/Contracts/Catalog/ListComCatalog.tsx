@@ -28,21 +28,21 @@ const listComCatalog: ComCatalog[] = [
     {
         Nombre: "EMO",
         Codigo: "2020",
-        IdTipoCatalogo: 6,
+        IdTipoCatalogo: 11,
         IdObjeto: "Encriptación",
         Estado: false
     },
     {
         Nombre: "Vacunas dosis",
         Codigo: "3030",
-        IdTipoCatalogo: 2,
+        IdTipoCatalogo: 14,
         IdObjeto: "Tipo de Menu",
         Estado: true
     },
     {
         Nombre: "AFT",
         Codigo: "4040",
-        IdTipoCatalogo: 4,
+        IdTipoCatalogo: 15,
         IdObjeto: "Catalogo Compra",
         Estado: false
     },
