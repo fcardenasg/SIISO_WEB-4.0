@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import { useHistory } from "react-router";
 import { InputText } from "../../../components/input/InputText";
 import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
@@ -14,6 +15,7 @@ import InputSelect, {
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ComCatalogClient, SaveComCatalog } from "../../../api/clients/ComCatalogClient";
 
 //Cargar combos
 const Objects: SelectOptions[] = [
@@ -33,21 +35,21 @@ const Objects: SelectOptions[] = [
 
 const typeofcatalog: SelectOptions[] = [
   {
-    value: "Genero",
+    value: "1",
     label: "Genero",
   },
   {
-    value: "EPS",
+    value: "2",
     label: "EPS",
   },
   {
-    value: "ARL",
+    value: "3",
     label: "ARL",
   },
 
 ];
 
-type ComCatalogForm = {
+export type ComCatalogForm = {
   Nombre: string;
   Codigo: string;
   IdTipoCatalogo: string;
@@ -72,21 +74,32 @@ const schemaValidation: Yup.SchemaOf<ComCatalogForm> = Yup.object({
   Estado: Yup.boolean().required(),
 });
 
-const ComCatalog = () => {
-  //Crear formulario para validar
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ComCatalogForm>({
-    resolver: yupResolver(schemaValidation),
-  });
 
-  const handleClick = (data: ComCatalogForm) => {
-    console.log(data);
+interface Props {
+  ComCatalogClient: ComCatalogClient;
+}
+
+ 
+  const ComCatalog: React.FC<Props> = ({ ComCatalogClient }) => {
+    //Crear formulario para validar
+    const {
+      control,
+      handleSubmit,
+      formState: { errors },
+      getValues,
+    } = useForm<ComCatalogForm>();
+  
+  
+  const handleClick = async (form: ComCatalogForm) => {
+    console.log(form);
+    const ResponsePolicy = await SaveComCatalog(form);
+    alert("Registro guardado con éxito");
+ 
   };
-
+  
+  
   const history = useHistory();
+
 
   //mostrar en pantalla
   return (

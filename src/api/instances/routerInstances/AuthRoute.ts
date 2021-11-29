@@ -5,4 +5,6 @@ export const Url = {
     Poliza: 'api/Poliza',
     ComTipoCatalogo: 'api/ComTipoCatalogo',
     Catalogo: 'api/Catalogo',
+    ComCatalogoId: '/api/ComCatalogo/idCatalogo',
+    ComCatalogo: 'api/ComCatalogo',
 }
