@@ -1,5 +1,7 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useHistory } from "react-router";
 import { InputText } from "../../../components/input/InputText";
 import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
 import { Link } from "react-router-dom";
@@ -12,13 +14,13 @@ import InputSelect, {
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import { ComTypeofcatalogsClient, SaveComTypeofcatalogs } from "../../../api/clients/ComTypeofcatalogsClient";
 
 // idTipoCatalogo: number;
 // nombre: string;
 
 
-type ComTypeofcatalogsForm = {
+export type ComTypeofcatalogsForm = {
     Nombre: string;
    
 };
@@ -32,20 +34,46 @@ const schemaValidation: Yup.SchemaOf<ComTypeofcatalogsForm> = Yup.object({
         .min(3, "Este campo debe tener minimo 3 caracteres"),
 });
 
+interface Props {
+  ComTypeofcatalogsClient: ComTypeofcatalogsClient;
+}
 
-const ComTypeofcatalogs = () => {
-    //Crear formulario para validar
-    const {
-        control,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<ComTypeofcatalogsForm>({
-        resolver: yupResolver(schemaValidation),
-    });
+const ComTypeofcatalogs: React.FC<Props> = ({ ComTypeofcatalogsClient }) => {
+  //Crear formulario para validar
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<ComTypeofcatalogsForm>();
 
-    const handleClick = (data: ComTypeofcatalogsForm) => {
-        console.log(data);
-    };
+
+const handleClick = async (form: ComTypeofcatalogsForm) => {
+  console.log(form);
+  const ResponsePolicy = await SaveComTypeofcatalogs(form);
+  alert("Registro guardado con éxito");
+  // axios.post(`https://localhost:44347/api/TipoCatalogo`, {
+  //     Nombre: form.Nombre,
+  //   })
+  //   .then((res) => {
+  //     // store.addNotification({
+  //     //   title: "Wonderful!",
+  //     //   message: "teodosii@react-notifications-component",
+  //     //   type: "success",
+  //     //   insert: "top",
+  //     //   container: "top-right",
+  //     //   animationIn: ["animate__animated", "animate__fadeIn"],
+  //     //   animationOut: ["animate__animated", "animate__fadeOut"],
+  //     //   dismiss: {
+  //     //     duration: 5000,
+  //     //     onScreen: true
+  //     //   }
+  //     // });
+  //   });
+};
+
+
+const history = useHistory();
 
 
    //mostrar en pantalla

@@ -35,6 +35,7 @@ import ComSupplier from "../modules/Contracts/Supplier/ComSupplier";
 import ListComSupplier from "../modules/Contracts/Supplier/ListComSupplier";
 import buildPolicyClient from "../api/clients/policyClient";
 import buildTypeofcatalogClient from "../api/clients/TypeofcatalogsClient";
+import buildComTypeofcatalogsClient from "../api/clients/ComTypeofcatalogsClient";
 import ListSupplier from "../modules/Supplier/ListSupplier";
 import ListPolicy from "../modules/Policy/ListPolicy";
 import ListCatalog from "../modules/Catalog/ListCatalog";
@@ -79,6 +80,7 @@ function PrivateRoute({ children, ...rest }: RouteProps) {
 
 const policyClient = buildPolicyClient();
 const TypeofcatalogsClient = buildTypeofcatalogClient();
+const ComTypeofcatalogsClient = buildComTypeofcatalogsClient();
 
 export default function RoutesApp() {
   return (
@@ -211,9 +213,10 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/addComTypeofcatalogs">
             <MainLayout>
-              <ComTypeofcatalogs />
+              <ComTypeofcatalogs ComTypeofcatalogsClient={ComTypeofcatalogsClient} />
             </MainLayout>
           </PrivateRoute>
+
           <PrivateRoute path="/ComSupplier">
             <MainLayout>
               <ListComSupplier />
