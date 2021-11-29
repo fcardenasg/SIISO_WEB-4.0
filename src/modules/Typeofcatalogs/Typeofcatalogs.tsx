@@ -27,7 +27,7 @@ export type TypeofcatalogsForm = {
 const schemaValidation: Yup.SchemaOf<TypeofcatalogsForm> = Yup.object({
   Nombre: Yup.string()
     .required("Este campo es obligatorio")
-    .min(50, "Este campo debe tener minimo 3 caracteres"),
+    .min(3, "Este campo debe tener minimo 3 caracteres"),
 });
 
 interface Props {
