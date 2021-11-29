@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import { InputText } from "../../components/input/InputText";
@@ -6,14 +6,12 @@ import { ButtonPrimary } from "../../components/buttons/ButtonPrimary";
 import { Link } from "react-router-dom";
 import { ButtonOutline } from "../../components/buttons/ButtonOutline";
 import InputCheck from "../../components/input/InputCheck";
-import InputSelect, {
-  SelectOptions,
-} from "../../components/input/InputSelect";
-
+import InputSelect, { SelectOptions } from "../../components/input/InputSelect";
 
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { GetAllTipoCatalogo } from "../../api/clients/TypeofcatalogsClient";
 
 //Cargar combos
 const Objects: SelectOptions[] = [
@@ -29,7 +27,6 @@ const Objects: SelectOptions[] = [
     value: "Tipo de Menu",
     label: "Tipo de Menu",
   },
-
 ];
 
 const typeofcatalog: SelectOptions[] = [
@@ -45,10 +42,7 @@ const typeofcatalog: SelectOptions[] = [
     value: "ARL",
     label: "ARL",
   },
-
 ];
-
-
 
 type CatalogForm = {
   Nombre: string;
@@ -75,8 +69,10 @@ const schemaValidation: Yup.SchemaOf<CatalogForm> = Yup.object({
   Estado: Yup.boolean().required(),
 });
 
-
 const Catalog = () => {
+  const TipoCatalogoArray: SelectOptions[] = [];
+  const [lsTipoCatalogo, setLsTipoCatalogo] = useState(TipoCatalogoArray);
+
   //Crear formulario para validar
   const {
     control,
@@ -85,6 +81,18 @@ const Catalog = () => {
   } = useForm<CatalogForm>({
     resolver: yupResolver(schemaValidation),
   });
+
+  useEffect(() => {
+    async function GetAll() {
+      const lsTipoCatalogoServer = await GetAllTipoCatalogo(0, 0);
+      var result = lsTipoCatalogoServer.entities.map((item: any) => ({
+        value: item.idTipoCatalogo,
+        label: item.nombre
+      }));
+      setLsTipoCatalogo(result);
+    }
+    GetAll();
+  }, []);
 
   const handleClick = (data: CatalogForm) => {
     console.log(data);
@@ -101,7 +109,7 @@ const Catalog = () => {
             Registro de Catálogos
           </span>
         </div>
-        { /* Linea roja y texto */}
+        {/* Linea roja y texto */}
         <div className="w-full border-b-2 border-red-1 my-4"></div>
         <div className="grid grid-cols-3 gap-4 my-6">
           <InputSelect
@@ -117,7 +125,7 @@ const Catalog = () => {
             name="IdTipoCatalogo"
             label="Tipo Catálogo"
             defaultValue=""
-            options={typeofcatalog}
+            options={lsTipoCatalogo}
             errorMessage={errors.IdTipoCatalogo?.message}
           />
 
@@ -148,13 +156,14 @@ const Catalog = () => {
         <div className="flex flex-row items-center justify-center">
           <ButtonOutline
             onPress={() => history.push("/Catalog")}
-            text="Cerrar" />
+            text="Cerrar"
+          />
           <div className="h-3"></div>
           <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Catalog;

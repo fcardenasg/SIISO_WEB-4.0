@@ -4,7 +4,7 @@ export type Policy = {
 	Idtipopoliza: string;
 	Numeropoliza: string;
 	idcompaniaseguro: string;
-	idintermediario: string;
+	IdIntermediario: string;
 	Idcriterio: string;
 	Fechaexpedicion: string;
 	Fechainiciopoliza: string;

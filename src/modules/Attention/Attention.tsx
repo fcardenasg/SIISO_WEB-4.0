@@ -627,9 +627,22 @@ const Attention = () => {
             name="Clasificación"
             label="Clasificación"
             defaultValue=""
+
+
+          />
+        </div>
+        <div className="grid grid-cols-1 gap-1">
+      
+        <InputText
+            control={control}
+            name="Observaciones"
+            errorMessage={errors?.Observaciones?.message}
+            label="Observaciones"
+            defaultValue=""
           />
 
-        </div>
+          </div>
+
         <div className="flex flex-row items-center justify-center">
           <ButtonOutline
             onPress={() => history.push("/Attention")}

@@ -32,6 +32,7 @@ const InputDate: React.FC<Props> = ({
             label={label}
             { ...field }
             value={field.value}
+            inputFormat="yyyy-MM-DD"
             renderInput={(params) => (
               <TextField
                 {...params}

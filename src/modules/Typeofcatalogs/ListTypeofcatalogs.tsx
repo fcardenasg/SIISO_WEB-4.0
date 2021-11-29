@@ -20,19 +20,19 @@ import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 const listTypeofcatalogs: Typeofcatalog[] = [
     {
         idTipoCatalogo: 1010,
-        nombre: "ARL"
+        Nombre: "ARL"
     },
     {
         idTipoCatalogo: 1010,
-        nombre: "ARL"
+        Nombre: "ARL"
     },
     {
         idTipoCatalogo: 1010,
-        nombre: "ARL"
+        Nombre: "ARL"
     },
     {
         idTipoCatalogo: 1010,
-        nombre: "ARL"
+        Nombre: "ARL"
     },
 ];
 
@@ -89,12 +89,12 @@ const ListTypeofcatalogs = () => {
                         className="bg-red-1 h-10 w-10 text-white text-center 
                         font-extrabold flex items-center justify-center rounded-full"
                     >
-                        {typoofcatalogs.nombre[0]}
+                        {typoofcatalogs.Nombre[0]}
                     </div>
 
                     <div className="flex flex-col">
                         <span className="text-xs text-gray-400">Nombre: </span>
-                        <strong>{typoofcatalogs.nombre}</strong>
+                        <strong>{typoofcatalogs.Nombre}</strong>
                     </div>
 
                     <div className="flex">
