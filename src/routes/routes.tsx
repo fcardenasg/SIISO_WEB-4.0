@@ -46,7 +46,6 @@ import ListAttention from "../modules/Attention/ListAttention";
 import ListComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ListComTypeofcatalogs";
 import LaborMedicine from "../modules/LaborMedicine/LaborMedicine";
 import ListLaborMedicine from "../modules/LaborMedicine/ListLaborMedicine";
-import buildCatalogClient from "../api/clients/CatalogClient";
 
 type Props = {
   children?: React.ReactNode;
@@ -85,11 +84,7 @@ const policyClient = buildPolicyClient();
 const typeofcatalogsClient = buildTypeofcatalogClient();
 const ComTypeofcatalogsClient = buildComTypeofcatalogsClient();
 const ComCatalogClient = buildComCatalogClient();
-<<<<<<< HEAD
-const CatalogClient = buildCatalogClient();
-=======
 const catalogClient = buildCatalogClient();
->>>>>>> b29fb6995039909e5b0ca9474d85daba122625ae
 
 export default function RoutesApp() {
   return (
@@ -132,11 +127,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/addCatalog">
             <MainLayout>
-<<<<<<< HEAD
-              <Catalog CatalogClient={CatalogClient} />
-=======
-            <Catalog CatalogClient={catalogClient} />
->>>>>>> b29fb6995039909e5b0ca9474d85daba122625ae
+              <Catalog CatalogClient={catalogClient} />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Catalog">
