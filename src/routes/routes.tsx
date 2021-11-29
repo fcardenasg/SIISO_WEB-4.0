@@ -34,7 +34,7 @@ import ComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ComTypeofcata
 import ComSupplier from "../modules/Contracts/Supplier/ComSupplier";
 import ListComSupplier from "../modules/Contracts/Supplier/ListComSupplier";
 import buildPolicyClient from "../api/clients/policyClient";
-import buildTypeofcatalogClient from "../api/clients/TypeofcatalogsClient";
+import buildTypeofcatalogClient from "../api/clients/CatalogClient";
 import buildComTypeofcatalogsClient from "../api/clients/ComTypeofcatalogsClient";
 import buildComCatalogClient from "../api/clients/ComCatalogClient";
 import ListSupplier from "../modules/Supplier/ListSupplier";
