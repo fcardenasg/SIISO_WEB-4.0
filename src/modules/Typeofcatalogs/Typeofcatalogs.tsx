@@ -34,19 +34,19 @@ interface Props {
   TypeofcatalogsClient: TypeofcatalogClient;
 }
 
-  const Typeofcatalogs: React.FC<Props> = ({ TypeofcatalogsClient }) => {
-    //Crear formulario para validar
-    const {
-      control,
-      handleSubmit,
-      formState: { errors },
-      getValues,
-    } = useForm<TypeofcatalogsForm>();
-
+const Typeofcatalogs: React.FC<Props> = ({ TypeofcatalogsClient }) => {
+  //Crear formulario para validar
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<TypeofcatalogsForm>();
 
   const handleClick = async (form: TypeofcatalogsForm) => {
     console.log(form);
     const ResponsePolicy = await SaveTypeCatalog(form);
+    alert("Se guardo correctamete");
     // axios.post(`https://localhost:44347/api/TipoCatalogo`, {
     //     Nombre: form.Nombre,
     //   })
@@ -66,8 +66,6 @@ interface Props {
     //     // });
     //   });
   };
-
-
 
   const history = useHistory();
 

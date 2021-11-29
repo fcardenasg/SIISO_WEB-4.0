@@ -4,7 +4,7 @@ import RoutesApp from "./routes/routes";
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateAdapter from '@mui/lab/AdapterMoment';
 //import ReactNotification from "react-notifications-component";
-import 'react-notifications-component/dist/theme.css';
+
 function App() {
   return (
     <LocalizationProvider dateAdapter={DateAdapter}>

@@ -1,4 +1,4 @@
 export type Typeofcatalog = {
   idTipoCatalogo: number;
-  Nombre: string;
+  nombre: string;
 }

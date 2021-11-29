@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import { ButtonOutline } from "../../components/buttons/ButtonOutline";
@@ -16,27 +16,21 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
+import { GetAllTipoCatalogo } from "../../api/clients/TypeofcatalogsClient";
 
-const listTypeofcatalogs: Typeofcatalog[] = [
-    {
-        idTipoCatalogo: 1010,
-        Nombre: "ARL"
-    },
-    {
-        idTipoCatalogo: 1010,
-        Nombre: "ARL"
-    },
-    {
-        idTipoCatalogo: 1010,
-        Nombre: "ARL"
-    },
-    {
-        idTipoCatalogo: 1010,
-        Nombre: "ARL"
-    },
-];
 
 const ListTypeofcatalogs = () => {
+    const TypeCatalogArray: Typeofcatalog[] = [];
+    const [lsTypeCatalog, setLsTypeCatalog] = useState(TypeCatalogArray);
+
+    useEffect(() => {
+        async function GetAll() {
+            const lsTypeCatalogServer = await GetAllTipoCatalogo(0, 10);
+            setLsTypeCatalog(lsTypeCatalogServer.entities);
+        }
+        GetAll();
+    }, []);
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -83,18 +77,19 @@ const ListTypeofcatalogs = () => {
                 </div>
             </div>
 
-            {listTypeofcatalogs.map((typoofcatalogs) => (
+            {lsTypeCatalog.map((tcatalog: any) => (
                 <div className="items-center p-4 gap-4 flex-1 grid grid-cols-3 bg-white rounded shadow-md my-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
+                    {console.log(tcatalog)}
                     <div
                         className="bg-red-1 h-10 w-10 text-white text-center 
                         font-extrabold flex items-center justify-center rounded-full"
                     >
-                        {typoofcatalogs.Nombre[0]}
+                        {tcatalog.nombre[0]}
                     </div>
 
                     <div className="flex flex-col">
                         <span className="text-xs text-gray-400">Nombre: </span>
-                        <strong>{typoofcatalogs.Nombre}</strong>
+                        <strong>{tcatalog.nombre}</strong>
                     </div>
 
                     <div className="flex">

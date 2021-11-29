@@ -19,9 +19,8 @@ import { GetAllPolicy } from "../../api/clients/policyClient";
 import { FormatDate } from "../../components/format/format";
 
 const ListPolicy = () => {
+  /* Esto comienza aquí */
   const PolicyArray: Policy[] = [];
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
   const [lsPolicy, setLsPolicy] = useState(PolicyArray);
 
   useEffect(() => {
@@ -31,6 +30,10 @@ const ListPolicy = () => {
     }
     GetAll();
   }, []);
+  /* Hasta aquí */
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
 
   const {
     control,

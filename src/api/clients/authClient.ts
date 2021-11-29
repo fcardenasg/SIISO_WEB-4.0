@@ -16,4 +16,4 @@ function buildAuthClient(httpInstance = productIntance): AuthClient {
   }
 }
 
-export default buildAuthClient; 
+export default buildAuthClient;
