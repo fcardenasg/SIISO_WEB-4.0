@@ -34,9 +34,10 @@ import ComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ComTypeofcata
 import ComSupplier from "../modules/Contracts/Supplier/ComSupplier";
 import ListComSupplier from "../modules/Contracts/Supplier/ListComSupplier";
 import buildPolicyClient from "../api/clients/policyClient";
-import buildTypeofcatalogClient from "../api/clients/CatalogClient";
+import buildTypeofcatalogClient from "../api/clients/TypeofcatalogsClient";
 import buildComTypeofcatalogsClient from "../api/clients/ComTypeofcatalogsClient";
 import buildComCatalogClient from "../api/clients/ComCatalogClient";
+import buildCatalogClient from "../api/clients/CatalogClient";
 import ListSupplier from "../modules/Supplier/ListSupplier";
 import ListPolicy from "../modules/Policy/ListPolicy";
 import ListCatalog from "../modules/Catalog/ListCatalog";
@@ -80,9 +81,10 @@ function PrivateRoute({ children, ...rest }: RouteProps) {
 }
 
 const policyClient = buildPolicyClient();
-const TypeofcatalogsClient = buildTypeofcatalogClient();
+const typeofcatalogsClient = buildTypeofcatalogClient();
 const ComTypeofcatalogsClient = buildComTypeofcatalogsClient();
 const ComCatalogClient = buildComCatalogClient();
+const catalogClient = buildCatalogClient();
 
 export default function RoutesApp() {
   return (
@@ -125,7 +127,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/addCatalog">
             <MainLayout>
-              <Catalog />
+            <Catalog CatalogClient={catalogClient} />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Catalog">
@@ -135,7 +137,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/addTypeCatalog">
             <MainLayout>
-              <Typeofcatalogs TypeofcatalogsClient={TypeofcatalogsClient} />
+              <Typeofcatalogs TypeofcatalogsClient={typeofcatalogsClient} />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/TypeCatalog">
