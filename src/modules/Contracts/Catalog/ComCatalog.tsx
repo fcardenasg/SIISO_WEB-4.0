@@ -35,15 +35,15 @@ const Objects: SelectOptions[] = [
 
 const typeofcatalog: SelectOptions[] = [
   {
-    value: "Genero",
+    value: "1",
     label: "Genero",
   },
   {
-    value: "EPS",
+    value: "2",
     label: "EPS",
   },
   {
-    value: "ARL",
+    value: "3",
     label: "ARL",
   },
 
