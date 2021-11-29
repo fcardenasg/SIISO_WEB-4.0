@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import { ButtonOutline } from "../../../components/buttons/ButtonOutline";
@@ -16,44 +16,40 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
+import { GetAllComTypeofcatalogs } from "../../../api/clients/ComTypeofcatalogsClient";
 
-const listComTypeofcatalogs: ComTypeofcatalog[] = [
-    {
-        idTipoCatalogo: 1010,
-        nombre: "ARL"
-    },
-    {
-        idTipoCatalogo: 1010,
-        nombre: "ARL"
-    },
-    {
-        idTipoCatalogo: 1010,
-        nombre: "ARL"
-    },
-    {
-        idTipoCatalogo: 1010,
-        nombre: "ARL"
-    },
-];
 
-const ListComTypeofcatalogs = () => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
 
-    const {
-        control,
-        formState: { errors },
-    } = useForm();
-
-    const history = useHistory();
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const ListComTypeofcatalogs = () => {
+        const ComTypeofcatalogsArray: ComTypeofcatalog[] = [];
+        const [lsComTypeofcatalogs, setLsComTypeofcatalogs] = useState(ComTypeofcatalogsArray);
+    
+        useEffect(() => {
+            async function GetAll() {
+                const lsComTypeofcatalogsServer = await GetAllComTypeofcatalogs(0, 10);
+                setLsComTypeofcatalogs(lsComTypeofcatalogsServer.entities);
+            }
+            GetAll();
+        }, []);
+    
+        const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+        const open = Boolean(anchorEl);
+    
+        const {
+            control,
+            formState: { errors },
+        } = useForm();
+    
+        const history = useHistory();
+    
+        const handleClose = () => {
+            setAnchorEl(null);
+        };
+    
+        const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+            setAnchorEl(event.currentTarget);
+        };
+    
 
     return (
         <div>
@@ -83,18 +79,18 @@ const ListComTypeofcatalogs = () => {
                 </div>
             </div>
 
-            {listComTypeofcatalogs.map((comtypoofcatalogs) => (
+            {lsComTypeofcatalogs.map((tcatalog) => (
                 <div className="items-center p-4 gap-4 flex-1 grid grid-cols-3 bg-white rounded shadow-md my-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
                     <div
                         className="bg-red-1 h-10 w-10 text-white text-center 
                         font-extrabold flex items-center justify-center rounded-full"
                     >
-                        {comtypoofcatalogs.nombre[0]}
+                        {tcatalog.nombre[0]}
                     </div>
 
                     <div className="flex flex-col">
                         <span className="text-xs text-gray-400">Nombre: </span>
-                        <strong>{comtypoofcatalogs.nombre}</strong>
+                        <strong>{tcatalog.nombre}</strong>
                     </div>
 
                     <div className="flex">
