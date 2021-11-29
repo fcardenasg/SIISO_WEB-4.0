@@ -3,8 +3,7 @@ import { getToken } from "../clients/authClient";
 import axios from "axios";
 
 export async function postData(url = "", data = {}) {
-  axios
-    .post(`${Url.Base}${url}`, data, {
+  axios.post(`${Url.Base}${url}`, data, {
       mode: 'cors',
       cache: 'no-cache',
       credentials: 'same-origin',

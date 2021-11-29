@@ -22,7 +22,6 @@ import { ComTypeofcatalogsClient, SaveComTypeofcatalogs } from "../../../api/cli
 
 export type ComTypeofcatalogsForm = {
     Nombre: string;
-   
 };
 
 
@@ -52,24 +51,6 @@ const handleClick = async (form: ComTypeofcatalogsForm) => {
   console.log(form);
   const ResponsePolicy = await SaveComTypeofcatalogs(form);
   alert("Registro guardado con éxito");
-  // axios.post(`https://localhost:44347/api/TipoCatalogo`, {
-  //     Nombre: form.Nombre,
-  //   })
-  //   .then((res) => {
-  //     // store.addNotification({
-  //     //   title: "Wonderful!",
-  //     //   message: "teodosii@react-notifications-component",
-  //     //   type: "success",
-  //     //   insert: "top",
-  //     //   container: "top-right",
-  //     //   animationIn: ["animate__animated", "animate__fadeIn"],
-  //     //   animationOut: ["animate__animated", "animate__fadeOut"],
-  //     //   dismiss: {
-  //     //     duration: 5000,
-  //     //     onScreen: true
-  //     //   }
-  //     // });
-  //   });
 };
 
 

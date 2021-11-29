@@ -1,7 +1,8 @@
 export type Catalog = {
-    Objeto: string;
-    IdTipoCatalogo: number;
-    Nombre: string;
-    Codigo: string;
-    Estado: boolean;
-  }
+  IdCatalogo: string;
+  objeto: string;
+  idTipoCatalogo: string;
+  nombre: string;
+  codigo: string;
+  estado: boolean;
+}

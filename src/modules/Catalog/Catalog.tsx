@@ -12,6 +12,7 @@ import InputSelect, { SelectOptions } from "../../components/input/InputSelect";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { GetAllTipoCatalogo } from "../../api/clients/TypeofcatalogsClient";
+import { CatalogClient, SaveCatalog } from "../../api/clients/CatalogClient";
 
 //Cargar combos
 const Objects: SelectOptions[] = [
@@ -29,22 +30,8 @@ const Objects: SelectOptions[] = [
   },
 ];
 
-const typeofcatalog: SelectOptions[] = [
-  {
-    value: "Genero",
-    label: "Genero",
-  },
-  {
-    value: "EPS",
-    label: "EPS",
-  },
-  {
-    value: "ARL",
-    label: "ARL",
-  },
-];
-
-type CatalogForm = {
+export type CatalogForm = {
+  IdCatalogo: string;
   Nombre: string;
   Codigo: string;
   IdTipoCatalogo: string;
@@ -56,20 +43,27 @@ type CatalogForm = {
 const schemaValidation: Yup.SchemaOf<CatalogForm> = Yup.object({
   Nombre: Yup.string()
     .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
+    .min(0, "Este campo debe tener minimo 3 caracteres"),
   Codigo: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
   IdTipoCatalogo: Yup.string()
     .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
+    .min(0, "Este campo debe tener minimo 3 caracteres"),
   IdObjeto: Yup.string()
+    .required("Este campo es obligatorio")
+    .min(3, "Este campo debe tener minimo 3 caracteres"),
+  IdCatalogo: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
   Estado: Yup.boolean().required(),
 });
 
-const Catalog = () => {
+interface Props {
+  CatalogClient: CatalogClient;
+}
+
+const Catalog: React.FC<Props> = ({ CatalogClient }) => {
   const TipoCatalogoArray: SelectOptions[] = [];
   const [lsTipoCatalogo, setLsTipoCatalogo] = useState(TipoCatalogoArray);
 
@@ -78,9 +72,7 @@ const Catalog = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<CatalogForm>({
-    resolver: yupResolver(schemaValidation),
-  });
+  } = useForm<CatalogForm>();
 
   useEffect(() => {
     async function GetAll() {
@@ -94,8 +86,18 @@ const Catalog = () => {
     GetAll();
   }, []);
 
-  const handleClick = (data: CatalogForm) => {
-    console.log(data);
+  const handleClick = async (form: CatalogForm) => {
+    console.log(form);
+    const ReponseCatalog = await SaveCatalog(form);
+    alert("Se guardo correctamente");
+    /* let Data: CatalogForm = {
+      IdCatalogo: form.IdCatalogo,
+      Nombre: form.Nombre,
+      Codigo: form.Codigo,
+      IdTipoCatalogo: form.IdTipoCatalogo,
+      IdObjeto: "1",
+      Estado: form.Estado,
+    }; */
   };
 
   const history = useHistory();
@@ -139,7 +141,7 @@ const Catalog = () => {
 
           <InputText
             control={control}
-            name="Código"
+            name="Codigo"
             errorMessage={errors?.Codigo?.message}
             label="Código"
             defaultValue=""

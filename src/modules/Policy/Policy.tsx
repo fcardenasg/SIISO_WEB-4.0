@@ -156,7 +156,6 @@ export type PolicyForm = {
 };
 
 //Validacion de los campos
-
 const schemaValidation: Yup.SchemaOf<PolicyForm> = Yup.object({
   Numerocontrato: Yup.string()
     .required("Este campo es obligatorio")
@@ -226,39 +225,6 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
       ImagenUrl: form.ImagenUrl,
     };
     const ResponsePolicy = SavePolicy(Data);
-    console.log(ResponsePolicy);
-    // axios.post(`https://localhost:44347/api/Poliza`, {
-    //     Numerocontrato: form.Numerocontrato,
-    //     Idtipopoliza: form.Idtipopoliza,
-    //     Numeropoliza: form.Numeropoliza,
-    //     idcompaniaseguro: form.idcompaniaseguro,
-    //     IdIntermediario: form.IdIntermediario,
-    //     Idcriterio: form.Idcriterio,
-    //     Fechaexpedicion: form.Fechaexpedicion,
-    //     Fechainiciopoliza: form.Fechainiciopoliza,
-    //     Fechafinpoliza: form.Fechafinpoliza,
-    //     Valoraseguradp: form.Valoraseguradp,
-    //     Idmoneda: form.Idmoneda,
-    //     Valorprima: form.Valorprima,
-    //     Idasegurado: form.Idasegurado,
-    //     Idbeneficiario: form.Idbeneficiario,
-    //     ImagenUrl: form.ImagenUrl,
-    //   })
-    //   .then((res) => {
-    //     // store.addNotification({
-    //     //   title: "Wonderful!",
-    //     //   message: "teodosii@react-notifications-component",
-    //     //   type: "success",
-    //     //   insert: "top",
-    //     //   container: "top-right",
-    //     //   animationIn: ["animate__animated", "animate__fadeIn"],
-    //     //   animationOut: ["animate__animated", "animate__fadeOut"],
-    //     //   dismiss: {
-    //     //     duration: 5000,
-    //     //     onScreen: true
-    //     //   }
-    //     // });
-    //   });
   };
 
   const history = useHistory();

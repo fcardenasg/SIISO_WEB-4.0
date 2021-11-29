@@ -16,9 +16,6 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TypeofcatalogClient, SaveTypeCatalog } from "../../api/clients/TypeofcatalogsClient";
 
-// idTipoCatalogo: number;
-// nombre: string;
-
 export type TypeofcatalogsForm = {
   Nombre: string;
 };
@@ -47,24 +44,6 @@ const Typeofcatalogs: React.FC<Props> = ({ TypeofcatalogsClient }) => {
     console.log(form);
     const ResponsePolicy = await SaveTypeCatalog(form);
     alert("Se guardo correctamete");
-    // axios.post(`https://localhost:44347/api/TipoCatalogo`, {
-    //     Nombre: form.Nombre,
-    //   })
-    //   .then((res) => {
-    //     // store.addNotification({
-    //     //   title: "Wonderful!",
-    //     //   message: "teodosii@react-notifications-component",
-    //     //   type: "success",
-    //     //   insert: "top",
-    //     //   container: "top-right",
-    //     //   animationIn: ["animate__animated", "animate__fadeIn"],
-    //     //   animationOut: ["animate__animated", "animate__fadeOut"],
-    //     //   dismiss: {
-    //     //     duration: 5000,
-    //     //     onScreen: true
-    //     //   }
-    //     // });
-    //   });
   };
 
   const history = useHistory();
