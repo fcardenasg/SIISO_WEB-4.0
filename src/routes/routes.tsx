@@ -34,7 +34,7 @@ import ComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ComTypeofcata
 import ComSupplier from "../modules/Contracts/Supplier/ComSupplier";
 import ListComSupplier from "../modules/Contracts/Supplier/ListComSupplier";
 import buildPolicyClient from "../api/clients/policyClient";
-import buildTypeofcatalogClient from "../api/clients/CatalogClient";
+import buildTypeofcatalogClient from "../api/clients/TypeofcatalogsClient";
 import buildComTypeofcatalogsClient from "../api/clients/ComTypeofcatalogsClient";
 import buildComCatalogClient from "../api/clients/ComCatalogClient";
 import ListSupplier from "../modules/Supplier/ListSupplier";
@@ -45,6 +45,7 @@ import ListAttention from "../modules/Attention/ListAttention";
 import ListComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ListComTypeofcatalogs";
 import LaborMedicine from "../modules/LaborMedicine/LaborMedicine";
 import ListLaborMedicine from "../modules/LaborMedicine/ListLaborMedicine";
+import buildCatalogClient from "../api/clients/CatalogClient";
 
 type Props = {
   children?: React.ReactNode;
@@ -83,6 +84,7 @@ const policyClient = buildPolicyClient();
 const TypeofcatalogsClient = buildTypeofcatalogClient();
 const ComTypeofcatalogsClient = buildComTypeofcatalogsClient();
 const ComCatalogClient = buildComCatalogClient();
+const CatalogClient = buildCatalogClient();
 
 export default function RoutesApp() {
   return (
@@ -125,7 +127,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/addCatalog">
             <MainLayout>
-              <Catalog />
+              <Catalog CatalogClient={CatalogClient} />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Catalog">
