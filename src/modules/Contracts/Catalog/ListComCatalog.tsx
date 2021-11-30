@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import { ButtonOutline } from "../../../components/buttons/ButtonOutline";
@@ -16,56 +16,38 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
+import { GetAllComCatalog } from "../../../api/clients/ComCatalogClient";
 
-const listComCatalog: ComCatalog[] = [
-    {
-        Nombre: "ARL",
-        Codigo: "1010",
-        IdTipoCatalogo: "Catalogo",
-        IdObjeto: "Catalogo",
-        Estado: true
-    },
-    {
-        Nombre: "EMO",
-        Codigo: "2020",
-        IdTipoCatalogo: "Catalogo",
-        IdObjeto: "Encriptación",
-        Estado: false
-    },
-    {
-        Nombre: "Vacunas dosis",
-        Codigo: "3030",
-        IdTipoCatalogo: "Catalogo",
-        IdObjeto: "Tipo de Menu",
-        Estado: true
-    },
-    {
-        Nombre: "AFT",
-        Codigo: "4040",
-        IdTipoCatalogo: "Catalogo",
-        IdObjeto: "Catalogo Compra",
-        Estado: false
-    },
-];
 
-const ListComCatalog = () => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-
-    const {
-        control,
-        formState: { errors },
-    } = useForm();
-
-    const history = useHistory();
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const ListComCatalog = () => {
+        const ComCatalogArray: ComCatalog[] = [];
+        const [lsComCatalog, setLsComCatalog] = useState(ComCatalogArray);
+    
+        useEffect(() => {
+            async function GetAll() {
+                const lsComCatalogServer = await GetAllComCatalog(0, 10);
+                setLsComCatalog(lsComCatalogServer.entities);
+            }
+            GetAll();
+        }, []);
+    
+        const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+        const open = Boolean(anchorEl);
+    
+        const {
+            control,
+            formState: { errors },
+        } = useForm();
+    
+        const history = useHistory();
+    
+        const handleClose = () => {
+            setAnchorEl(null);
+        };
+    
+        const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+            setAnchorEl(event.currentTarget);
+        };
 
     return (
         <div>
@@ -95,28 +77,28 @@ const ListComCatalog = () => {
                 </div>
             </div>
 
-            {listComCatalog.map((comcatalog) => (
+            {lsComCatalog.map((comcatalog : any) => (
                 <div className="items-center p-4 gap-4 flex-1 grid grid-cols-5 bg-white rounded shadow-md my-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
                     <div
                         className="bg-red-1 h-10 w-10 text-white text-center 
                         font-extrabold flex items-center justify-center rounded-full"
                     >
-                        {comcatalog.Nombre[0]}
-                    </div>
-
-                    <div className="flex flex-col">
-                        <span className="text-xs text-gray-400">Nombre: </span>
-                        <strong>{comcatalog.Nombre}</strong>
+                        {comcatalog.idTipoCatalogo[0]}
                     </div>
 
                     <div className="flex flex-col">
                         <span className="text-xs text-gray-400">Tipo de Catálogo: </span>
-                        <strong>{comcatalog.IdTipoCatalogo}</strong>
+                        <strong>{comcatalog.idTipoCatalogo}</strong>
+                    </div>
+
+                    <div className="flex flex-col">
+                        <span className="text-xs text-gray-400">Nombre: </span>
+                        <strong>{comcatalog.nombre}</strong>
                     </div>
 
                     <div className="flex flex-col">
                         <span className="text-xs text-gray-400">Código: </span>
-                        <strong>{comcatalog.Codigo}</strong>
+                        <strong>{comcatalog.codigo}</strong>
                     </div>
 
                     <div className="flex">
