@@ -127,7 +127,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/addCatalog">
             <MainLayout>
-            <Catalog CatalogClient={catalogClient} />
+              <Catalog CatalogClient={catalogClient} />
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Catalog">

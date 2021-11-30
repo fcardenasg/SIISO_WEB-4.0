@@ -225,6 +225,7 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
       ImagenUrl: form.ImagenUrl,
     };
     const ResponsePolicy = SavePolicy(Data);
+    alert("Se guardo correctamente");
   };
 
   const history = useHistory();
