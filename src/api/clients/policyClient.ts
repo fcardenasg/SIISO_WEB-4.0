@@ -20,10 +20,6 @@ function buildPolicyClient(httpInstance: AxiosInstance = productIntance): Policy
 export const SavePolicy = async(poliza: PolicyForm) => await postData(Url.Poliza, poliza);
 export const GetAllPolicy = async(page: number, pageSize: number) => await getData(Url.Poliza, {page, pageSize});
 
-// function GetAllPolicy(page: number, pageSize: number): PolicyClient {
-//     return {
-//         savePolicy: (data) => httpInstance.post<Policy>('/api/Poliza', data),
-//     }
-// }
+
 
 export default buildPolicyClient;

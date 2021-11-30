@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useHistory } from "react-router";
@@ -11,11 +11,13 @@ import InputSelect, {
   SelectOptions,
 } from "../../../components/input/InputSelect";
 
-
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ComCatalogClient, SaveComCatalog } from "../../../api/clients/ComCatalogClient";
+import {
+  ComCatalogClient,
+  SaveComCatalog,
+} from "../../../api/clients/ComCatalogClient";
 
 //Cargar combos
 const Objects: SelectOptions[] = [
@@ -46,7 +48,6 @@ const typeofcatalog: SelectOptions[] = [
     value: "3",
     label: "ARL",
   },
-
 ];
 
 export type ComCatalogForm = {
@@ -74,32 +75,26 @@ const schemaValidation: Yup.SchemaOf<ComCatalogForm> = Yup.object({
   Estado: Yup.boolean().required(),
 });
 
-
 interface Props {
   ComCatalogClient: ComCatalogClient;
 }
 
- 
-  const ComCatalog: React.FC<Props> = ({ ComCatalogClient }) => {
-    //Crear formulario para validar
-    const {
-      control,
-      handleSubmit,
-      formState: { errors },
-      getValues,
-    } = useForm<ComCatalogForm>();
-  
-  
+const ComCatalog: React.FC<Props> = ({ ComCatalogClient }) => {
+  //Crear formulario para validar
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<ComCatalogForm>();
+
   const handleClick = async (form: ComCatalogForm) => {
     console.log(form);
     const ResponsePolicy = await SaveComCatalog(form);
     alert("Registro guardado con éxito");
- 
   };
-  
-  
-  const history = useHistory();
 
+  const history = useHistory();
 
   //mostrar en pantalla
   return (
@@ -110,7 +105,7 @@ interface Props {
             Registro de Catálogos
           </span>
         </div>
-        { /* Linea roja y texto */}
+        {/* Linea roja y texto */}
         <div className="w-full border-b-2 border-red-1 my-4"></div>
         <div className="grid grid-cols-3 gap-4 my-6">
           <InputSelect
@@ -157,13 +152,14 @@ interface Props {
         <div className="flex flex-row items-center justify-center">
           <ButtonOutline
             onPress={() => history.push("/ComCatalog")}
-            text="Cerrar" />
+            text="Cerrar"
+          />
           <div className="h-3"></div>
           <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default ComCatalog;

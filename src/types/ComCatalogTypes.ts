@@ -1,7 +1,7 @@
 export type ComCatalog = {
-  Nombre: string;
-  Codigo: string;
-  IdTipoCatalogo: string;
-  IdObjeto: string;
-  Estado: boolean;
+  nombre: string;
+  codigo: string;
+  idTipoCatalogo: string;
+  idObjeto: string;
+  estado: boolean;
 }
