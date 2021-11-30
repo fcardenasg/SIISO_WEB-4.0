@@ -18,37 +18,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import { GetAllCatalog } from "../../api/clients/CatalogClient";
 
-/* const listCatalog: Catalog[] = [
-    {
-        Objeto: "Catalogo",
-        IdTipoCatalogo: 12,
-        Nombre: "ARL",
-        Codigo: "1010",
-        Estado: true
-    },
-    {
-        Objeto: "Encriptación",
-        IdTipoCatalogo: 6,
-        Nombre: "EMO",
-        Codigo: "2020",
-        Estado: false
-    },
-    {
-        Objeto: "Tipo de Menu",
-        IdTipoCatalogo: 2,
-        Nombre: "Vacunas dosis",
-        Codigo: "3030",
-        Estado: true
-    },
-    {
-        Objeto: "Catalogo Compra",
-        IdTipoCatalogo: 4,
-        Nombre: "AFT",
-        Codigo: "4040",
-        Estado: false
-    },
-]; */
-
 const ListCatalog = () => {
     const CatalogArray: Catalog[] = [];
     const [lsCatalog, setLsCatalog] = useState(CatalogArray);

@@ -10,10 +10,12 @@ import InputCheck from "../../components/input/InputCheck";
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { CompaniesClient, SaveCompanies } from "../../api/clients/CompaniesClient";
+import Swal from "sweetalert2";
 
-type CompaniesForm = {
-  DescripcionSpa: string;
+export type CompaniesForm = {
   Codigo: string;
+  DescripcionSpa: string;
   Email: string;
   Celular: string;
   Gerente: string;
@@ -21,8 +23,7 @@ type CompaniesForm = {
 };
 
 //Validacion de los campos
-
-const schemaValidation: Yup.SchemaOf<CompaniesForm> = Yup.object({
+/* const schemaValidation: Yup.SchemaOf<CompaniesForm> = Yup.object({
   DescripcionSpa: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
@@ -39,20 +40,31 @@ const schemaValidation: Yup.SchemaOf<CompaniesForm> = Yup.object({
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
   Estado: Yup.boolean().required(),
-});
+}); */
 
-const Companies = () => {
+interface Props {
+  CompaniesClient: CompaniesClient;
+}
+
+const Companies: React.FC<Props> = ({ CompaniesClient }) => {
+
   //Crear formulario para validar
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<CompaniesForm>({
-    resolver: yupResolver(schemaValidation),
-  });
+  } = useForm<CompaniesForm>();
 
-  const handleClick = (data: CompaniesForm) => {
-    console.log(data);
+  const handleClick = async (form: CompaniesForm) => {
+    console.log(form);
+    const ReponseCompanies = await SaveCompanies(form);
+    Swal.fire({
+      /* position: 'top-end', */
+      icon: 'success',
+      title: 'Su empresa se ha guardado',
+      showConfirmButton: false,
+      timer: 1500
+    })
   };
 
   const history = useHistory();
@@ -78,14 +90,14 @@ const Companies = () => {
           />
           <InputText
             control={control}
-            name="Nombre"
+            name="DescripcionSpa"
             errorMessage={errors?.DescripcionSpa?.message}
             label="Nombre"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Correo electrónico"
+            name="Email"
             errorMessage={errors?.Email?.message}
             label="Correo electrónico"
             defaultValue=""
@@ -99,7 +111,7 @@ const Companies = () => {
           />
           <InputText
             control={control}
-            name="Contacto"
+            name="Gerente"
             errorMessage={errors?.Gerente?.message}
             label="Contacto"
             defaultValue=""

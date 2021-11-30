@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
 import { ButtonOutline } from '../../components/buttons/ButtonOutline';
@@ -16,33 +16,20 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
-
-const listSupplier: Supplier[] = [
-    {
-        CodiProv: 3,
-        NombProv: 'Francisco Cardenas',
-        TeleProv: '3145202614',
-        EmaiProv: 'fcardenas@gmail.com',
-        ContaProv: 'test',
-        CiudProv: 'test',
-        TipoProv: 'test',
-        DireProv: 'test',
-        Imagen: 'http://3.bp.blogspot.com/_EZ16vWYvHHg/TUd1QWxMUoI/AAAAAAAAWjk/5ktGHl-18FU/s1600/www.BANCODEIMAGENESGRATUITAS.com%2B-%2Bbeautiful-mountain-waterfall.jpg'
-    },
-    {
-        CodiProv: 3,
-        NombProv: 'Jorge Rivera',
-        TeleProv: '3153290495',
-        EmaiProv: 'jrivera@drummondltd.com',
-        ContaProv: 'testdddd',
-        CiudProv: 'testddd',
-        TipoProv: 'testddd',
-        DireProv: 'testdddddd',
-        Imagen: 'http://3.bp.blogspot.com/_EZ16vWYvHHg/TUd1QWxMUoI/AAAAAAAAWjk/5ktGHl-18FU/s1600/www.BANCODEIMAGENESGRATUITAS.com%2B-%2Bbeautiful-mountain-waterfall.jpg'
-    }
-]
+import { GetAllSupplier } from "../../api/clients/SupplierClient";
 
 const ListSupplier = () => {
+    const SupplierArray: Supplier[] = [];
+    const [lsSupplier, setLsSupplier] = useState(SupplierArray);
+
+    useEffect(() => {
+        async function GetAll() {
+            const lsSupplierServer = await GetAllSupplier(0, 10);
+            setLsSupplier(lsSupplierServer.entities);
+        }
+        GetAll();
+    }, []);
+
     const {
         control,
         formState: { errors },
@@ -83,25 +70,27 @@ const ListSupplier = () => {
             </div>
 
             {
-                listSupplier.map((supplier) => (
+                lsSupplier.map((supplier: any) => (
                     <div className="items-center p-4 gap-4 flex-1 grid grid-cols-5 bg-white rounded shadow-md my-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
 
                         <div className="bg-red-1 h-10 w-10 text-white text-center 
-                        font-extrabold flex items-center justify-center rounded-full">{supplier.NombProv[0]}</div>
+                        font-extrabold flex items-center justify-center rounded-full">
+                            {supplier.nombProv[0]}
+                            </div>
 
                         <div className="flex flex-col">
                             <span className="text-xs text-gray-400">Nombre: </span>
-                            <strong>{supplier.NombProv}</strong>
+                            <strong>{supplier.nombProv}</strong>
                         </div>
 
                         <div className="flex flex-col">
-                            <span className="text-xs text-gray-400">Teléfono:</span>
-                            <strong>{supplier.TeleProv}</strong>
+                            <span className="text-xs text-gray-400">Celular:</span>
+                            <strong>{supplier.celuProv}</strong>
                         </div>
 
                         <div className="flex flex-col">
                             <span className="text-xs text-gray-400">Correo: </span>
-                            <strong>{supplier.EmaiProv}</strong>
+                            <strong>{supplier.emaiProv}</strong>
                         </div>
 
                         <div className="flex">

@@ -14,6 +14,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { GetAllTipoCatalogo } from "../../api/clients/TypeofcatalogsClient";
 import { CatalogClient, SaveCatalog } from "../../api/clients/CatalogClient";
 
+// Alert
+import Swal from "sweetalert2";
+
 //Cargar combos
 const Objects: SelectOptions[] = [
   {
@@ -89,15 +92,13 @@ const Catalog: React.FC<Props> = ({ CatalogClient }) => {
   const handleClick = async (form: CatalogForm) => {
     console.log(form);
     const ReponseCatalog = await SaveCatalog(form);
-    alert("Se guardo correctamente");
-    /* let Data: CatalogForm = {
-      IdCatalogo: form.IdCatalogo,
-      Nombre: form.Nombre,
-      Codigo: form.Codigo,
-      IdTipoCatalogo: form.IdTipoCatalogo,
-      IdObjeto: "1",
-      Estado: form.Estado,
-    }; */
+    Swal.fire({
+      /* position: 'top-end', */
+      icon: 'success',
+      title: 'Su catálogo se ha guardado',
+      showConfirmButton: false,
+      timer: 1500
+    })
   };
 
   const history = useHistory();

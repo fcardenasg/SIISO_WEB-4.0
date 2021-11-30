@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Checkbox from "@mui/material/Checkbox";
+/* import Checkbox from "@mui/material/Checkbox"; */
 
 // Validacion
 import * as Yup from "yup";
@@ -35,10 +35,10 @@ const city: SelectOptions[] = [
   },
 ];
 
-type SupplierForm = {
-  NombProv: string;
+export type SupplierForm = {
   CodiProv: string;
-  TeleProv: string;
+  NombProv: string;
+  CeluProv: string;
   EmaiProv: string;
   ContaProv: string;
   CiudProv: string;
@@ -48,15 +48,14 @@ type SupplierForm = {
 };
 
 //Validacion de los campos
-
 const schemaValidation: Yup.SchemaOf<SupplierForm> = Yup.object({
-  NombProv: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
   CodiProv: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-  TeleProv: Yup.string()
+  NombProv: Yup.string()
+    .required("Este campo es obligatorio")
+    .min(3, "Este campo debe tener minimo 3 caracteres"),
+  CeluProv: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
   EmaiProv: Yup.string()
@@ -141,7 +140,7 @@ const Supplier = () => {
         <div className="grid grid-cols-2 gap-2">
           <InputText
             control={control}
-            name="Código"
+            name="Codigo"
             errorMessage={errors?.CodiProv?.message}
             label="Código"
             defaultValue=""
@@ -156,13 +155,13 @@ const Supplier = () => {
           <InputText
             control={control}
             name="Celular"
-            errorMessage={errors?.TeleProv?.message}
+            errorMessage={errors?.CeluProv?.message}
             label="Celular"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Correo electrónico"
+            name="CorreoElectronico"
             errorMessage={errors?.EmaiProv?.message}
             label="Correo electrónico"
             defaultValue=""
@@ -184,7 +183,7 @@ const Supplier = () => {
           />
           <InputText
             control={control}
-            name="Dirección"
+            name="Direccion"
             errorMessage={errors?.DireProv?.message}
             label="Dirección"
             defaultValue=""
@@ -205,7 +204,7 @@ const Supplier = () => {
             errorMessage={errors.Estado?.message}
           />
 
-          <FormControl sx={{ m: 1, width: '100%' }}>
+          {/* <FormControl sx={{ m: 1, width: '100%' }}>
             <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
             <Select
               labelId="demo-multiple-checkbox-label"
@@ -224,7 +223,7 @@ const Supplier = () => {
                 </MenuItem>
               ))}
             </Select>
-          </FormControl>
+          </FormControl> */}
         </div>
         <div className="flex flex-row items-center justify-center">
           <ButtonOutline onPress={() => history.push('/Supplier')} text="Cerrar" />
