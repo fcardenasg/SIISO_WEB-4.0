@@ -17,8 +17,20 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import { contractsMock } from "../Contracts/dataMockContracts";
+import { ContractsForm } from "../../types/ContractsTypes"
 
 const ListContracts = () => {
+    /* const ContractsFormArray: ContractsForm[] = [];
+    const [lsContractsFormArray, setLsContractsFormArray] = useState(ContractsFormArray);
+
+    useEffect(() => {
+        async function GetAll() {
+            const lsCatalogServer = await GetAllCatalog(0, 10);
+            setLsCatalog(lsCatalogServer.entities);
+        }
+        GetAll();
+    }, []); */
+
     const {
         control,
         formState: { errors },

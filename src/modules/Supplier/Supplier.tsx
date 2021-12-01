@@ -18,6 +18,8 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { SupplierClient, SaveSupplier } from "../../api/clients/SupplierClient";
+import { MessageSuccess } from "../../components/message/MessageSuccess"
 
 //Cargar combos
 const city: SelectOptions[] = [
@@ -38,7 +40,7 @@ const city: SelectOptions[] = [
 export type SupplierForm = {
   CodiProv: string;
   NombProv: string;
-  CeluProv: string;
+  TeleProv: string;
   EmaiProv: string;
   ContaProv: string;
   CiudProv: string;
@@ -48,7 +50,7 @@ export type SupplierForm = {
 };
 
 //Validacion de los campos
-const schemaValidation: Yup.SchemaOf<SupplierForm> = Yup.object({
+/* const schemaValidation: Yup.SchemaOf<SupplierForm> = Yup.object({
   CodiProv: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
@@ -74,7 +76,7 @@ const schemaValidation: Yup.SchemaOf<SupplierForm> = Yup.object({
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
   Estado: Yup.boolean().required(),
-});
+}); */
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -100,15 +102,17 @@ const names = [
   "Kelly Snyder",
 ];
 
-const Supplier = () => {
+interface Props {
+  SupplierClient: SupplierClient;
+}
+
+const Supplier: React.FC<Props> = ({ SupplierClient }) => {
   //Crear formulario para validar
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SupplierForm>({
-    resolver: yupResolver(schemaValidation),
-  });
+  } = useForm<SupplierForm>();
 
   const [personName, setPersonName] = React.useState<string[]>([]);
 
@@ -122,8 +126,21 @@ const Supplier = () => {
     );
   };
 
-  const handleClick = (data: SupplierForm) => {
-    console.log(data);
+  const handleClick = (form: SupplierForm) => {
+    console.log(form);
+    let Data: SupplierForm = {
+      CodiProv: form.CodiProv,
+      NombProv: form.NombProv,
+      TeleProv: form.TeleProv,
+      EmaiProv: form.EmaiProv,
+      ContaProv: form.ContaProv,
+      CiudProv: "12",
+      TipoProv: "4",
+      DireProv: form.DireProv,
+      Estado: form.Estado,
+    };
+    const ResponseSupplier = SaveSupplier(Data);
+    MessageSuccess();
   };
 
   const history = useHistory();
@@ -140,42 +157,42 @@ const Supplier = () => {
         <div className="grid grid-cols-2 gap-2">
           <InputText
             control={control}
-            name="Codigo"
+            name="CodiProv"
             errorMessage={errors?.CodiProv?.message}
             label="Código"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Nombre"
+            name="NombProv"
             errorMessage={errors?.NombProv?.message}
             label="Nombre"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Celular"
-            errorMessage={errors?.CeluProv?.message}
+            name="TeleProv"
+            errorMessage={errors?.TeleProv?.message}
             label="Celular"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="CorreoElectronico"
+            name="EmaiProv"
             errorMessage={errors?.EmaiProv?.message}
             label="Correo electrónico"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Contacto"
+            name="ContaProv"
             errorMessage={errors?.ContaProv?.message}
             label="Contacto"
             defaultValue=""
           />
           <InputSelect
             control={control}
-            name="Ciudad"
+            name="CiudProv"
             label="Ciudad"
             defaultValue=""
             options={city}
@@ -183,7 +200,7 @@ const Supplier = () => {
           />
           <InputText
             control={control}
-            name="Direccion"
+            name="DireProv"
             errorMessage={errors?.DireProv?.message}
             label="Dirección"
             defaultValue=""
@@ -194,7 +211,7 @@ const Supplier = () => {
             label="Tipo de servicio"
             defaultValue=""
             options={city}
-            errorMessage={errors.CiudProv?.message}
+            errorMessage={errors.TipoProv?.message}
           />
           <InputCheck
             control={control}

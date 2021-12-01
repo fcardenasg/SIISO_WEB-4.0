@@ -13,6 +13,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { GetAllTipoCatalogo } from "../../api/clients/TypeofcatalogsClient";
 import { CatalogClient, SaveCatalog } from "../../api/clients/CatalogClient";
+import { MessageSuccess } from "../../components/message/MessageSuccess"
 
 // Alert
 import Swal from "sweetalert2";
@@ -92,13 +93,7 @@ const Catalog: React.FC<Props> = ({ CatalogClient }) => {
   const handleClick = async (form: CatalogForm) => {
     console.log(form);
     const ReponseCatalog = await SaveCatalog(form);
-    Swal.fire({
-      /* position: 'top-end', */
-      icon: 'success',
-      title: 'Su catálogo se ha guardado',
-      showConfirmButton: false,
-      timer: 1500
-    })
+    MessageSuccess();
   };
 
   const history = useHistory();

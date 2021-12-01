@@ -16,7 +16,7 @@ function buildSupplierClient(httpInstance: AxiosInstance = productIntance): Supp
     }
 }
 
-export const SaveSupplier = async (supplier: SupplierForm) => await postData(Url.Proveedor, supplier);
+export const SaveSupplier = async (proveedor: SupplierForm) => await postData(Url.Proveedor, proveedor);
 export const GetAllSupplier = async (page: number, pageSize: number) => await getData(Url.Proveedor, { page, pageSize });
 
 export default buildSupplierClient;

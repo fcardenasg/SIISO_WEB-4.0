@@ -18,6 +18,7 @@ import {
   ComCatalogClient,
   SaveComCatalog,
 } from "../../../api/clients/ComCatalogClient";
+import { MessageSuccess } from "../../../components/message/MessageSuccess"
 
 //Cargar combos
 const Objects: SelectOptions[] = [
@@ -91,7 +92,7 @@ const ComCatalog: React.FC<Props> = ({ ComCatalogClient }) => {
   const handleClick = async (form: ComCatalogForm) => {
     console.log(form);
     const ResponsePolicy = await SaveComCatalog(form);
-    alert("Registro guardado con éxito");
+    MessageSuccess();
   };
 
   const history = useHistory();

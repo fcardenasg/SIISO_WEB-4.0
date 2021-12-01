@@ -36,7 +36,7 @@ const steppers: StepperOptions[] = [
     item: 2,
     label: "Información demográfica",
     completed: false,
-    component: <Demographicinformation/>,
+    component: <Demographicinformation />,
   },
   {
     item: 3,
@@ -53,21 +53,24 @@ interface EmployeeContextInterface {
   updateContractualInformationForm: (data: ContractualInformationForm) => void;
   updateSiteForm: (data: SiteForm) => void;
   onBack: () => void;
+  handleClick: (data: EmployeeForm) => void;
 }
 
 export const EmployeeContext =
   createContext<EmployeeContextInterface>({
-    updatePersonalInformationForm: () => {},
-    updateSocialsecurityForm: () => {},
-    updateDemographicinformationForm: () => {},
-    updateContractualInformationForm: () => {},
-    updateSiteForm: () => {},
-    onBack: () => {},
+    updatePersonalInformationForm: () => { },
+    updateSocialsecurityForm: () => { },
+    updateDemographicinformationForm: () => { },
+    updateContractualInformationForm: () => { },
+    updateSiteForm: () => { },
+    onBack: () => { },
+    handleClick: () => { },
   });
 
 const Employee = () => {
+
   const [activeStep, setActiveStep] = React.useState(0);
-  const [employeeForm, setemployeeForm] =
+  const [employeeForm, setEmployeeForm] =
     React.useState<EmployeeForm>({} as EmployeeForm);
   const history = useHistory();
 
@@ -81,7 +84,6 @@ const Employee = () => {
         return steppers[2].component;
       case 3:
         return steppers[3].component;
-
       default:
         return <Success />;
     }
@@ -91,29 +93,33 @@ const Employee = () => {
 
   const onBack = () => setActiveStep((prevState) => prevState - 1);
 
+  const handleClick = (data: EmployeeForm) => {
+    setEmployeeForm((prevState) => ({ ...prevState, ...data }));
+    console.log(data);
+  };
+
   const updatePersonalInformationForm = (data: PersonalInformationForm) => {
-    setemployeeForm((prevState) => ({ ...prevState, ...data }));
+    setEmployeeForm((prevState) => ({ ...prevState, ...data }));
     onNext();
   };
 
   const updateSocialsecurityForm = (data: SocialsecurityForm) => {
-    setemployeeForm((prevState) => ({ ...prevState, ...data }));
+    setEmployeeForm((prevState) => ({ ...prevState, ...data }));
     onNext();
   };
 
- 
   const updateDemographicinformationForm = (data: DemographicinformationForm) => {
-    setemployeeForm((prevState) => ({ ...prevState, ...data }));
+    setEmployeeForm((prevState) => ({ ...prevState, ...data }));
     onNext();
   };
 
   const updateContractualInformationForm = (data: ContractualInformationForm) => {
-    setemployeeForm((prevState) => ({ ...prevState, ...data }));
+    setEmployeeForm((prevState) => ({ ...prevState, ...data }));
     onNext();
   };
- 
+
   const updateSiteForm = (data: SiteForm) => {
-    setemployeeForm((prevState) => ({ ...prevState, ...data }));
+    setEmployeeForm((prevState) => ({ ...prevState, ...data }));
     onNext();
   };
 
@@ -121,11 +127,12 @@ const Employee = () => {
     <EmployeeContext.Provider
       value={{
         updatePersonalInformationForm,
-        updateSocialsecurityForm, 
+        updateSocialsecurityForm,
         updateDemographicinformationForm,
         updateContractualInformationForm,
         updateSiteForm,
         onBack,
+        handleClick,
       }}
     >
       <div className="flex flex-col">

@@ -11,7 +11,7 @@ import InputCheck from "../../components/input/InputCheck";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CompaniesClient, SaveCompanies } from "../../api/clients/CompaniesClient";
-import Swal from "sweetalert2";
+import { MessageSuccess } from "../../components/message/MessageSuccess"
 
 export type CompaniesForm = {
   Codigo: string;
@@ -58,13 +58,7 @@ const Companies: React.FC<Props> = ({ CompaniesClient }) => {
   const handleClick = async (form: CompaniesForm) => {
     console.log(form);
     const ReponseCompanies = await SaveCompanies(form);
-    Swal.fire({
-      /* position: 'top-end', */
-      icon: 'success',
-      title: 'Su empresa se ha guardado',
-      showConfirmButton: false,
-      timer: 1500
-    })
+    MessageSuccess();
   };
 
   const history = useHistory();

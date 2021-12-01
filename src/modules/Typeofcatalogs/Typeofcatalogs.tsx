@@ -15,6 +15,7 @@ import InputSelect, {
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TypeofcatalogClient, SaveTypeCatalog } from "../../api/clients/TypeofcatalogsClient";
+import { MessageSuccess } from "../../components/message/MessageSuccess"
 
 export type TypeofcatalogsForm = {
   Nombre: string;
@@ -43,7 +44,7 @@ const Typeofcatalogs: React.FC<Props> = ({ TypeofcatalogsClient }) => {
   const handleClick = async (form: TypeofcatalogsForm) => {
     console.log(form);
     const ResponsePolicy = await SaveTypeCatalog(form);
-    alert("Se guardo correctamete");
+    MessageSuccess();
   };
 
   const history = useHistory();

@@ -19,6 +19,7 @@ import InputDate from "../../../components/input/InputDate";
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { MessageSuccess } from "../../../components/message/MessageSuccess"
 
 //Cargar combos
 const Class: SelectOptions[] = [
@@ -146,6 +147,7 @@ const ComSupplier = () => {
 
   const handleClick = (data: ComSupplierForm) => {
     console.log(data);
+    MessageSuccess();
   };
 
   const history = useHistory();

@@ -15,10 +15,7 @@ import InputSelect, {
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ComTypeofcatalogsClient, SaveComTypeofcatalogs } from "../../../api/clients/ComTypeofcatalogsClient";
-
-// idTipoCatalogo: number;
-// nombre: string;
-
+import { MessageSuccess } from "../../../components/message/MessageSuccess"
 
 export type ComTypeofcatalogsForm = {
     Nombre: string;
@@ -50,7 +47,7 @@ const ComTypeofcatalogs: React.FC<Props> = ({ ComTypeofcatalogsClient }) => {
 const handleClick = async (form: ComTypeofcatalogsForm) => {
   console.log(form);
   const ResponsePolicy = await SaveComTypeofcatalogs(form);
-  alert("Registro guardado con éxito");
+  MessageSuccess();
 };
 
 

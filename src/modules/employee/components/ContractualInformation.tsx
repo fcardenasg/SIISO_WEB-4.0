@@ -22,7 +22,6 @@ const Types: SelectOptions[] = [
     label: "S",
   },
 ];
-
 const TypeContract: SelectOptions[] = [
   {
     value: "E",
@@ -186,132 +185,116 @@ const Rotation: SelectOptions[] = [
   },
 ];
 
-
-
-
 const ContractualInformation = () => {
   const employeeContext = useContext(EmployeeContext);
   const { onBack } = employeeContext;
+  const { handleClick } = employeeContext;
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
 
-  
   return (
     <div className="flex flex-col bg-white shadow px-10 py-1 rounded">
-     <span className="text-gray-500 font-semibold px-3 py-2 font-montserrat text-lg text-center">
+      <span className="text-gray-500 font-semibold px-3 py-2 font-montserrat text-lg text-center">
         Información contractual
       </span>
       <div className="h-5"></div>
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
-        
-      <InputDate
+
+        <InputDate
           control={control}
           name="FechaContrato"
           label="Fecha de contrato"
           defaultValue={null}
           errorMessage={errors.FechaContrato?.message}
         />
- 
-       <InputSelect
-            control={control}
-            name="TipoContrato"
-            label="Tipo de contrato"
-            defaultValue=""
-            options={TypeContract}
-            errorMessage={errors?.TipoContrato?.message}
-          />
-
-          <InputSelect
-            control={control}
-            name="Type"
-            label="Rol"
-            defaultValue=""
-            options={Types}
-            errorMessage={errors?.Type?.message}
-          />
-        
-          <InputSelect
-            control={control}
-            name="RosterPosition"
-            label="Roster Position"
-            defaultValue=""
-            options={RosterPosition}
-            errorMessage={errors?.RosterPosition?.message}
-          />
- 
-       
         <InputSelect
-            control={control}
-            name="GeneralPosition"
-            label="General Position"
-            defaultValue=""
-            options={GeneralPosition}
-            errorMessage={errors?.GeneralPosition?.message}
-          />
-          <InputSelect
-            control={control}
-            name="Departamento"
-            label="Departamentos"
-            defaultValue=""
-            options={Department}
-            errorMessage={errors?.Departamento?.message}
-          />
- 
-       
-       <InputSelect
-           control={control}
-           name="Area"
-           label="Areas"
-           defaultValue=""
-           options={Area}
-           errorMessage={errors?.Area?.message}
-         />
-         <InputSelect
-           control={control}
-           name="SubArea"
-           label="Subareas"
-           defaultValue=""
-           options={SubArea}
-           errorMessage={errors?.SubArea?.message}
-         />
-
-       
-       <InputSelect
-           control={control}
-           name="Grupo"
-           label="Grupo"
-           defaultValue=""
-           options={Grupo}
-           errorMessage={errors?.Grupo?.message}
-         />
-         <InputSelect
-           control={control}
-           name="Turno"
-           label="Turno"
-           defaultValue=""
-           options={Turno}
-           errorMessage={errors?.Turno?.message}
-         />
-  
-       
-       <InputSelect
-           control={control}
-           name="Rotation"
-           label="Rotación"
-           defaultValue=""
-           options={Rotation}
-           errorMessage={errors?.Rotation?.message}
-         />
-  
- 
+          control={control}
+          name="TipoContrato"
+          label="Tipo de contrato"
+          defaultValue=""
+          options={TypeContract}
+          errorMessage={errors?.TipoContrato?.message}
+        />
+        <InputSelect
+          control={control}
+          name="Type"
+          label="Rol"
+          defaultValue=""
+          options={Types}
+          errorMessage={errors?.Type?.message}
+        />
+        <InputSelect
+          control={control}
+          name="RosterPosition"
+          label="Roster Position"
+          defaultValue=""
+          options={RosterPosition}
+          errorMessage={errors?.RosterPosition?.message}
+        />
+        <InputSelect
+          control={control}
+          name="GeneralPosition"
+          label="General Position"
+          defaultValue=""
+          options={GeneralPosition}
+          errorMessage={errors?.GeneralPosition?.message}
+        />
+        <InputSelect
+          control={control}
+          name="Departamento"
+          label="Departamentos"
+          defaultValue=""
+          options={Department}
+          errorMessage={errors?.Departamento?.message}
+        />
+        <InputSelect
+          control={control}
+          name="Area"
+          label="Areas"
+          defaultValue=""
+          options={Area}
+          errorMessage={errors?.Area?.message}
+        />
+        <InputSelect
+          control={control}
+          name="SubArea"
+          label="Subareas"
+          defaultValue=""
+          options={SubArea}
+          errorMessage={errors?.SubArea?.message}
+        />
+        <InputSelect
+          control={control}
+          name="Grupo"
+          label="Grupo"
+          defaultValue=""
+          options={Grupo}
+          errorMessage={errors?.Grupo?.message}
+        />
+        <InputSelect
+          control={control}
+          name="Turno"
+          label="Turno"
+          defaultValue=""
+          options={Turno}
+          errorMessage={errors?.Turno?.message}
+        />
+        <InputSelect
+          control={control}
+          name="Rotation"
+          label="Rotación"
+          defaultValue=""
+          options={Rotation}
+          errorMessage={errors?.Rotation?.message}
+        />
       </div>
 
       <div className="flex flex-1 flex-row justify-around mt-5 gap-2">
         <ButtonOutline onPress={onBack} text="Atrás" />
-        <ButtonPrimary onPress={() => {}} text="Guardar" />
+        <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
       </div>
     </div>
   );
