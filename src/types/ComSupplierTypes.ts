@@ -1,18 +1,15 @@
 export type ComSupplier = {
-  CodiProv: number;
-  NombProv: string;
-  TeleProv: string;
-  EmaiProv: string;
-  ContaProv: string;
-  DireProv: string;
-  ClasProv: string;
-	OldvProv: string;
-	EstaProv: string;
-	FeesProv: string;
-	PaisProv: string;
-	DepaProv: string;
-  CiudProv: string;
-	PostProv: string;
+  codiProv: number;
+  nombProv: string;
+  teleProv: string;
+  emaiProv: string;
+  contaProv: string;
+  direProv: string;
+	oldvProv: string;
+	paisProv: string;
+	depaProv: string;
+  ciudProv: string;
+	postProv: string;
   }
 
 
