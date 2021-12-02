@@ -1,11 +1,10 @@
 export type Supplier = {
-  codiProv: number;
+  CodiProv: string;
   nombProv: string;
-  celuProv: string;
+  teleProv: string;
   emaiProv: string;
   contaProv: string;
-  ciudProv: string;
-  tipoProv: string;
+  ciudProv: number;
+  tipoProv: number;
   direProv: string;
-  estado: boolean;
 }

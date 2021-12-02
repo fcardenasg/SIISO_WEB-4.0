@@ -72,7 +72,7 @@ const ListSupplier = () => {
             {
                 lsSupplier.map((supplier: any) => (
                     <div className="items-center p-4 gap-4 flex-1 grid grid-cols-5 bg-white rounded shadow-md my-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
-
+                        {console.log(supplier)}
                         <div className="bg-red-1 h-10 w-10 text-white text-center 
                         font-extrabold flex items-center justify-center rounded-full">
                             {supplier.nombProv[0]}
@@ -85,7 +85,7 @@ const ListSupplier = () => {
 
                         <div className="flex flex-col">
                             <span className="text-xs text-gray-400">Celular:</span>
-                            <strong>{supplier.celuProv}</strong>
+                            <strong>{supplier.teleProv}</strong>
                         </div>
 
                         <div className="flex flex-col">

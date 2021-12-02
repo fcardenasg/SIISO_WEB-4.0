@@ -43,10 +43,9 @@ export type SupplierForm = {
   TeleProv: string;
   EmaiProv: string;
   ContaProv: string;
-  CiudProv: string;
-  TipoProv: string;
+  CiudProv: number;
+  TipoProv: number;
   DireProv: string;
-  Estado: boolean;
 };
 
 //Validacion de los campos
@@ -134,10 +133,9 @@ const Supplier: React.FC<Props> = ({ SupplierClient }) => {
       TeleProv: form.TeleProv,
       EmaiProv: form.EmaiProv,
       ContaProv: form.ContaProv,
-      CiudProv: "12",
-      TipoProv: "4",
+      CiudProv: 12,
+      TipoProv: 4,
       DireProv: form.DireProv,
-      Estado: form.Estado,
     };
     const ResponseSupplier = SaveSupplier(Data);
     MessageSuccess();
@@ -213,13 +211,6 @@ const Supplier: React.FC<Props> = ({ SupplierClient }) => {
             options={city}
             errorMessage={errors.TipoProv?.message}
           />
-          <InputCheck
-            control={control}
-            name="Estado"
-            label="Estado"
-            defaultValue={false}
-            errorMessage={errors.Estado?.message}
-          />
 
           {/* <FormControl sx={{ m: 1, width: '100%' }}>
             <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
@@ -250,4 +241,5 @@ const Supplier: React.FC<Props> = ({ SupplierClient }) => {
     </div>
   );
 };
+
 export default Supplier;
