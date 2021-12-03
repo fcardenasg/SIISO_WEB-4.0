@@ -8,17 +8,18 @@ import { postData, getData } from '../instances/utilInstance';
 import { Url } from '../instances/routerInstances/AuthRoute';
 
 export interface TypeofcatalogClient {
-    saveTypeofcatalog: (data: TypeofcatalogsForm) => Promise<AxiosResponse<Typeofcatalog>>
+    saveTypeofcatalog: (data: TypeofcatalogsForm) => Promise<AxiosResponse<Typeofcatalog>>,
+    DeleteTypeofcatalog: (idTipoCatalogo: number) => Promise<AxiosResponse>,
 }
 
 function buildTypeofcatalogClient(httpInstance: AxiosInstance = productIntance): TypeofcatalogClient {
     return {
         saveTypeofcatalog: (data) => httpInstance.post<Typeofcatalog>(Url.TipoCatalogo, data),
+        DeleteTypeofcatalog: (idTipoCatalogo) => httpInstance.delete(Url.TipoCatalogo, { params: { idTipoCatalogo }})
     }
 }
 
 export const SaveTypeCatalog = async (tipoCatalogo: TypeofcatalogsForm) => await postData(Url.TipoCatalogo, tipoCatalogo);
 export const GetAllTipoCatalogo = async (page: number, pageSize: number) => await getData(Url.TipoCatalogo, { page, pageSize });
-export const DeleteTypeCatalog = async (idTipoCatalogo: number) => await postData(Url.TipoCatalogo, { idTipoCatalogo });
 
 export default buildTypeofcatalogClient;

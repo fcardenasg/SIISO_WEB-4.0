@@ -5,10 +5,12 @@ export const Url = {
     Poliza: 'api/Poliza',
     ComTipoCatalogo: 'api/ComTipoCatalogo',
     Catalogo: 'api/Catalogo',
+    CatalogoId: 'api/Catalogo/idCatalogo',
     ComCatalogoId: '/api/ComCatalogo/idCatalogo',
     ComCatalogo: 'api/ComCatalogo',
     ComProveedor: 'api/ComProveedor',
     Contrato: 'api/Contrato',
     Empresa: 'api/Empresa',
     Proveedor: 'api/Proveedor',
+    
 }

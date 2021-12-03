@@ -17,18 +17,25 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import { GetAllCatalog } from "../../api/clients/CatalogClient";
+import buildCatalogClient from '../../api/clients/CatalogClient';
+
+const clientHttp = buildCatalogClient()
 
 const ListCatalog = () => {
     const CatalogArray: Catalog[] = [];
     const [lsCatalog, setLsCatalog] = useState(CatalogArray);
 
+    async function GetAll() {
+        const lsCatalogsServer = await GetAllCatalog(0, 5);
+        setLsCatalog(lsCatalogsServer.entities);
+      }
+
     useEffect(() => {
-        async function GetAll() {
-            const lsCatalogServer = await GetAllCatalog(0, 10);
-            setLsCatalog(lsCatalogServer.entities);
-        }
+      
         GetAll();
     }, []);
+
+
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -46,6 +53,16 @@ const ListCatalog = () => {
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
+    };
+
+    
+    const handleDelete = async (id: number) => {
+        try {
+            const { data } = await clientHttp.DeleteCatalog(id);
+            await GetAll()
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -137,9 +154,12 @@ const ListCatalog = () => {
                                     <DeleteIcon fontSize="small" />
                                 </ListItemIcon>
                                 <ListItemText>
-                                    <span className="text-gray-700 font-montserrat font-semibold text-xs">
-                                        Eliminar
-                                    </span>
+                                <span
+                    onClick={() => handleDelete(catalog.idCatalogo)}
+                    className="text-gray-700 font-montserrat font-semibold text-xs"
+                  >
+                    Eliminar
+                  </span>
                                 </ListItemText>
                             </MenuItem>
                         </Menu>

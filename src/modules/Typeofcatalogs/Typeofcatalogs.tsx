@@ -17,6 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { TypeofcatalogClient, SaveTypeCatalog } from "../../api/clients/TypeofcatalogsClient";
 import { MessageSuccess } from "../../components/message/MessageSuccess"
 
+
 export type TypeofcatalogsForm = {
   Nombre: string;
 };
