@@ -27,7 +27,7 @@ const ListComSupplier = () => {
 
   useEffect(() => {
     async function GetAll() {
-      const lsComSupplierServer = await GetAllComSupplier(0, 5);
+      const lsComSupplierServer = await GetAllComSupplier(0, 10);
       setLsComSupplier(lsComSupplierServer.entities);
     }
     GetAll();
@@ -50,38 +50,6 @@ const ListComSupplier = () => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
-// eliminar
-/* export type ComSupplierFormD = {
-  CodiProv: string;
-}; */
-
-
-/* interface Props {
-  ComSupplierClient: ComSupplierClient;
-} */
-
-
- 
-  /* const ComSupplier: React.FC<Props> = ({ ComSupplierClient }) => {
-    //Crear formulario para validar
-    const {
-      control,
-      handleSubmit,
-      formState: { errors },
-      getValues,
-    } = useForm<ComSupplierFormD>();
-  
-    const handleClick = async (idComProveedor: ComSupplierFormD) => {
-      console.log(idComProveedor);
-     /*  const ResponsePolicy = await DeleteComSupplier(idComProveedor==ComSupplierFormD.CodiProv); */
-   /*    alert("Registro eliminado con éxito"); */
-    /* }; */
-  
- /*    const history = useHistory(); */ 
-  
-
-
 
   return (
     <div>
@@ -113,13 +81,13 @@ const ListComSupplier = () => {
 
       {lsComSupplier.map((tcomsupplier) => (
         <div className="items-center p-4 gap-4 flex-1 grid grid-cols-5 bg-white rounded shadow-md my-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
-         
-          {/* <div
-                        className="bg-red-1 h-10 w-10 text-white text-center 
+          {console.log(tcomsupplier)}
+          <div
+            className="bg-red-1 h-10 w-10 text-white text-center 
                         font-extrabold flex items-center justify-center rounded-full"
-                    >
-                        {tcomsupplier.NombProv[0]}
-                    </div> */}
+          >
+            {tcomsupplier.nombProv[0]}
+          </div>
 
           <div className="flex flex-col">
             <span className="text-xs text-gray-400">Nombre: </span>

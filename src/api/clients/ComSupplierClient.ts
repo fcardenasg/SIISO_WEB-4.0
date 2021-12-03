@@ -16,7 +16,6 @@ export interface ComSupplierClient {
 function buildComSupplierClient(httpInstance: AxiosInstance = productIntance): ComSupplierClient {
     return {
         SaveComSupplier: (data) => httpInstance.post<ComSupplier>('/api/ComProveedor', data),
-        
     }
 }
 
