@@ -39,6 +39,8 @@ import buildComTypeofcatalogsClient from "../api/clients/ComTypeofcatalogsClient
 import buildComCatalogClient from "../api/clients/ComCatalogClient";
 import buildComSupplierClient from "../api/clients/ComSupplierClient";
 import buildCatalogClient from "../api/clients/CatalogClient";
+import buildCompaniesClient from "../api/clients/CompaniesClient";
+import buildSupplierClient from "../api/clients/SupplierClient";
 import ListSupplier from "../modules/Supplier/ListSupplier";
 import ListPolicy from "../modules/Policy/ListPolicy";
 import ListCatalog from "../modules/Catalog/ListCatalog";
@@ -87,6 +89,8 @@ const ComTypeofcatalogsClient = buildComTypeofcatalogsClient();
 const ComCatalogClient = buildComCatalogClient();
 const ComSupplierClient = buildComSupplierClient();
 const catalogClient = buildCatalogClient();
+const companiesClient = buildCompaniesClient();
+const supplierClient = buildSupplierClient();
 
 export default function RoutesApp() {
   return (
@@ -154,7 +158,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/addCompanies">
             <MainLayout>
-              <Companies />
+              <Companies CompaniesClient={companiesClient}/>
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/Supplier">
@@ -164,7 +168,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/addSupplier">
             <MainLayout>
-              <Supplier />
+              <Supplier SupplierClient={supplierClient}/>
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/purchases">

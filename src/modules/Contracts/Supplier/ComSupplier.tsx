@@ -1,7 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router"
 import { InputText } from "../../../components/input/InputText";
 import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
 import { Link } from "react-router-dom";
@@ -17,14 +16,23 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import InputDate from "../../../components/input/InputDate";
 
-
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {ComSupplierClient,SaveComSupplier,
-} from "../../../api/clients/ComSupplierClient";
-//Cargar combos
+import { MessageSuccess } from "../../../components/message/MessageSuccess"
 
+//Cargar combos
+const Class: SelectOptions[] = [
+  {
+    value: "C",
+    label: "C",
+  },
+  {
+    value: "D",
+    label: "D",
+  },
+ 
+];
 
 const contry: SelectOptions[] = [
   {
@@ -39,15 +47,15 @@ const contry: SelectOptions[] = [
 ];
 const city: SelectOptions[] = [
   {
-    value: "1",
+    value: "Valledupar",
     label: "Valledupar",
   },
   {
-    value: "2",
+    value: "Barranquilla",
     label: "Barranquilla",
   },
   {
-    value: "3",
+    value: "Santa Marta",
     label: "Santa Marta",
   },
 ];
@@ -65,7 +73,20 @@ const department: SelectOptions[] = [
     label: "Magdalena",
   },
 ];
-
+const Estatus: SelectOptions[] = [
+  {
+    value: "Cleared",
+    label: "Cleared",
+  },
+  {
+    value: "Review",
+    label: "Review",
+  },
+  {
+    value: "Valid",
+    label: "Valid",
+  },
+];
 
 const oldseller: SelectOptions[] = [
   {
@@ -82,78 +103,54 @@ const oldseller: SelectOptions[] = [
   },
 ];
 
-export type ComSupplierForm = {
-  CodiProv: string;
+type ComSupplierForm = {
+  CodiProv: number;
   NombProv: string;
   TeleProv: string;
   EmaiProv: string;
   ContaProv: string;
   DireProv: string;
+  ClasProv: string;
 	OldvProv: string;
+	EstaProv: string;
+	FeesProv: string;
 	PaisProv: string;
 	DepaProv: string;
-  CiudProv: string;
+  CiudProv: number;
 	PostProv: string;
+  Estado: boolean;
 };
 
-
-const schemaValidation: Yup.SchemaOf<ComSupplierForm> = Yup.object({
-   CodiProv: Yup.string()
-  .required("Este campo es obligatorio")
-  .min(3, "Este campo debe tener minimo 3 caracteres"),
-  NombProv: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    TeleProv: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    EmaiProv: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    ContaProv: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    DireProv: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    OldvProv: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
-    PaisProv: Yup.string()
-    .required("Este campo es obligatorio"),
-    DepaProv: Yup.string()
-    .required("Este campo es obligatorio"),
-    CiudProv: Yup.string()
-    .required("Este campo es obligatorio"),
-    PostProv: Yup.string()
-    .required("Este campo es obligatorio"),
-});
+//Validacion de los campos
 
 
-interface Props {
-  ComSupplierClient: ComSupplierClient;
-}
-
-
+const ComSupplier = () => {
   //Crear formulario para validar
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ComSupplierForm>();
  
-  const ComSupplier: React.FC<Props> = ({ ComSupplierClient }) => {
-    //Crear formulario para validar
+
+  const [personName, setPersonName] = React.useState<string[]>([]);
+
+  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {
-      control,
-      handleSubmit,
-      formState: { errors },
-      getValues,
-    } = useForm<ComSupplierForm>();
-  
-    const handleClick = async (form: ComSupplierForm) => {
-      console.log(form);
-      const ResponsePolicy = await SaveComSupplier(form);
-      alert("Registro guardado con éxito");
-    };
-  
-    const history = useHistory();
-  
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a the stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+  const handleClick = (data: ComSupplierForm) => {
+    console.log(data);
+    MessageSuccess();
+  };
+
+  const history = useHistory();
 
   //mostrar en pantalla
   return (
@@ -168,56 +165,83 @@ interface Props {
         <div className="grid grid-cols-3 gap-2">
           <InputText
             control={control}
-            name="CodiProv"
+            name="Código"
             errorMessage={errors?.CodiProv?.message}
             label="Código"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="NombProv"
+            name="Nombre"
             errorMessage={errors?.NombProv?.message}
             label="Nombre"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="TeleProv"
+            name="Celular"
             errorMessage={errors?.TeleProv?.message}
             label="Celular"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="EmaiProv"
+            name="Correo electrónico"
             errorMessage={errors?.EmaiProv?.message}
             label="Correo electrónico"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="ContaProv"
+            name="Contacto"
             errorMessage={errors?.ContaProv?.message}
             label="Contacto"
             defaultValue=""
           />
             <InputText
             control={control}
-            name="DireProv"
+            name="Dirección"
             errorMessage={errors?.DireProv?.message}
             label="Dirección"
             defaultValue=""
           />
+              <InputSelect
+            control={control}
+            name="Clase"
+            label="Clase"
+            defaultValue=""
+            options={Class}
+            errorMessage={errors. ClasProv?.message}
+          />
+         
+     
          <InputText
             control={control}
-            name="OldvProv"
+            name="Antiguo vendedor #"
             errorMessage={errors?.OldvProv?.message}
             label="Antiguo vendedor #"
             defaultValue=""
           />
+
+            <InputSelect
+            control={control}
+            name="Estado de Fin Sanc"
+            label="Estado de Fin Sanc"
+            defaultValue=""
+            options={Estatus}
+            errorMessage={errors.EstaProv?.message}
+          />
+
+         <InputDate
+        control={control}
+        name="Sanc Estado Dt"
+        label="Sanc Estado Dt"
+        defaultValue={null}
+        errorMessage={errors.FeesProv?.message}
+      />
            <InputSelect
             control={control}
-            name="PaisProv"
+            name="País"
             label="País"
             defaultValue=""
             options={contry}
@@ -225,7 +249,7 @@ interface Props {
           />
            <InputSelect
             control={control}
-            name="DepaProv"
+            name="Departamento"
             label="Departamento"
             defaultValue=""
             options={department}
@@ -233,35 +257,27 @@ interface Props {
           />
           <InputSelect
             control={control}
-            name="CiudProv"
+            name="Ciudad"
             label="Ciudad"
             defaultValue=""
             options={city}
             errorMessage={errors.CiudProv?.message}
           />
-         <InputText
+        
+  
+          <InputCheck
             control={control}
-            name="PostProv"
-            errorMessage={errors?.PostProv?.message}
-            label="Servicios"
-            defaultValue=""
+            name="Estado"
+            label="Estado"
+            defaultValue={false}
+            errorMessage={errors.Estado?.message}
           />
 
         </div>
-      {/*   <div className="flex flex-row items-center justify-center">
-          <ButtonOutline onPress={() => history.push('/ComSupplier')} text="Cerrar" />
-          <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
-        </div> */}
-
         <div className="flex flex-row items-center justify-center">
-          <ButtonOutline
-            onPress={() => history.push("/ComSupplier")}
-            text="Cerrar"
-          />
-          <div className="h-3"></div>
+          <ButtonOutline onPress={() => history.push('/ComCatalog')} text="Cerrar" />
           <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         </div>
-
       </div>
     </div>
   );

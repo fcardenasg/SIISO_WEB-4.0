@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import { ButtonOutline } from "../../components/buttons/ButtonOutline";
@@ -16,43 +16,20 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
-
-const listCompanies: Companies[] = [
-    {
-        Codigo: "1010",
-        Nombre: "Local",
-        Correo: "@gmail.com",
-        Celular: "3219289203",
-        Contacto: "5672345",
-        Estado: true
-    },
-    {
-        Codigo: "1010",
-        Nombre: "Local",
-        Correo: "@gmail.com",
-        Celular: "3219289203",
-        Contacto: "5672345",
-        Estado: true
-    },
-    {
-        Codigo: "1010",
-        Nombre: "Local",
-        Correo: "@gmail.com",
-        Celular: "3219289203",
-        Contacto: "5672345",
-        Estado: true
-    },
-    {
-        Codigo: "1010",
-        Nombre: "Local",
-        Correo: "@gmail.com",
-        Celular: "3219289203",
-        Contacto: "5672345",
-        Estado: true
-    },
-];
+import { GetAllCompanies } from "../../api/clients/CompaniesClient";
 
 const ListCompanies = () => {
+    const CompaniesArray: Companies[] = [];
+    const [lsCompanies, setLsCompanies] = useState(CompaniesArray);
+
+    useEffect(() => {
+        async function GetAll() {
+            const lsCompaniesServer = await GetAllCompanies(0, 10);
+            setLsCompanies(lsCompaniesServer.entities);
+        }
+        GetAll();
+    }, []);
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -99,33 +76,34 @@ const ListCompanies = () => {
                 </div>
             </div>
 
-            {listCompanies.map((companies) => (
+            {lsCompanies.map((companies: any) => (
                 <div className="items-center p-4 gap-4 flex-1 grid grid-cols-6 bg-white rounded shadow-md my-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
+                    {console.log(companies)}
                     <div
                         className="bg-red-1 h-10 w-10 text-white text-center 
                         font-extrabold flex items-center justify-center rounded-full"
                     >
-                        {companies.Nombre[0]}
+                        {companies.descripcionSpa[0]}
                     </div>
 
                     <div className="flex flex-col">
                         <span className="text-xs text-gray-400">Código: </span>
-                        <strong>{companies.Codigo}</strong>
+                        <strong>{companies.codigo}</strong>
                     </div>
 
                     <div className="flex flex-col">
                         <span className="text-xs text-gray-400">Nombre: </span>
-                        <strong>{companies.Nombre}</strong>
+                        <strong>{companies.descripcionSpa}</strong>
                     </div>
 
                     <div className="flex flex-col">
                         <span className="text-xs text-gray-400">Correo: </span>
-                        <strong>{companies.Correo}</strong>
+                        <strong>{companies.email}</strong>
                     </div>
 
                     <div className="flex flex-col">
                         <span className="text-xs text-gray-400">Celular: </span>
-                        <strong>{companies.Celular}</strong>
+                        <strong>{companies.celular}</strong>
                     </div>
 
                     <div className="flex">

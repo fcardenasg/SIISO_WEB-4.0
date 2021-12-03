@@ -24,40 +24,38 @@ const Gender: SelectOptions[] = [
   },
 ];
 
-const Schoolchild: SelectOptions[] =[
+const Schoolchild: SelectOptions[] = [
+  {
+    value: "01",
+    label: "Bachiller",
+  },
 
+  {
+    value: "02",
+    label: "Técnico",
+  },
 
-{
-  value: "01",
-  label: "Bachiller",
-},
+  {
+    value: "03",
+    label: "Tecnólogo",
+  },
 
-{
-  value: "02",
-  label: "Técnico",
-},
-
-{
-  value: "03",
-  label: "Tecnólogo",
-},
-
-{
-  value: "04",
-  label: "Universitario",
-},
-{
-  value: "05",
-  label: "Especialización",
-},
-{
-  value: "06",
-  label: "Maestría",
-},
-{
-  value: "07",
-  label: "Otros",
-},
+  {
+    value: "04",
+    label: "Universitario",
+  },
+  {
+    value: "05",
+    label: "Especialización",
+  },
+  {
+    value: "06",
+    label: "Maestría",
+  },
+  {
+    value: "07",
+    label: "Otros",
+  },
 
 ];
 
@@ -144,7 +142,6 @@ const PayStatus: SelectOptions[] = [
   },
 ];
 
-
 // const schemaValidation: Yup.SchemaOf<PersonalInformationForm> = Yup.object({
 //   Documento: Yup.string()
 //     .min(3, "Minimo 3 caracteres")
@@ -186,7 +183,6 @@ const PayStatus: SelectOptions[] = [
 //     .required("Este campo es requerido"),
 // });
 
-
 const PersonalInformation = () => {
   const employeeContext = useContext(EmployeeContext);
   const { updatePersonalInformationForm } = employeeContext;
@@ -196,140 +192,127 @@ const PersonalInformation = () => {
     control,
     formState: { errors },
   } = useForm<PersonalInformationForm>();
-   
+
 
   const handleData = (data: PersonalInformationForm) => {
     console.log(data);
     updatePersonalInformationForm(data);
   };
 
-
-
-
-  
   return (
     <div className="p-1 flex flex-col bg-white shadow px-10 py-5 rounded">
-        <div className="w-full flex justify-center mb-1">
-     <span className="text-gray-500 font-semibold px-3 py-2 font-montserrat text-lg text-center">
-        Mis datos personales
-      </span>
+      <div className="w-full flex justify-center mb-1">
+        <span className="text-gray-500 font-semibold px-3 py-2 font-montserrat text-lg text-center">
+          Mis datos personales
+        </span>
       </div>
       <div className="h-5"></div>
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-2">
-  
-      <InputText
-        control={control}
-        name="Documento"
-        label="Documento"
-        defaultValue=""
-        errorMessage={errors?.Documento?.message}
-      />
-      <InputText
-        control={control}
-        name="Nombres"
-        label="Nombres"
-        defaultValue=""
-        errorMessage={errors.Nombres?.message}
-      />
-     
-      <InputText
-        control={control}
-        name="Email"
-        label="Email"
-        defaultValue=""
-        errorMessage={errors.Email?.message}
-      />
-      <InputText
-        control={control}
-        name="Celular"
-        label="Celular"
-        defaultValue=""
-        errorMessage={errors.Celular?.message}
-      />
-           <InputSelect
-        control={control}
-        name="Empresa"
-        label="Empresa"
-        defaultValue=""
-        options={Company}
-        errorMessage={errors.Empresa?.message}
-      />
-        <InputSelect
-        control={control}
-        name="Sede"
-        label="Sede"
-        defaultValue=""
-        options={Headquarters}
-        errorMessage={errors.Sede?.message}
-      />
-           <InputDate
-        control={control}
-        name="FechaNaci"
-        label="Fecha de nacimiento"
-        defaultValue={null}
-        errorMessage={errors.FechaNaci?.message}
-      />
 
-      <InputSelect
-        control={control}
-        name="Genero"
-        label="Genero"
-        defaultValue=""
-        options={Gender}
-        errorMessage={errors.Genero?.message}
-      />
-      <InputSelect
-        control={control}
-        name="Escolarida"
-        label="Escolaridad"
-        defaultValue=""
-        options={Schoolchild}
-        errorMessage={errors.Escolarida?.message}
-      />  
-       <InputSelect
-        control={control}
-        name="EstadoCivil"
-        label="Estado civil"
-        defaultValue=""
-        options={CivilStatus}
-        errorMessage={errors.EstadoCivil?.message}
-      />
-        <InputSelect
-        control={control}
-        name="PayStatus"
-        label="Estado"
-        defaultValue=""
-        options={PayStatus}
-        errorMessage={errors.PayStatus?.message}
-      />
-
-         <InputText
-        control={control}
-        name="Contacto"
-        label="Contacto"
-        defaultValue=""
-        errorMessage={errors.Contacto?.message}
-      />
         <InputText
-        control={control}
-        name="TelefonoContacto"
-        label="TelefonoContacto"
-        defaultValue=""
-        errorMessage={errors.TelefonoContacto?.message}
-      />
- 
-       
-       </div>
+          control={control}
+          name="Documento"
+          label="Documento"
+          defaultValue=""
+          errorMessage={errors?.Documento?.message}
+        />
+        <InputText
+          control={control}
+          name="Nombres"
+          label="Nombres"
+          defaultValue=""
+          errorMessage={errors.Nombres?.message}
+        />
+
+        <InputText
+          control={control}
+          name="Email"
+          label="Email"
+          defaultValue=""
+          errorMessage={errors.Email?.message}
+        />
+        <InputText
+          control={control}
+          name="Celular"
+          label="Celular"
+          defaultValue=""
+          errorMessage={errors.Celular?.message}
+        />
+        <InputSelect
+          control={control}
+          name="Empresa"
+          label="Empresa"
+          defaultValue=""
+          options={Company}
+          errorMessage={errors.Empresa?.message}
+        />
+        <InputSelect
+          control={control}
+          name="Sede"
+          label="Sede"
+          defaultValue=""
+          options={Headquarters}
+          errorMessage={errors.Sede?.message}
+        />
+        <InputDate
+          control={control}
+          name="FechaNaci"
+          label="Fecha de nacimiento"
+          defaultValue={null}
+          errorMessage={errors.FechaNaci?.message}
+        />
+
+        <InputSelect
+          control={control}
+          name="Genero"
+          label="Genero"
+          defaultValue=""
+          options={Gender}
+          errorMessage={errors.Genero?.message}
+        />
+        <InputSelect
+          control={control}
+          name="Escolarida"
+          label="Escolaridad"
+          defaultValue=""
+          options={Schoolchild}
+          errorMessage={errors.Escolarida?.message}
+        />
+        <InputSelect
+          control={control}
+          name="EstadoCivil"
+          label="Estado civil"
+          defaultValue=""
+          options={CivilStatus}
+          errorMessage={errors.EstadoCivil?.message}
+        />
+        <InputSelect
+          control={control}
+          name="PayStatus"
+          label="Estado"
+          defaultValue=""
+          options={PayStatus}
+          errorMessage={errors.PayStatus?.message}
+        />
+        <InputText
+          control={control}
+          name="Contacto"
+          label="Contacto"
+          defaultValue=""
+          errorMessage={errors.Contacto?.message}
+        />
+        <InputText
+          control={control}
+          name="TelefonoContacto"
+          label="TelefonoContacto"
+          defaultValue=""
+          errorMessage={errors.TelefonoContacto?.message}
+        />
+      </div>
       <div className="h-5"></div>
       <ButtonPrimary onPress={handleSubmit(handleData)} text="Siguiente" />
     </div>
-   
   );
 };
 
 export default PersonalInformation;
-
-
-
-
-

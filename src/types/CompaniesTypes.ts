@@ -1,8 +1,8 @@
 export type Companies = {
-    Codigo: string;
-    Nombre: string;
-    Correo: string;
-    Celular: string;
-    Contacto: string;
-    Estado: boolean;
+    codigo: string;
+    descripcionSpa: string;
+    email: string;
+    celular: string;
+    gerente: string;
+    estado: boolean;
 }

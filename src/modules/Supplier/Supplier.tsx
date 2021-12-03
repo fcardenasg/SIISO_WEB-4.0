@@ -13,11 +13,13 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Checkbox from "@mui/material/Checkbox";
+/* import Checkbox from "@mui/material/Checkbox"; */
 
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { SupplierClient, SaveSupplier } from "../../api/clients/SupplierClient";
+import { MessageSuccess } from "../../components/message/MessageSuccess"
 
 //Cargar combos
 const city: SelectOptions[] = [
@@ -35,28 +37,26 @@ const city: SelectOptions[] = [
   },
 ];
 
-type SupplierForm = {
-  NombProv: string;
+export type SupplierForm = {
   CodiProv: string;
+  NombProv: string;
   TeleProv: string;
   EmaiProv: string;
   ContaProv: string;
-  CiudProv: string;
-  TipoProv: string;
+  CiudProv: number;
+  TipoProv: number;
   DireProv: string;
-  Estado: boolean;
 };
 
 //Validacion de los campos
-
-const schemaValidation: Yup.SchemaOf<SupplierForm> = Yup.object({
-  NombProv: Yup.string()
-    .required("Este campo es obligatorio")
-    .min(3, "Este campo debe tener minimo 3 caracteres"),
+/* const schemaValidation: Yup.SchemaOf<SupplierForm> = Yup.object({
   CodiProv: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-  TeleProv: Yup.string()
+  NombProv: Yup.string()
+    .required("Este campo es obligatorio")
+    .min(3, "Este campo debe tener minimo 3 caracteres"),
+  CeluProv: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
   EmaiProv: Yup.string()
@@ -75,7 +75,7 @@ const schemaValidation: Yup.SchemaOf<SupplierForm> = Yup.object({
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
   Estado: Yup.boolean().required(),
-});
+}); */
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -101,15 +101,17 @@ const names = [
   "Kelly Snyder",
 ];
 
-const Supplier = () => {
+interface Props {
+  SupplierClient: SupplierClient;
+}
+
+const Supplier: React.FC<Props> = ({ SupplierClient }) => {
   //Crear formulario para validar
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SupplierForm>({
-    resolver: yupResolver(schemaValidation),
-  });
+  } = useForm<SupplierForm>();
 
   const [personName, setPersonName] = React.useState<string[]>([]);
 
@@ -123,8 +125,20 @@ const Supplier = () => {
     );
   };
 
-  const handleClick = (data: SupplierForm) => {
-    console.log(data);
+  const handleClick = (form: SupplierForm) => {
+    console.log(form);
+    let Data: SupplierForm = {
+      CodiProv: form.CodiProv,
+      NombProv: form.NombProv,
+      TeleProv: form.TeleProv,
+      EmaiProv: form.EmaiProv,
+      ContaProv: form.ContaProv,
+      CiudProv: 12,
+      TipoProv: 4,
+      DireProv: form.DireProv,
+    };
+    const ResponseSupplier = SaveSupplier(Data);
+    MessageSuccess();
   };
 
   const history = useHistory();
@@ -141,42 +155,42 @@ const Supplier = () => {
         <div className="grid grid-cols-2 gap-2">
           <InputText
             control={control}
-            name="Código"
+            name="CodiProv"
             errorMessage={errors?.CodiProv?.message}
             label="Código"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Nombre"
+            name="NombProv"
             errorMessage={errors?.NombProv?.message}
             label="Nombre"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Celular"
+            name="TeleProv"
             errorMessage={errors?.TeleProv?.message}
             label="Celular"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Correo electrónico"
+            name="EmaiProv"
             errorMessage={errors?.EmaiProv?.message}
             label="Correo electrónico"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Contacto"
+            name="ContaProv"
             errorMessage={errors?.ContaProv?.message}
             label="Contacto"
             defaultValue=""
           />
           <InputSelect
             control={control}
-            name="Ciudad"
+            name="CiudProv"
             label="Ciudad"
             defaultValue=""
             options={city}
@@ -184,7 +198,7 @@ const Supplier = () => {
           />
           <InputText
             control={control}
-            name="Dirección"
+            name="DireProv"
             errorMessage={errors?.DireProv?.message}
             label="Dirección"
             defaultValue=""
@@ -195,17 +209,10 @@ const Supplier = () => {
             label="Tipo de servicio"
             defaultValue=""
             options={city}
-            errorMessage={errors.CiudProv?.message}
-          />
-          <InputCheck
-            control={control}
-            name="Estado"
-            label="Estado"
-            defaultValue={false}
-            errorMessage={errors.Estado?.message}
+            errorMessage={errors.TipoProv?.message}
           />
 
-          <FormControl sx={{ m: 1, width: '100%' }}>
+          {/* <FormControl sx={{ m: 1, width: '100%' }}>
             <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
             <Select
               labelId="demo-multiple-checkbox-label"
@@ -224,7 +231,7 @@ const Supplier = () => {
                 </MenuItem>
               ))}
             </Select>
-          </FormControl>
+          </FormControl> */}
         </div>
         <div className="flex flex-row items-center justify-center">
           <ButtonOutline onPress={() => history.push('/Supplier')} text="Cerrar" />
@@ -234,4 +241,5 @@ const Supplier = () => {
     </div>
   );
 };
+
 export default Supplier;

@@ -13,6 +13,10 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { GetAllTipoCatalogo } from "../../api/clients/TypeofcatalogsClient";
 import { CatalogClient, SaveCatalog } from "../../api/clients/CatalogClient";
+import { MessageSuccess } from "../../components/message/MessageSuccess"
+
+// Alert
+import Swal from "sweetalert2";
 
 //Cargar combos
 const Objects: SelectOptions[] = [
@@ -89,15 +93,7 @@ const Catalog: React.FC<Props> = ({ CatalogClient }) => {
   const handleClick = async (form: CatalogForm) => {
     console.log(form);
     const ReponseCatalog = await SaveCatalog(form);
-    alert("Se guardo correctamente");
-    /* let Data: CatalogForm = {
-      IdCatalogo: form.IdCatalogo,
-      Nombre: form.Nombre,
-      Codigo: form.Codigo,
-      IdTipoCatalogo: form.IdTipoCatalogo,
-      IdObjeto: "1",
-      Estado: form.Estado,
-    }; */
+    MessageSuccess();
   };
 
   const history = useHistory();

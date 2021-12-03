@@ -25,6 +25,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PolicyClient, SavePolicy } from "../../api/clients/policyClient";
 import { date } from "yup/lib/locale";
+import { MessageSuccess } from "../../components/message/MessageSuccess"
 
 //Cargar combos
 const typepolicy: SelectOptions[] = [
@@ -225,7 +226,7 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
       ImagenUrl: form.ImagenUrl,
     };
     const ResponsePolicy = SavePolicy(Data);
-    alert("Registro guardado con éxito");
+    MessageSuccess();
   };
 
   const history = useHistory();
@@ -280,7 +281,6 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
             defaultValue=""
             errorMessage={errors?.IdIntermediario?.message}
           />
-
           <InputSelect
             control={control}
             name="Idcriterio"
@@ -289,7 +289,6 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
             options={criteria}
             errorMessage={errors.Idcriterio?.message}
           />
-
           <InputDate
             control={control}
             name="Fechaexpedicion"
@@ -297,7 +296,6 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
             defaultValue={null}
             errorMessage={errors.Fechaexpedicion?.message}
           />
-
           <InputDate
             control={control}
             name="Fechainiciopoliza"
@@ -305,7 +303,6 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
             defaultValue={null}
             errorMessage={errors.Fechainiciopoliza?.message}
           />
-
           <InputDate
             control={control}
             name="Fechafinpoliza"
@@ -313,7 +310,6 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
             defaultValue={null}
             errorMessage={errors.Fechafinpoliza?.message}
           />
-
           <InputText
             control={control}
             name="Valoraseguradp"
@@ -321,7 +317,6 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
             defaultValue=""
             errorMessage={errors?.Valoraseguradp?.message}
           />
-
           <InputSelect
             control={control}
             name="Idmoneda"
@@ -330,7 +325,6 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
             options={currency}
             errorMessage={errors.Idmoneda?.message}
           />
-
           <InputText
             control={control}
             name="Valorprima"
@@ -338,7 +332,6 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
             defaultValue=""
             errorMessage={errors?.Valorprima?.message}
           />
-
           <InputSelect
             control={control}
             name="Idasegurado"
@@ -355,7 +348,6 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
             options={beneficiary}
             errorMessage={errors.Idbeneficiario?.message}
           />
-
           <InputText
             control={control}
             name="ImagenUrl"
@@ -375,4 +367,5 @@ const Policy: React.FC<Props> = ({ policyClient }) => {
     </div>
   );
 };
+
 export default Policy;
