@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import { ButtonOutline } from "../../../components/buttons/ButtonOutline";
@@ -13,10 +14,12 @@ import {
   Menu,
   MenuItem,
 } from "@material-ui/core";
+
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import MoreVertSharpIcon from "@mui/icons-material/MoreVertSharp";
 import { GetAllComSupplier } from "../../../api/clients/ComSupplierClient";
+/* import {ComSupplierClient,DeleteComSupplier} from "../../../api/clients/ComSupplierClient"; */
 
 const ListComSupplier = () => {
   const ComSupplierArray: ComSupplier[] = [];
@@ -47,6 +50,38 @@ const ListComSupplier = () => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
+// eliminar
+/* export type ComSupplierFormD = {
+  CodiProv: string;
+}; */
+
+
+/* interface Props {
+  ComSupplierClient: ComSupplierClient;
+} */
+
+
+ 
+  /* const ComSupplier: React.FC<Props> = ({ ComSupplierClient }) => {
+    //Crear formulario para validar
+    const {
+      control,
+      handleSubmit,
+      formState: { errors },
+      getValues,
+    } = useForm<ComSupplierFormD>();
+  
+    const handleClick = async (idComProveedor: ComSupplierFormD) => {
+      console.log(idComProveedor);
+     /*  const ResponsePolicy = await DeleteComSupplier(idComProveedor==ComSupplierFormD.CodiProv); */
+   /*    alert("Registro eliminado con éxito"); */
+    /* }; */
+  
+ /*    const history = useHistory(); */ 
+  
+
+
 
   return (
     <div>
