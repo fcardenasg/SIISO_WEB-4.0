@@ -17,17 +17,21 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import { GetAllTipoCatalogo } from "../../api/clients/TypeofcatalogsClient";
+import buildTypeofcatalogsClient from '../../api/clients/TypeofcatalogsClient';
 
+const clientHttp = buildTypeofcatalogsClient()
 
 const ListTypeofcatalogs = () => {
     const TypeCatalogArray: Typeofcatalog[] = [];
     const [lsTypeCatalog, setLsTypeCatalog] = useState(TypeCatalogArray);
 
+    async function GetAll() {
+        const lsTypeofcatalogsServer = await GetAllTipoCatalogo(0, 5);
+        setLsTypeCatalog(lsTypeofcatalogsServer.entities);
+      }
+
     useEffect(() => {
-        async function GetAll() {
-            const lsTypeCatalogServer = await GetAllTipoCatalogo(0, 10);
-            setLsTypeCatalog(lsTypeCatalogServer.entities);
-        }
+      
         GetAll();
     }, []);
 
@@ -48,6 +52,17 @@ const ListTypeofcatalogs = () => {
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
+
+    const handleDelete = async (id: number) => {
+        try {
+            const { data } = await clientHttp.DeleteTypeofcatalog(id);
+            await GetAll()
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
 
     return (
         <div>
@@ -128,9 +143,12 @@ const ListTypeofcatalogs = () => {
                                     <DeleteIcon fontSize="small" />
                                 </ListItemIcon>
                                 <ListItemText>
-                                    <span className="text-gray-700 font-montserrat font-semibold text-xs">
-                                        Eliminar
-                                    </span>
+                                <span
+                    onClick={() => handleDelete(tcatalog.idTipoCatalogo)}
+                    className="text-gray-700 font-montserrat font-semibold text-xs"
+                  >
+                    Eliminar
+                  </span>
                                 </ListItemText>
                             </MenuItem>
                         </Menu>

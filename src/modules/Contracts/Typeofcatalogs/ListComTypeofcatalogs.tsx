@@ -28,7 +28,7 @@ const ListComTypeofcatalogs = () => {
   );
 
   async function GetAll() {
-    const lsComTypeofcatalogsServer = await GetAllComTypeofcatalogs(0, 10);
+    const lsComTypeofcatalogsServer = await GetAllComTypeofcatalogs(0, 5);
     setLsComTypeofcatalogs(lsComTypeofcatalogsServer.entities);
   }
 
