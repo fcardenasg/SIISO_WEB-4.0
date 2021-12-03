@@ -103,7 +103,7 @@ const oldseller: SelectOptions[] = [
   },
 ];
 
-type ComSupplierForm = {
+export type ComSupplierForm = {
   CodiProv: number;
   NombProv: string;
   TeleProv: string;
