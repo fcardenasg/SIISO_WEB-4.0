@@ -11,5 +11,4 @@ export const Url = {
     Contrato: 'api/Contrato',
     Empresa: 'api/Empresa',
     Proveedor: 'api/Proveedor',
-    ComProveedor: 'api/ComProveedor',
 }

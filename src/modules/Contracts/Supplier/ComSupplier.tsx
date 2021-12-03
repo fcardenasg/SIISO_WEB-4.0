@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router"
 import { InputText } from "../../../components/input/InputText";
@@ -15,11 +15,13 @@ import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import InputDate from "../../../components/input/InputDate";
+import { GetAllCatalog } from "../../../api/clients/CatalogClient";
 
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { MessageSuccess } from "../../../components/message/MessageSuccess"
+import { ComSupplierClient, SaveComSupplier } from "../../../api/clients/ComSupplierClient";
 
 //Cargar combos
 const Class: SelectOptions[] = [
@@ -31,7 +33,7 @@ const Class: SelectOptions[] = [
     value: "D",
     label: "D",
   },
- 
+
 ];
 
 const contry: SelectOptions[] = [
@@ -103,34 +105,33 @@ const oldseller: SelectOptions[] = [
 ];
 
 export type ComSupplierForm = {
-  CodiProv: number;
+  CodiProv: string;
   NombProv: string;
   TeleProv: string;
   EmaiProv: string;
   ContaProv: string;
   DireProv: string;
-  ClasProv: string;
-	OldvProv: string;
-	EstaProv: string;
-	FeesProv: string;
-	PaisProv: string;
-	DepaProv: string;
-  CiudProv: number;
-	PostProv: string;
-  Estado: boolean;
+  OldvProv: string;
+  DepaProv: string;
+  CiudProv: string;
+  PaisProv: number;
+  PostProv: string;
 };
 
-//Validacion de los campos
+interface Props {
+  ComSupplierClient: ComSupplierClient;
+}
 
+const ComSupplier: React.FC<Props> = ({ ComSupplierClient }) => {
+  const CatalogoArray: SelectOptions[] = [];
+  const [lsCatalogo, setLsCatalogo] = useState(CatalogoArray);
 
-const ComSupplier = () => {
   //Crear formulario para validar
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<ComSupplierForm>();
- 
 
   const [personName, setPersonName] = React.useState<string[]>([]);
 
@@ -144,8 +145,22 @@ const ComSupplier = () => {
     );
   };
 
-  const handleClick = (data: ComSupplierForm) => {
-    console.log(data);
+  //Cargar combo-box
+  useEffect(() => {
+    async function GetAll() {
+      const lsCatalogoServer = await GetAllCatalog(0, 0);
+      var result = lsCatalogoServer.entities.map((item: any) => ({
+        value: item.idCatalogo,
+        label: item.nombre
+      }));
+      setLsCatalogo(result);
+    }
+    GetAll();
+  }, []);
+
+  const handleClick = async (form: ComSupplierForm) => {
+    console.log(form);
+    const ResponseSupplier = await SaveComSupplier(form);
     MessageSuccess();
   };
 
@@ -164,91 +179,64 @@ const ComSupplier = () => {
         <div className="grid grid-cols-3 gap-2">
           <InputText
             control={control}
-            name="Código"
+            name="CodiProv"
             errorMessage={errors?.CodiProv?.message}
             label="Código"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Nombre"
+            name="NombProv"
             errorMessage={errors?.NombProv?.message}
             label="Nombre"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Celular"
+            name="TeleProv"
             errorMessage={errors?.TeleProv?.message}
             label="Celular"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Correo electrónico"
+            name="EmaiProv"
             errorMessage={errors?.EmaiProv?.message}
             label="Correo electrónico"
             defaultValue=""
           />
           <InputText
             control={control}
-            name="Contacto"
+            name="ContaProv"
             errorMessage={errors?.ContaProv?.message}
             label="Contacto"
             defaultValue=""
           />
-            <InputText
+          <InputText
             control={control}
-            name="Dirección"
+            name="DireProv"
             errorMessage={errors?.DireProv?.message}
             label="Dirección"
             defaultValue=""
           />
-              <InputSelect
+          <InputText
             control={control}
-            name="Clase"
-            label="Clase"
-            defaultValue=""
-            options={Class}
-            errorMessage={errors. ClasProv?.message}
-          />
-         
-     
-         <InputText
-            control={control}
-            name="Antiguo vendedor #"
+            name="OldvProv"
             errorMessage={errors?.OldvProv?.message}
             label="Antiguo vendedor #"
             defaultValue=""
           />
-
-            <InputSelect
+          <InputSelect
             control={control}
-            name="Estado de Fin Sanc"
-            label="Estado de Fin Sanc"
-            defaultValue=""
-            options={Estatus}
-            errorMessage={errors.EstaProv?.message}
-          />
-
-         <InputDate
-        control={control}
-        name="Sanc Estado Dt"
-        label="Sanc Estado Dt"
-        defaultValue={null}
-        errorMessage={errors.FeesProv?.message}
-      />
-           <InputSelect
-            control={control}
-            name="País"
+            name="PaisProv"
             label="País"
             defaultValue=""
-            options={contry}
+            options={lsCatalogo}
             errorMessage={errors.PaisProv?.message}
           />
-           <InputSelect
+          <InputSelect
             control={control}
-            name="Departamento"
+            name="DepaProv"
             label="Departamento"
             defaultValue=""
             options={department}
@@ -256,22 +244,19 @@ const ComSupplier = () => {
           />
           <InputSelect
             control={control}
-            name="Ciudad"
+            name="CiudProv"
             label="Ciudad"
             defaultValue=""
             options={city}
             errorMessage={errors.CiudProv?.message}
           />
-        
-  
-          <InputCheck
+          <InputText
             control={control}
-            name="Estado"
-            label="Estado"
-            defaultValue={false}
-            errorMessage={errors.Estado?.message}
+            name="PostProv"
+            errorMessage={errors?.PostProv?.message}
+            label="Servicios"
+            defaultValue=""
           />
-
         </div>
         <div className="flex flex-row items-center justify-center">
           <ButtonOutline onPress={() => history.push('/ComCatalog')} text="Cerrar" />
@@ -281,4 +266,5 @@ const ComSupplier = () => {
     </div>
   );
 };
+
 export default ComSupplier;
