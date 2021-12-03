@@ -88,7 +88,7 @@ import { GetAllComCatalog } from "../../../api/clients/ComCatalogClient";
 
                     <div className="flex flex-col">
                         <span className="text-xs text-gray-400">Tipo de Catálogo: </span>
-                        <strong>{comcatalog.idTipoCatalogo}</strong>
+                        <strong>{comcatalog.nameTypeCatalog}</strong>
                     </div>
 
                     <div className="flex flex-col">

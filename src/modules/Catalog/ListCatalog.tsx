@@ -87,13 +87,13 @@ const ListCatalog = () => {
                     </div>
 
                     <div className="flex flex-col">
-                        <span className="text-xs text-gray-400">Nombre: </span>
-                        <strong>{catalog.nombre}</strong>
+                        <span className="text-xs text-gray-400">Tipo de Catálogo: </span>
+                        <strong>{catalog.nameTypeCatalog}</strong>
                     </div>
 
                     <div className="flex flex-col">
-                        <span className="text-xs text-gray-400">Tipo de Catálogo: </span>
-                        <strong>{catalog.idTipoCatalogo}</strong>
+                        <span className="text-xs text-gray-400">Nombre: </span>
+                        <strong>{catalog.nombre}</strong>
                     </div>
 
                     <div className="flex flex-col">

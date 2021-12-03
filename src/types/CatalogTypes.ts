@@ -5,4 +5,5 @@ export type Catalog = {
   nombre: string;
   codigo: string;
   estado: boolean;
+  nameTypeCatalog: string;
 }

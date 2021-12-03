@@ -4,4 +4,5 @@ export type ComCatalog = {
   idTipoCatalogo: string;
   idObjeto: string;
   estado: boolean;
+  nameTypeCatalog: string;
 }
