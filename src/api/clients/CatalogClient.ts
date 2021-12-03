@@ -7,12 +7,14 @@ import { postData, getData } from '../instances/utilInstance';
 import { Url } from '../instances/routerInstances/AuthRoute';
 
 export interface CatalogClient {
-    saveCatalog: (data: CatalogForm) => Promise<AxiosResponse<Catalog>>
+    saveCatalog: (data: CatalogForm) => Promise<AxiosResponse<Catalog>>,
+    DeleteCatalog: (idCatalogo: number) => Promise<AxiosResponse>,
 }
 
 function buildCatalogClient(httpInstance: AxiosInstance = productIntance): CatalogClient {
     return {
         saveCatalog: (data) => httpInstance.post<Catalog>(Url.Catalogo, data),
+        DeleteCatalog: (idCatalogo) => httpInstance.delete(Url.Catalogo, { params: { idCatalogo }})
     }
 }
 
