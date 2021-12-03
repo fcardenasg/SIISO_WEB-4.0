@@ -3,7 +3,6 @@ import { ComTypeofcatalogsForm } from "../../modules/Contracts/Typeofcatalogs/Co
 import { ComTypeofcatalog } from "../../types/ComTypeofcatalogsType";
 import productIntance from "../instances/productInstance";
 
-
 import {postData, getData} from '../instances/utilInstance';
 import { Url } from '../instances/routerInstances/AuthRoute';
 

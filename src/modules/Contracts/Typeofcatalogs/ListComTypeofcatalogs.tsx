@@ -17,9 +17,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import MoreVertSharpIcon from "@mui/icons-material/MoreVertSharp";
 import { GetAllComTypeofcatalogs } from "../../../api/clients/ComTypeofcatalogsClient";
-import buildComTypeofcatalogsClient from '../../../api/clients/ComTypeofcatalogsClient';
+import buildComTypeofcatalogsClient from "../../../api/clients/ComTypeofcatalogsClient";
 
-const clientHttp = buildComTypeofcatalogsClient()
+const clientHttp = buildComTypeofcatalogsClient();
 
 const ListComTypeofcatalogs = () => {
   const ComTypeofcatalogsArray: ComTypeofcatalog[] = [];
@@ -33,7 +33,6 @@ const ListComTypeofcatalogs = () => {
   }
 
   useEffect(() => {
-    
     GetAll();
   }, []);
 
@@ -56,12 +55,15 @@ const ListComTypeofcatalogs = () => {
   };
 
   const handleDelete = async (id: number) => {
-      try {
-          const { data } = await clientHttp.DeleteComTypeofcatalog(id);
-          await GetAll()
-      } catch (error) {
-          console.log(error);
-      }
+    try {
+
+      
+
+      const { data } = await clientHttp.DeleteComTypeofcatalog(id);
+      await GetAll();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

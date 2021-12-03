@@ -15,7 +15,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import InputDate from "../../../components/input/InputDate";
-import { GetAllCatalog } from "../../../api/clients/CatalogClient";
+import { GetAllComCatalog } from "../../../api/clients/ComCatalogClient";
 
 // Validacion
 import * as Yup from "yup";
@@ -35,7 +35,6 @@ const Class: SelectOptions[] = [
   },
 
 ];
-
 const contry: SelectOptions[] = [
   {
     value: "Colombia",
@@ -112,8 +111,8 @@ export type ComSupplierForm = {
   ContaProv: string;
   DireProv: string;
   OldvProv: string;
-  DepaProv: string;
-  CiudProv: string;
+  DepaProv: number;
+  CiudProv: number;
   PaisProv: number;
   PostProv: string;
 };
@@ -148,7 +147,7 @@ const ComSupplier: React.FC<Props> = ({ ComSupplierClient }) => {
   //Cargar combo-box
   useEffect(() => {
     async function GetAll() {
-      const lsCatalogoServer = await GetAllCatalog(0, 0);
+      const lsCatalogoServer = await GetAllComCatalog(0, 0);
       var result = lsCatalogoServer.entities.map((item: any) => ({
         value: item.idCatalogo,
         label: item.nombre
@@ -239,7 +238,7 @@ const ComSupplier: React.FC<Props> = ({ ComSupplierClient }) => {
             name="DepaProv"
             label="Departamento"
             defaultValue=""
-            options={department}
+            options={lsCatalogo}
             errorMessage={errors.DepaProv?.message}
           />
           <InputSelect
@@ -247,7 +246,7 @@ const ComSupplier: React.FC<Props> = ({ ComSupplierClient }) => {
             name="CiudProv"
             label="Ciudad"
             defaultValue=""
-            options={city}
+            options={lsCatalogo}
             errorMessage={errors.CiudProv?.message}
           />
           <InputText

@@ -21,6 +21,5 @@ function buildComSupplierClient(httpInstance: AxiosInstance = productIntance): C
 
 export const SaveComSupplier = async(comProveedor: ComSupplierForm) => await postData(Url.ComProveedor, comProveedor);
 export const GetAllComSupplier = async(page: number, pageSize: number) => await getData(Url.ComProveedor, {page, pageSize});
-/* export const DeleteComSupplier = async(idComProveedor) => await postData(Url.ComProveedor, {idComProveedor}); */
 
 export default buildComSupplierClient;

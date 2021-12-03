@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 
+/* Mensaje de éxito */
 const MessageSuccess = () => {
     Swal.fire({
         /* position: 'top-end', */
@@ -10,6 +11,10 @@ const MessageSuccess = () => {
     })
 }
 
+/* Mensaje de confirmación para eliminar */
+
+
+/* Exportación de metodos */
 export {
     MessageSuccess
 }

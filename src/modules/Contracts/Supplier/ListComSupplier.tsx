@@ -27,7 +27,7 @@ const ListComSupplier = () => {
 
   useEffect(() => {
     async function GetAll() {
-      const lsComSupplierServer = await GetAllComSupplier(0, 10);
+      const lsComSupplierServer = await GetAllComSupplier(0, 5);
       setLsComSupplier(lsComSupplierServer.entities);
     }
     GetAll();
