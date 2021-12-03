@@ -1,5 +1,5 @@
 export type Catalog = {
-  IdCatalogo: string;
+  idCatalogo: string;
   objeto: string;
   idTipoCatalogo: string;
   nombre: string;

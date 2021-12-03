@@ -87,7 +87,6 @@ const Estatus: SelectOptions[] = [
     label: "Valid",
   },
 ];
-
 const oldseller: SelectOptions[] = [
   {
     value: "9898998",

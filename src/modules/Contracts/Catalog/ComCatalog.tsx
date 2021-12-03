@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useHistory } from "react-router";
@@ -19,6 +19,7 @@ import {
   SaveComCatalog,
 } from "../../../api/clients/ComCatalogClient";
 import { MessageSuccess } from "../../../components/message/MessageSuccess"
+import { GetAllComTypeofcatalogs } from "../../../api/clients/ComTypeofcatalogsClient"
 
 //Cargar combos
 const Objects: SelectOptions[] = [
@@ -81,6 +82,9 @@ interface Props {
 }
 
 const ComCatalog: React.FC<Props> = ({ ComCatalogClient }) => {
+  const TipoCatalogoArray: SelectOptions[] = [];
+  const [lsTipoCatalogo, setLsTipoCatalogo] = useState(TipoCatalogoArray);
+
   //Crear formulario para validar
   const {
     control,
@@ -88,6 +92,18 @@ const ComCatalog: React.FC<Props> = ({ ComCatalogClient }) => {
     formState: { errors },
     getValues,
   } = useForm<ComCatalogForm>();
+
+  useEffect(() => {
+    async function GetAll() {
+      const lsTipoCatalogoServer = await GetAllComTypeofcatalogs(0, 0);
+      var result = lsTipoCatalogoServer.entities.map((item: any) => ({
+        value: item.idTipoCatalogo,
+        label: item.nombre
+      }));
+      setLsTipoCatalogo(result);
+    }
+    GetAll();
+  }, []);
 
   const handleClick = async (form: ComCatalogForm) => {
     console.log(form);
@@ -122,7 +138,7 @@ const ComCatalog: React.FC<Props> = ({ ComCatalogClient }) => {
             name="IdTipoCatalogo"
             label="Tipo Catálogo"
             defaultValue=""
-            options={typeofcatalog}
+            options={lsTipoCatalogo}
             errorMessage={errors.IdTipoCatalogo?.message}
           />
 

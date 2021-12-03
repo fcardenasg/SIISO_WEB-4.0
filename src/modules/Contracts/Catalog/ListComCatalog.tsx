@@ -18,36 +18,35 @@ import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import { GetAllComCatalog } from "../../../api/clients/ComCatalogClient";
 
+const ListComCatalog = () => {
+    const ComCatalogArray: ComCatalog[] = [];
+    const [lsComCatalog, setLsComCatalog] = useState(ComCatalogArray);
 
-    const ListComCatalog = () => {
-        const ComCatalogArray: ComCatalog[] = [];
-        const [lsComCatalog, setLsComCatalog] = useState(ComCatalogArray);
-    
-        useEffect(() => {
-            async function GetAll() {
-                const lsComCatalogServer = await GetAllComCatalog(0, 10);
-                setLsComCatalog(lsComCatalogServer.entities);
-            }
-            GetAll();
-        }, []);
-    
-        const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-        const open = Boolean(anchorEl);
-    
-        const {
-            control,
-            formState: { errors },
-        } = useForm();
-    
-        const history = useHistory();
-    
-        const handleClose = () => {
-            setAnchorEl(null);
-        };
-    
-        const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-            setAnchorEl(event.currentTarget);
-        };
+    useEffect(() => {
+        async function GetAll() {
+            const lsComCatalogServer = await GetAllComCatalog(0, 10);
+            setLsComCatalog(lsComCatalogServer.entities);
+        }
+        GetAll();
+    }, []);
+
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+
+    const {
+        control,
+        formState: { errors },
+    } = useForm();
+
+    const history = useHistory();
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
 
     return (
         <div>
@@ -77,13 +76,13 @@ import { GetAllComCatalog } from "../../../api/clients/ComCatalogClient";
                 </div>
             </div>
 
-            {lsComCatalog.map((comcatalog : any) => (
+            {lsComCatalog.map((comcatalog: any) => (
                 <div className="items-center p-4 gap-4 flex-1 grid grid-cols-5 bg-white rounded shadow-md my-3 gap-x-6 gap-y-3 text-gray-700 text-sm font-montserrat">
                     <div
                         className="bg-red-1 h-10 w-10 text-white text-center 
                         font-extrabold flex items-center justify-center rounded-full"
                     >
-                        {comcatalog.idTipoCatalogo[0]}
+                        {comcatalog.nameTypeCatalog[0]}
                     </div>
 
                     <div className="flex flex-col">

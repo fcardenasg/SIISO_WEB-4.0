@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router';
 import { InputText } from "../../components/input/InputText";
@@ -13,7 +13,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { GetAllCatalog } from "../../api/clients/CatalogClient"
 /* import Checkbox from "@mui/material/Checkbox"; */
+/* import { Typeofcatalog } from "../../types/TypeofcatalogsType"; */
 
 // Validacion
 import * as Yup from "yup";
@@ -24,16 +26,8 @@ import { MessageSuccess } from "../../components/message/MessageSuccess"
 //Cargar combos
 const city: SelectOptions[] = [
   {
-    value: "Valledupar",
-    label: "Valledupar",
-  },
-  {
-    value: "Barranquilla",
-    label: "Barranquilla",
-  },
-  {
-    value: "Santa Marta",
-    label: "Santa Marta",
+    value: "",
+    label: "",
   },
 ];
 
@@ -106,6 +100,9 @@ interface Props {
 }
 
 const Supplier: React.FC<Props> = ({ SupplierClient }) => {
+  const CatalogoArray: SelectOptions[] = [];
+  const [lsCatalogo, setLsCatalogo] = useState(CatalogoArray);
+
   //Crear formulario para validar
   const {
     control,
@@ -124,6 +121,18 @@ const Supplier: React.FC<Props> = ({ SupplierClient }) => {
       typeof value === "string" ? value.split(",") : value
     );
   };
+
+  useEffect(() => {
+    async function GetAll() {
+      const lsCatalogoServer = await GetAllCatalog(0, 0);
+      var result = lsCatalogoServer.entities.map((item: any) => ({
+        value: item.idCatalogo,
+        label: item.nombre
+      }));
+      setLsCatalogo(result);
+    }
+    GetAll();
+  }, []);
 
   const handleClick = (form: SupplierForm) => {
     console.log(form);
@@ -193,7 +202,7 @@ const Supplier: React.FC<Props> = ({ SupplierClient }) => {
             name="CiudProv"
             label="Ciudad"
             defaultValue=""
-            options={city}
+            options={lsCatalogo}
             errorMessage={errors.CiudProv?.message}
           />
           <InputText
@@ -243,3 +252,7 @@ const Supplier: React.FC<Props> = ({ SupplierClient }) => {
 };
 
 export default Supplier;
+
+function GetAllCatalogo(arg0: number, arg1: number) {
+  throw new Error("Function not implemented.");
+}

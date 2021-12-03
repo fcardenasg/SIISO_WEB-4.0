@@ -1,6 +1,6 @@
 import { Checkbox } from "@mui/material";
 import { pink } from "@mui/material/colors";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import InputSelect, {
   SelectOptions,
@@ -11,6 +11,7 @@ import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
 import InputCheckBox from "../../../components/input/InputCheckBox";
 import InputDate from "../../../components/input/InputDate";
 import { EmployeeContext } from "../Employee";
+import { GetAllCatalog } from "../../../api/clients/CatalogClient";
 
 const Types: SelectOptions[] = [
   {
@@ -186,6 +187,9 @@ const Rotation: SelectOptions[] = [
 ];
 
 const ContractualInformation = () => {
+  const CatalogoArray: SelectOptions[] = [];
+  const [lsCatalogo, setLsCatalogo] = useState(CatalogoArray);
+
   const employeeContext = useContext(EmployeeContext);
   const { onBack } = employeeContext;
   const { handleClick } = employeeContext;
@@ -194,6 +198,19 @@ const ContractualInformation = () => {
     control,
     formState: { errors },
   } = useForm();
+
+  //Cargar combo-box
+  useEffect(() => {
+    async function GetAll() {
+      const lsCatalogoServer = await GetAllCatalog(0, 0);
+      var result = lsCatalogoServer.entities.map((item: any) => ({
+        value: item.idCatalogo,
+        label: item.nombre
+      }));
+      setLsCatalogo(result);
+    }
+    GetAll();
+  }, []);
 
   return (
     <div className="flex flex-col bg-white shadow px-10 py-1 rounded">
@@ -215,7 +232,7 @@ const ContractualInformation = () => {
           name="TipoContrato"
           label="Tipo de contrato"
           defaultValue=""
-          options={TypeContract}
+          options={lsCatalogo}
           errorMessage={errors?.TipoContrato?.message}
         />
         <InputSelect
@@ -223,7 +240,7 @@ const ContractualInformation = () => {
           name="Type"
           label="Rol"
           defaultValue=""
-          options={Types}
+          options={lsCatalogo}
           errorMessage={errors?.Type?.message}
         />
         <InputSelect
@@ -231,7 +248,7 @@ const ContractualInformation = () => {
           name="RosterPosition"
           label="Roster Position"
           defaultValue=""
-          options={RosterPosition}
+          options={lsCatalogo}
           errorMessage={errors?.RosterPosition?.message}
         />
         <InputSelect
@@ -239,7 +256,7 @@ const ContractualInformation = () => {
           name="GeneralPosition"
           label="General Position"
           defaultValue=""
-          options={GeneralPosition}
+          options={lsCatalogo}
           errorMessage={errors?.GeneralPosition?.message}
         />
         <InputSelect
@@ -255,7 +272,7 @@ const ContractualInformation = () => {
           name="Area"
           label="Areas"
           defaultValue=""
-          options={Area}
+          options={lsCatalogo}
           errorMessage={errors?.Area?.message}
         />
         <InputSelect
@@ -263,7 +280,7 @@ const ContractualInformation = () => {
           name="SubArea"
           label="Subareas"
           defaultValue=""
-          options={SubArea}
+          options={lsCatalogo}
           errorMessage={errors?.SubArea?.message}
         />
         <InputSelect
@@ -271,7 +288,7 @@ const ContractualInformation = () => {
           name="Grupo"
           label="Grupo"
           defaultValue=""
-          options={Grupo}
+          options={lsCatalogo}
           errorMessage={errors?.Grupo?.message}
         />
         <InputSelect
@@ -279,7 +296,7 @@ const ContractualInformation = () => {
           name="Turno"
           label="Turno"
           defaultValue=""
-          options={Turno}
+          options={lsCatalogo}
           errorMessage={errors?.Turno?.message}
         />
         <InputSelect
@@ -287,7 +304,7 @@ const ContractualInformation = () => {
           name="Rotation"
           label="Rotación"
           defaultValue=""
-          options={Rotation}
+          options={lsCatalogo}
           errorMessage={errors?.Rotation?.message}
         />
       </div>
