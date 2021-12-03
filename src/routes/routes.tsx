@@ -234,7 +234,7 @@ export default function RoutesApp() {
           </PrivateRoute>
           <PrivateRoute path="/addComSupplier">
             <MainLayout>
-            <ComSupplier ComSupplierClient={ComSupplierClient} />
+            {/* <ComSupplier ComSupplierClient={ComSupplierClient} /> */}
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/LaborMedicine">
