@@ -10,12 +10,15 @@ import { Url } from '../instances/routerInstances/AuthRoute';
 export interface TypeofcatalogClient {
     saveTypeofcatalog: (data: TypeofcatalogsForm) => Promise<AxiosResponse<Typeofcatalog>>,
     DeleteTypeofcatalog: (idTipoCatalogo: number) => Promise<AxiosResponse>,
+    FilterTypeofcatalog: (dataFilter: string, page: number, pageSize: number) => Promise<AxiosResponse>
+    
 }
 
 function buildTypeofcatalogClient(httpInstance: AxiosInstance = productIntance): TypeofcatalogClient {
     return {
         saveTypeofcatalog: (data) => httpInstance.post<Typeofcatalog>(Url.TipoCatalogo, data),
-        DeleteTypeofcatalog: (idTipoCatalogo) => httpInstance.delete(Url.TipoCatalogo, { params: { idTipoCatalogo }})
+        DeleteTypeofcatalog: (idTipoCatalogo) => httpInstance.delete(Url.TipoCatalogo, { params: { idTipoCatalogo }}),
+        FilterTypeofcatalog: (dataFilter: string, page: number, pageSize: number) => httpInstance.get(Url.FilterTipoCatalogo, { params: { dataFilter,page,pageSize }}),
     }
 }
 

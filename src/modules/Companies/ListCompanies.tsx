@@ -17,18 +17,26 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import { GetAllCompanies } from "../../api/clients/CompaniesClient";
+import buildCompaniesClient from '../../api/clients/CompaniesClient';
+
+const clientHttp = buildCompaniesClient()
 
 const ListCompanies = () => {
     const CompaniesArray: Companies[] = [];
     const [lsCompanies, setLsCompanies] = useState(CompaniesArray);
 
+
+    async function GetAll() {
+        const lsCompaniesServer = await GetAllCompanies(0, 5);
+        setLsCompanies(lsCompaniesServer.entities);
+      }
+
     useEffect(() => {
-        async function GetAll() {
-            const lsCompaniesServer = await GetAllCompanies(0, 10);
-            setLsCompanies(lsCompaniesServer.entities);
-        }
+      
         GetAll();
     }, []);
+
+
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -47,6 +55,17 @@ const ListCompanies = () => {
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
+
+
+    const handleDelete = async (id: string) => {
+        try {
+            const { data } = await clientHttp.DeleteCompanies(id);
+            await GetAll()
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
 
     return (
         <div>
@@ -142,9 +161,12 @@ const ListCompanies = () => {
                                     <DeleteIcon fontSize="small" />
                                 </ListItemIcon>
                                 <ListItemText>
-                                    <span className="text-gray-700 font-montserrat font-semibold text-xs">
-                                        Eliminar
-                                    </span>
+                                <span
+                    onClick={() => handleDelete(companies.idEmpresa)}
+                    className="text-gray-700 font-montserrat font-semibold text-xs"
+                  >
+                    Eliminar
+                  </span>
                                 </ListItemText>
                             </MenuItem>
                         </Menu>

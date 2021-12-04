@@ -1,15 +1,21 @@
 import { TextField } from "@material-ui/core";
 import React from "react";
-import { Control, Controller, RegisterOptions } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  RegisterOptions,
+  EventType,
+} from "react-hook-form";
 
 interface Props {
   name: string;
   control: Control<any, object>;
   defaultValue: string;
   label: string;
-  rules?: RegisterOptions,
-  errorMessage?: string,
+  rules?: RegisterOptions;
+  errorMessage?: string;
   isPassword?: boolean;
+  onChangeInput?: ()=>void;
 }
 
 export const InputText: React.FC<Props> = ({
@@ -20,6 +26,7 @@ export const InputText: React.FC<Props> = ({
   rules,
   errorMessage,
   isPassword,
+  onChangeInput
 }) => {
   return (
     <div className="mb-4">
@@ -30,13 +37,14 @@ export const InputText: React.FC<Props> = ({
         rules={rules}
         render={({ field }) => (
           <TextField
-            {...field}
-            error={errorMessage ? true : false}
+          {...field}
+          error={errorMessage ? true : false}
+            onChange={onChangeInput}
             variant="outlined"
             label={label}
             className="w-full bg-white text-xs rounded"
             color="primary"
-            type={isPassword ? 'password' : 'text'}
+            type={isPassword ? "password" : "text"}
             margin="none"
             size="small"
             inputProps={{ style: { fontSize: 14 } }}

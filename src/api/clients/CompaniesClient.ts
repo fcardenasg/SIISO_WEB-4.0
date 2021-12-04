@@ -7,12 +7,14 @@ import { postData, getData } from '../instances/utilInstance';
 import { Url } from '../instances/routerInstances/AuthRoute';
 
 export interface CompaniesClient {
-    saveCompanies: (data: CompaniesForm) => Promise<AxiosResponse<Companies>>
+    saveCompanies: (data: CompaniesForm) => Promise<AxiosResponse<Companies>>,
+    DeleteCompanies: (idEmpresa: string) => Promise<AxiosResponse>,
 }
 
 function buildCompaniesClient(httpInstance: AxiosInstance = productIntance): CompaniesClient {
     return {
         saveCompanies: (data) => httpInstance.post<Companies>(Url.Empresa, data),
+        DeleteCompanies: (idEmpresa) => httpInstance.delete(Url.Empresa, { params: { idEmpresa }})
     }
 }
 
