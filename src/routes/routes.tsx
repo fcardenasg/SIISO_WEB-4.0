@@ -49,6 +49,7 @@ import ListAttention from "../modules/Attention/ListAttention";
 import ListComTypeofcatalogs from "../modules/Contracts/Typeofcatalogs/ListComTypeofcatalogs";
 import LaborMedicine from "../modules/LaborMedicine/LaborMedicine";
 import ListLaborMedicine from "../modules/LaborMedicine/ListLaborMedicine";
+import EditTypeofcatalogs from "../modules/Typeofcatalogs/EditTypeofcatalogs";
 
 type Props = {
   children?: React.ReactNode;
@@ -144,6 +145,11 @@ export default function RoutesApp() {
           <PrivateRoute path="/addTypeCatalog">
             <MainLayout>
               <Typeofcatalogs TypeofcatalogsClient={typeofcatalogsClient} />
+            </MainLayout>
+          </PrivateRoute>
+          <PrivateRoute path="/EditTypeCatalog">
+            <MainLayout>
+              <EditTypeofcatalogs TypeofcatalogsClient={typeofcatalogsClient}/>
             </MainLayout>
           </PrivateRoute>
           <PrivateRoute path="/TypeCatalog">
