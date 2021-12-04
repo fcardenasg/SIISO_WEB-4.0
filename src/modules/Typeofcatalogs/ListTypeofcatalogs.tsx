@@ -28,10 +28,9 @@ const ListTypeofcatalogs = () => {
     async function GetAll() {
         const lsTypeofcatalogsServer = await GetAllTipoCatalogo(0, 5);
         setLsTypeCatalog(lsTypeofcatalogsServer.entities);
-      }
+    }
 
     useEffect(() => {
-      
         GetAll();
     }, []);
 
@@ -61,8 +60,6 @@ const ListTypeofcatalogs = () => {
             console.log(error);
         }
     };
-
-
 
     return (
         <div>
@@ -133,7 +130,8 @@ const ListTypeofcatalogs = () => {
                                     <EditIcon fontSize="small" />
                                 </ListItemIcon>
                                 <ListItemText>
-                                    <span className="text-gray-700 font-montserrat font-semibold text-xs">
+                                    <span onClick={() => history.push("/EditTypeCatalog")}
+                                        className="text-gray-700 font-montserrat font-semibold text-xs">
                                         Editar
                                     </span>
                                 </ListItemText>
@@ -143,12 +141,12 @@ const ListTypeofcatalogs = () => {
                                     <DeleteIcon fontSize="small" />
                                 </ListItemIcon>
                                 <ListItemText>
-                                <span
-                    onClick={() => handleDelete(tcatalog.idTipoCatalogo)}
-                    className="text-gray-700 font-montserrat font-semibold text-xs"
-                  >
-                    Eliminar
-                  </span>
+                                    <span
+                                        onClick={() => handleDelete(tcatalog.idTipoCatalogo)}
+                                        className="text-gray-700 font-montserrat font-semibold text-xs"
+                                    >
+                                        Eliminar
+                                    </span>
                                 </ListItemText>
                             </MenuItem>
                         </Menu>

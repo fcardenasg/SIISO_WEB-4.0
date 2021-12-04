@@ -28,14 +28,11 @@ const ListCatalog = () => {
     async function GetAll() {
         const lsCatalogsServer = await GetAllCatalog(0, 5);
         setLsCatalog(lsCatalogsServer.entities);
-      }
+    }
 
     useEffect(() => {
-      
         GetAll();
     }, []);
-
-
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -55,7 +52,6 @@ const ListCatalog = () => {
         setAnchorEl(event.currentTarget);
     };
 
-    
     const handleDelete = async (id: number) => {
         try {
             const { data } = await clientHttp.DeleteCatalog(id);
@@ -154,12 +150,12 @@ const ListCatalog = () => {
                                     <DeleteIcon fontSize="small" />
                                 </ListItemIcon>
                                 <ListItemText>
-                                <span
-                    onClick={() => handleDelete(catalog.idCatalogo)}
-                    className="text-gray-700 font-montserrat font-semibold text-xs"
-                  >
-                    Eliminar
-                  </span>
+                                    <span
+                                        onClick={() => handleDelete(catalog.idCatalogo)}
+                                        className="text-gray-700 font-montserrat font-semibold text-xs"
+                                    >
+                                        Eliminar
+                                    </span>
                                 </ListItemText>
                             </MenuItem>
                         </Menu>
