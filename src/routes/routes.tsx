@@ -147,7 +147,7 @@ export default function RoutesApp() {
               <Typeofcatalogs TypeofcatalogsClient={typeofcatalogsClient} />
             </MainLayout>
           </PrivateRoute>
-          <PrivateRoute path="/EditTypeCatalog">
+          <PrivateRoute path="/EditTypeCatalog/:idTipoCatalogo">
             <MainLayout>
               <EditTypeofcatalogs TypeofcatalogsClient={typeofcatalogsClient}/>
             </MainLayout>

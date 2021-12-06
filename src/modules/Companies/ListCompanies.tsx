@@ -21,20 +21,29 @@ import buildCompaniesClient from '../../api/clients/CompaniesClient';
 
 const clientHttp = buildCompaniesClient()
 
-const ListCompanies = () => {
-    const CompaniesArray: Companies[] = [];
-    const [lsCompanies, setLsCompanies] = useState(CompaniesArray);
 
 
-    async function GetAll() {
-        const lsCompaniesServer = await GetAllCompanies(0, 5);
-        setLsCompanies(lsCompaniesServer.entities);
-      }
-
-    useEffect(() => {
+    const ListCompanies = () => {
+        const perPage = 5;
+        const CompaniesArray: Companies[] = [];
+        const [lsCompanies, setLsCompanies] = useState(CompaniesArray);
+/*         const [dataFilter, setDataFilter] = useState(""); */
+        async function GetAll() {
+          const lsCompaniesServer = await GetAllCompanies(0, 5);
+          setLsCompanies(lsCompaniesServer.entities);
+        }
       
-        GetAll();
-    }, []);
+        useEffect(() => {
+          GetAll();
+        }, []);
+
+
+
+
+
+
+
+
 
 
 

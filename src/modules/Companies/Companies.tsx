@@ -19,11 +19,10 @@ export type CompaniesForm = {
   Email: string;
   Celular: string;
   Gerente: string;
-  Estado: boolean;
 };
 
 //Validacion de los campos
-/* const schemaValidation: Yup.SchemaOf<CompaniesForm> = Yup.object({
+ const schemaValidation: Yup.SchemaOf<CompaniesForm> = Yup.object({
   DescripcionSpa: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
@@ -39,8 +38,8 @@ export type CompaniesForm = {
   Gerente: Yup.string()
     .required("Este campo es obligatorio")
     .min(3, "Este campo debe tener minimo 3 caracteres"),
-  Estado: Yup.boolean().required(),
-}); */
+
+}); 
 
 interface Props {
   CompaniesClient: CompaniesClient;
@@ -110,14 +109,7 @@ const Companies: React.FC<Props> = ({ CompaniesClient }) => {
             label="Contacto"
             defaultValue=""
           />
-
-          <InputCheck
-            control={control}
-            name="Estado"
-            label="Estado"
-            defaultValue={false}
-            errorMessage={errors.Estado?.message}
-          />
+          
         </div>
 
         <div className="flex flex-row items-center justify-center">

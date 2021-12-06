@@ -4,7 +4,7 @@ import {
   Control,
   Controller,
   RegisterOptions,
-  EventType,
+/*   EventType, */
 } from "react-hook-form";
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
   rules?: RegisterOptions;
   errorMessage?: string;
   isPassword?: boolean;
-  onChangeInput?: ()=>void;
+ /*  onChangeInput?: ()=>void; */
 }
 
 export const InputText: React.FC<Props> = ({
@@ -26,7 +26,7 @@ export const InputText: React.FC<Props> = ({
   rules,
   errorMessage,
   isPassword,
-  onChangeInput
+/*   onChangeInput */
 }) => {
   return (
     <div className="mb-4">
@@ -39,7 +39,7 @@ export const InputText: React.FC<Props> = ({
           <TextField
           {...field}
           error={errorMessage ? true : false}
-            onChange={onChangeInput}
+          /*   onChange={onChangeInput} */
             variant="outlined"
             label={label}
             className="w-full bg-white text-xs rounded"

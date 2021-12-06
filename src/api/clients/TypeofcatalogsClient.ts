@@ -10,7 +10,8 @@ import { Url } from '../instances/routerInstances/AuthRoute';
 export interface TypeofcatalogClient {
     saveTypeofcatalog: (data: TypeofcatalogsForm) => Promise<AxiosResponse<Typeofcatalog>>,
     DeleteTypeofcatalog: (idTipoCatalogo: number) => Promise<AxiosResponse>,
-    FilterTypeofcatalog: (dataFilter: string, page: number, pageSize: number) => Promise<AxiosResponse>
+    FilterTypeofcatalog: (dataFilter: string, page: number, pageSize: number) => Promise<AxiosResponse>,
+    UpdateTypeofcatalog: (idTipoCatalogo: number) => Promise<AxiosResponse>,
     
 }
 
@@ -19,10 +20,12 @@ function buildTypeofcatalogClient(httpInstance: AxiosInstance = productIntance):
         saveTypeofcatalog: (data) => httpInstance.post<Typeofcatalog>(Url.TipoCatalogo, data),
         DeleteTypeofcatalog: (idTipoCatalogo) => httpInstance.delete(Url.TipoCatalogo, { params: { idTipoCatalogo }}),
         FilterTypeofcatalog: (dataFilter: string, page: number, pageSize: number) => httpInstance.get(Url.FilterTipoCatalogo, { params: { dataFilter,page,pageSize }}),
+        UpdateTypeofcatalog: (data) => httpInstance.put<Typeofcatalog>(Url.TipoCatalogo, data),
     }
 }
 
 export const SaveTypeCatalog = async (tipoCatalogo: TypeofcatalogsForm) => await postData(Url.TipoCatalogo, tipoCatalogo);
 export const GetAllTipoCatalogo = async (page: number, pageSize: number) => await getData(Url.TipoCatalogo, { page, pageSize });
+export const UpdateTypeCatalog = async (tipoCatalogo: TypeofcatalogsForm) => await postData(Url.UpdateTipoCatalogo, tipoCatalogo);
 
 export default buildTypeofcatalogClient;

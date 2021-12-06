@@ -74,9 +74,7 @@ const history = useHistory();
         />
         <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         <div className="h-3"></div>
-        <Link to="/purchases">
-          <ButtonOutline onPress={() => {}} text="Cancelar" />
-        </Link>
+        <ButtonOutline onPress={() => history.push('/ComTypeofcatalogs')} text="Cerrar" />
       </div>
     </div>
   );

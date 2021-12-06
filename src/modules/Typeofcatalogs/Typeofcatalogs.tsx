@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useHistory } from "react-router";
@@ -17,6 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { TypeofcatalogClient, SaveTypeCatalog } from "../../api/clients/TypeofcatalogsClient";
 import { MessageSuccess } from "../../components/message/MessageSuccess"
 
+// const [Limpiar , setLimpiar] = useState<string>('');
 
 export type TypeofcatalogsForm = {
   Nombre: string;
@@ -33,7 +34,7 @@ interface Props {
   TypeofcatalogsClient: TypeofcatalogClient;
 }
 
-const Typeofcatalogs: React.FC<Props> = ({ TypeofcatalogsClient }) => {
+ const Typeofcatalogs: React.FC<Props> = ({ TypeofcatalogsClient }) => {
   //Crear formulario para validar
   const {
     control,
@@ -42,11 +43,12 @@ const Typeofcatalogs: React.FC<Props> = ({ TypeofcatalogsClient }) => {
     getValues,
   } = useForm<TypeofcatalogsForm>();
 
-  const handleClick = async (form: TypeofcatalogsForm) => {
+ const handleClick = async (form: TypeofcatalogsForm) => {
     console.log(form);
     const ResponsePolicy = await SaveTypeCatalog(form);
     MessageSuccess();
-  };
+    // setLimpiar('');
+  };  
 
   const history = useHistory();
 
@@ -67,6 +69,7 @@ const Typeofcatalogs: React.FC<Props> = ({ TypeofcatalogsClient }) => {
           errorMessage={errors?.Nombre?.message}
           label="Nombre"
           defaultValue=""
+          
         />
         <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         <div className="h-3"></div>

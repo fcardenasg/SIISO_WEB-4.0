@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router"
+import { useHistory } from "react-router";
 import { InputText } from "../../../components/input/InputText";
 import { ButtonPrimary } from "../../../components/buttons/ButtonPrimary";
 import { Link } from "react-router-dom";
 import { ButtonOutline } from "../../../components/buttons/ButtonOutline";
 import InputCheck from "../../../components/input/InputCheck";
-import InputSelect, { SelectOptions } from "../../../components/input/InputSelect";
+import InputSelect, {
+  SelectOptions,
+} from "../../../components/input/InputSelect";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -20,74 +22,14 @@ import { GetAllComCatalog } from "../../../api/clients/ComCatalogClient";
 // Validacion
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { MessageSuccess } from "../../../components/message/MessageSuccess"
-import { ComSupplierClient, SaveComSupplier } from "../../../api/clients/ComSupplierClient";
+import { MessageSuccess } from "../../../components/message/MessageSuccess";
+import {
+  ComSupplierClient,
+  SaveComSupplier,
+} from "../../../api/clients/ComSupplierClient";
 
 //Cargar combos
-const Class: SelectOptions[] = [
-  {
-    value: "C",
-    label: "C",
-  },
-  {
-    value: "D",
-    label: "D",
-  },
 
-];
-const contry: SelectOptions[] = [
-  {
-    value: "Colombia",
-    label: "Colombia",
-  },
-  {
-    value: "USA",
-    label: "USA",
-  },
-
-];
-const city: SelectOptions[] = [
-  {
-    value: "Valledupar",
-    label: "Valledupar",
-  },
-  {
-    value: "Barranquilla",
-    label: "Barranquilla",
-  },
-  {
-    value: "Santa Marta",
-    label: "Santa Marta",
-  },
-];
-const department: SelectOptions[] = [
-  {
-    value: "Cesar",
-    label: "Cesar",
-  },
-  {
-    value: "Atlantico",
-    label: "Atlantico",
-  },
-  {
-    value: "Magdalena",
-    label: "Magdalena",
-  },
-];
-const Estatus: SelectOptions[] = [
-  {
-    value: "Cleared",
-    label: "Cleared",
-  },
-  {
-    value: "Review",
-    label: "Review",
-  },
-  {
-    value: "Valid",
-    label: "Valid",
-  },
-];
 const oldseller: SelectOptions[] = [
   {
     value: "9898998",
@@ -114,7 +56,7 @@ export type ComSupplierForm = {
   DepaProv: number;
   CiudProv: number;
   PaisProv: number;
-  PostProv: string;
+  PostProv: number;
 };
 
 interface Props {
@@ -150,7 +92,7 @@ const ComSupplier: React.FC<Props> = ({ ComSupplierClient }) => {
       const lsCatalogoServer = await GetAllComCatalog(0, 0);
       var result = lsCatalogoServer.entities.map((item: any) => ({
         value: item.idCatalogo,
-        label: item.nombre
+        label: item.nombre,
       }));
       setLsCatalogo(result);
     }
@@ -249,16 +191,23 @@ const ComSupplier: React.FC<Props> = ({ ComSupplierClient }) => {
             options={lsCatalogo}
             errorMessage={errors.CiudProv?.message}
           />
-          <InputText
+
+          <InputSelect
             control={control}
             name="PostProv"
-            errorMessage={errors?.PostProv?.message}
             label="Servicios"
             defaultValue=""
+            options={lsCatalogo}
+            errorMessage={errors.PostProv?.message}
           />
+
+       
         </div>
         <div className="flex flex-row items-center justify-center">
-          <ButtonOutline onPress={() => history.push('/ComCatalog')} text="Cerrar" />
+          <ButtonOutline
+            onPress={() => history.push("/ComSupplier")}
+            text="Cerrar"
+          />
           <ButtonPrimary onPress={handleSubmit(handleClick)} text="Guardar" />
         </div>
       </div>

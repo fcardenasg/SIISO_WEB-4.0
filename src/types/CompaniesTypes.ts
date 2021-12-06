@@ -4,5 +4,5 @@ export type Companies = {
     email: string;
     celular: string;
     gerente: string;
-    estado: boolean;
+
 }

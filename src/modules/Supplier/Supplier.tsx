@@ -14,7 +14,7 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { GetAllCatalog } from "../../api/clients/CatalogClient"
-/* import Checkbox from "@mui/material/Checkbox"; */
+ import Checkbox from "@mui/material/Checkbox"; 
 /* import { Typeofcatalog } from "../../types/TypeofcatalogsType"; */
 
 // Validacion
@@ -82,7 +82,7 @@ const MenuProps = {
   },
 };
 
-const names = [
+const TipoProv = [
   "Oliver Hansen",
   "Van Henry",
   "April Tucker",
@@ -212,20 +212,20 @@ const Supplier: React.FC<Props> = ({ SupplierClient }) => {
             label="Dirección"
             defaultValue=""
           />
-          <InputSelect
+       {/*    <InputSelect
             control={control}
             name="TipoProv"
             label="Tipo de servicio"
             defaultValue=""
             options={city}
             errorMessage={errors.TipoProv?.message}
-          />
+          /> */}
 
-          {/* <FormControl sx={{ m: 1, width: '100%' }}>
-            <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+          { <FormControl sx={{ m: 1, width: '100%' }}>
+            <InputLabel id="TipoProv">Tag</InputLabel>
             <Select
-              labelId="demo-multiple-checkbox-label"
-              id="demo-multiple-checkbox"
+              labelId="Tipo de servicio"
+              id="TipoProv"
               multiple
               value={personName}
               onChange={handleChange}
@@ -233,14 +233,16 @@ const Supplier: React.FC<Props> = ({ SupplierClient }) => {
               renderValue={(selected) => selected.join(", ")}
               MenuProps={MenuProps}
             >
-              {names.map((name) => (
-                <MenuItem key={name} value={name}>
-                  <Checkbox checked={personName.indexOf(name) > -1} />
-                  <ListItemText primary={name} />
+              {TipoProv.map((TipoProv) => (
+                <MenuItem key={TipoProv} value={TipoProv}>
+                  <Checkbox checked={personName.indexOf(TipoProv) > -1} />
+                  <ListItemText primary={TipoProv} />
                 </MenuItem>
               ))}
             </Select>
-          </FormControl> */}
+          </FormControl>
+        }
+
         </div>
         <div className="flex flex-row items-center justify-center">
           <ButtonOutline onPress={() => history.push('/Supplier')} text="Cerrar" />

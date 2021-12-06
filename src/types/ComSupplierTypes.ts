@@ -6,8 +6,8 @@ export type ComSupplier = {
   contaProv: string;
   direProv: string;
 	oldvProv: string;
-	depaProv: string;
-  ciudProv: string;
+	depaProv: number;
+  ciudProv: number;
 	paisProv: number;
-	postProv: string;
+	postProv: number;
 }

@@ -21,6 +21,8 @@ import buildTypeofcatalogsClient from "../../api/clients/TypeofcatalogsClient";
 
 const clientHttp = buildTypeofcatalogsClient();
 
+
+
 const ListTypeofcatalogs = () => {
   const perPage = 5;
   const TypeCatalogArray: Typeofcatalog[] = [];
@@ -64,7 +66,7 @@ const ListTypeofcatalogs = () => {
 
   const filterTable = async (e: any) => {
     console.log("prueba evento => ", e);
-
+    
     // const query = e.target.value.toLowerCase();
     // const filtered = await clientHttp.FilterTypeofcatalog(query, 0, perPage);
 
@@ -86,7 +88,7 @@ const ListTypeofcatalogs = () => {
             errorMessage={errors?.busqueda?.message}
             label="Búsqueda"
             defaultValue=""
-           /*  onChangeInput={filterTable} */
+            // onChange ={e  => setid(e.target.value)} 
           />
           <div className="grid grid-cols-2 gap-2">
             <ButtonPrimary
@@ -141,7 +143,9 @@ const ListTypeofcatalogs = () => {
                   <EditIcon fontSize="small" />
                 </ListItemIcon>
                 <ListItemText>
-                  <span className="text-gray-700 font-montserrat font-semibold text-xs">
+                  <span
+                  onClick={() => history.push("/EditTypeCatalog/"+tcatalog.idTipoCatalogo)}
+                  className="text-gray-700 font-montserrat font-semibold text-xs">
                     Editar
                   </span>
                 </ListItemText>
